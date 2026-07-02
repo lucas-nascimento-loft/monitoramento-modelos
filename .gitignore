@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+.venv/
+venv/
+env/
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+
+# Large datasets (regenerate via 01.Dados_Modelos.ipynb / BigQuery)
+data/analytics/df_predict_blend3.csv
+data/analytics/df_predict_blend4.csv
+data/analytics/df_predict_blend4_pre.csv
+data/analytics/df_funil_blend3.csv
+data/analytics/df_funil_blend4.csv
+*.parquet
