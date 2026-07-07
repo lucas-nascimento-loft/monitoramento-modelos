@@ -1,0 +1,222 @@
+{
+    "pessoas": [
+        {
+            "nome": "",
+            "documento": "05184755900",
+            "classificacao": "E",
+            "tipoPessoa": "FISICA",
+            "idade": null,
+            "scores": {
+                "BVS_CUSTOM_V2": 308
+            },
+            "ratings": {
+                "BLEND_4": "E"
+            },
+            "dt_nascimento": null,
+            "rendaConsideradaPessoa": 0,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 0,
+            "qtdeRestricoes": 0,
+            "valorTotalRestricao": 0,
+            "situacao_cadastral_serasa": "",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": null,
+            "nomeSerasa": null,
+            "rendaPresumidaSerasa": 0
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": ""
+    },
+    "rendaConsiderada": 0,
+    "rendaConsideradaContrato": 0,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 0,
+    "qtdeRestricoesContrato": 0,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 0,
+    "regua": "Consulta Custom PF",
+    "score": 308,
+    "scores": {
+        "BVS_CUSTOM_V2": 308
+    },
+    "ratings": {
+        "BLEND_4": "E"
+    },
+    "blendRegressaoPredict": null,
+    "decisao": "BLEND_4",
+    "classificacao": "E",
+    "classificacaoInquilino": "none",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND_4"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": null,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": true,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [],
+        "exit_cost_multiplier": [],
+        "commission_percent": [],
+        "version": 1
+    }
+}
+
+{
+    "principalDocument": "05184755900",
+    "imobiliariaId": 49644,
+    "idExterno": "4332594",
+    "rating": "E",
+    "valorAluguel": 8000,
+    "imovelTipo": "RESIDENCIAL",
+    "modeloBlend": "BLEND_4",
+    "priorDecisions": [],
+    "rendaConsideradaContrato": 0,
+    "valorRestricaoTotal": 0,
+    "quantidadeRestricoesContrato": 0,
+    "nome": null,
+    "dtNascimento": null,
+    "situacaoCadastralSerasa": null,
+    "dadosAusentes": [],
+    "existeErroPowerCurve": false,
+    "existingContractDebts": {
+        "qtdeImoveis": 0,
+        "qtdeDividas": 0,
+        "saldoReceber": 0,
+        "taxaCredpago": 0
+    },
+    "errosTecnicos": [],
+    "scoreImobiliaria": "",
+    "blendPredict": null,
+    "scores": {
+        "BVS_CUSTOM_V2": 308
+    },
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": null,
+        "realEstatePc4HistoryOver100Contracts": null
+    }
+}
+
+{
+    "pessoas": [
+        {
+            "nome": "MARIA LUIZA CAZERI PIRES",
+            "documento": "48382700896",
+            "classificacao": "B",
+            "tipoPessoa": "FISICA",
+            "idade": 20,
+            "scores": {
+                "BVS_CUSTOM_V2": 567,
+                "HFT1": 353
+            },
+            "ratings": {
+                "BLEND_4": "B"
+            },
+            "dt_nascimento": "2006-01-11",
+            "rendaConsideradaPessoa": 2397.5,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 1318.625,
+            "qtdeRestricoes": 0,
+            "valorTotalRestricao": 0,
+            "situacao_cadastral_serasa": "REGULAR",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": null,
+            "nomeSerasa": "MARIA LUIZA CAZERI PIRES",
+            "rendaPresumidaSerasa": 1749.9999999999998
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": "REGULAR"
+    },
+    "rendaConsiderada": 2397.5,
+    "rendaConsideradaContrato": 2397.5,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 1318.625,
+    "qtdeRestricoesContrato": 0,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 0,
+    "regua": "Consulta Custom PF",
+    "score": 567,
+    "scores": {
+        "BVS_CUSTOM_V2": 567,
+        "HFT1": 353
+    },
+    "ratings": {
+        "BLEND_4": "B"
+    },
+    "blendRegressaoPredict": 471,
+    "decisao": "BLEND_4",
+    "classificacao": "B",
+    "classificacaoInquilino": "none",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND_4"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": 0.10936556,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": false,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [
+            35,
+            40,
+            50
+        ],
+        "exit_cost_multiplier": [
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "commission_percent": [
+            0,
+            0.5,
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+        ],
+        "version": 1
+    }
+}

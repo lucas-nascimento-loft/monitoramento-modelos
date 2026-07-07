@@ -13,7 +13,13 @@ def _sunday_week_start(dates: pd.Series) -> pd.Series:
 
 def _week_label_from_date(date) -> str:
     """Format a date as its Sunday-week label (YYYY-MM-DD)."""
-    return _sunday_week_start(pd.Series([pd.to_datetime(date)])).iloc[0].strftime("%Y-%m-%d")
+    ts = pd.to_datetime(date, errors="coerce")
+    if pd.isna(ts):
+        raise ValueError(f"Cannot compute week label from invalid date: {date!r}")
+    week_start = _sunday_week_start(pd.Series([ts])).iloc[0]
+    if pd.isna(week_start):
+        raise ValueError(f"Cannot compute week label from invalid date: {date!r}")
+    return week_start.strftime("%Y-%m-%d")
 
 
 def _assign_week_columns(df: pd.DataFrame, date_col: str) -> pd.DataFrame:
@@ -705,11 +711,19 @@ def filter_monitoring_week_window(
     mode: Literal["post_deploy", "rolling"] = "rolling",
 ) -> pd.DataFrame:
     out = prepare_week_columns(df, date_col)
+    out = out[out[date_col].notna()].copy()
+    if out.empty:
+        raise ValueError(
+            f"No rows with valid '{date_col}' found; cannot compute week window."
+        )
 
     if end_date is None:
         end_date = out[date_col].max()
     else:
-        end_date = pd.to_datetime(end_date)
+        parsed_end_date = pd.to_datetime(end_date, errors="coerce")
+        if pd.isna(parsed_end_date):
+            raise ValueError(f"Invalid end_date: {end_date!r}")
+        end_date = parsed_end_date
 
     week_table = (
         out[["year_week", "week_start"]]
@@ -1706,7 +1720,7 @@ def plot_score_match_monitoring(
     match_tolerance: int = 10,
     title_prefix: str = "Match de score (prod vs sim)",
     show_volume: bool = True,
-    ylim: Tuple[float, float] = (0, 100),
+    ylim: Tuple[float, float] = (0, 110),
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Graph 1: daily match %.
@@ -2338,7 +2352,7 @@ def plot_funnel_metric_comparison(
     time_grain: str = "week",
     model_col: str = "bureau_nm_ajust",
     color_map: dict = None,
-    ylim=(0, 80),
+    ylim=(0, 100),
     figsize=(14, 9),
     suptitle: str = None,
 ):
@@ -2750,7 +2764,7 @@ def build_blend_comparison_summary_table_counts(
     models: list,
     model_col: str = "bureau_nm_ajust",
     time_grain: str = "week",
-    baseline_model: str = "BLEND3_3",
+    baseline_model: str = "BLEND3",
     challenger_model: str = "BLEND4",
 ):
     work = prepare_blend_funnel_columns(df)
@@ -2998,7 +3012,7 @@ def plot_funnel_metrics_by_rating_side_by_side(
         axes = np.array([axes])
 
     model_titles = {
-        models[0]: "Blend 3 — BLEND3_3",
+        models[0]: "Blend 3 — BLEND3",
         models[1]: "Blend 4 — BLEND4",
     }
 
@@ -3107,7 +3121,7 @@ def plot_pre_analysis_by_rating_side_by_side(
     rating_color_map = rating_color_map or RATING_COLOR_MAP
 
     if len(models) != 2:
-        raise ValueError("models must contain exactly 2 items: [blend2_left, blend3_right]")
+        raise ValueError("models must contain exactly 2 items: [blend4_left, blend3_right]")
 
     period_label = "Dia" if time_grain == "day" else "Semana"
 
@@ -3147,8 +3161,8 @@ def plot_pre_analysis_by_rating_side_by_side(
         axes = np.array([axes])
 
     model_titles = {
-        models[0]: f"Blend 2 — {models[0]}",
-        models[1]: f"Blend 3 — {models[1]}",
+        models[0]: f"Blend 3 — {models[0]}",
+        models[1]: f"Blend 4 — {models[1]}",
     }
 
     for row_idx, outcome in enumerate(outcomes):
