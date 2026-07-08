@@ -3214,8 +3214,9 @@ def plot_pre_analysis_by_rating_side_by_side(
 
                 has_data = True
 
-            title_prefix = outcome if col_idx == 0 else ""
-            ax.set_title(f"{title_prefix} — {model_titles.get(model, model)}".strip(" —"))
+            # title_prefix = outcome if col_idx == 0 else ""
+            # ax.set_title(f"{title_prefix} — {model_titles.get(model, model)}".strip(" —"))
+            ax.set_title(f"{outcome} — {model_titles.get(model, model)}")
             ax.set_ylim(*row_ylim)
             ax.grid(axis="y", alpha=0.25)
 

@@ -1,143 +1,23 @@
 {
     "pessoas": [
         {
-            "nome": "",
-            "documento": "05184755900",
-            "classificacao": "E",
+            "nome": "JANANDRA SIBERINO MONTEIRO",
+            "documento": "01033716057",
+            "classificacao": "A",
             "tipoPessoa": "FISICA",
-            "idade": null,
+            "idade": 39,
             "scores": {
-                "BVS_CUSTOM_V2": 308
+                "BVS_CUSTOM_V2": 726,
+                "HFT1": 826
             },
             "ratings": {
-                "BLEND_4": "E"
+                "BLEND_4": "A"
             },
-            "dt_nascimento": null,
-            "rendaConsideradaPessoa": 0,
+            "dt_nascimento": "1987-01-10",
+            "rendaConsideradaPessoa": 5000.5,
             "rendaUtilizada": "SERASA",
             "fatorCorrecaoRenda": 1.37,
-            "limiteCalculadoPessoa": 0,
-            "qtdeRestricoes": 0,
-            "valorTotalRestricao": 0,
-            "situacao_cadastral_serasa": "",
-            "existeErroSerasa": false,
-            "existeErroPowerCurve": false,
-            "existeErroBvsCustom": false,
-            "errosTecnicos": [],
-            "dadosAusentes": [],
-            "restricoesPorModalidade": [],
-            "anotacoesFinanceirasSerasa": null,
-            "nomeSerasa": null,
-            "rendaPresumidaSerasa": 0
-        }
-    ],
-    "regras": {
-        "situacao_cadastral_serasa": ""
-    },
-    "rendaConsiderada": 0,
-    "rendaConsideradaContrato": 0,
-    "rendaUtilizada": "SERASA",
-    "fatorCorrecaoRenda": 1.37,
-    "limiteCalculadoContrato": 0,
-    "qtdeRestricoesContrato": 0,
-    "restricoesPorModalidadeContrato": [],
-    "regra_estouro_limite": "N\u00c3O APLICADA",
-    "valorRestricaoTotal": 0,
-    "regua": "Consulta Custom PF",
-    "score": 308,
-    "scores": {
-        "BVS_CUSTOM_V2": 308
-    },
-    "ratings": {
-        "BLEND_4": "E"
-    },
-    "blendRegressaoPredict": null,
-    "decisao": "BLEND_4",
-    "classificacao": "E",
-    "classificacaoInquilino": "none",
-    "existeErroSerasa": false,
-    "existeErroPowerCurve": false,
-    "existeErroBvsCustom": false,
-    "motor": "POWERCURVE",
-    "feature_flags": {
-        "analiseAutomaticaDeCredito": true,
-        "modeloBlend": "BLEND_4"
-    },
-    "errosTecnicos": [],
-    "dadosAusentes": [],
-    "blend3Variables": {
-        "hasPreviousContracts": false,
-        "hadOverdueInvoiceInPreviousContracts": false,
-        "cityPc4HistoryOver100Contracts": null,
-        "realEstatePc4HistoryOver100Contracts": null
-    },
-    "reaproveitamentoConsultaMotor": false,
-    "savingBureauPowerCurve": true,
-    "rentGuaranteeConstraints": {
-        "rent_coverage_multiplier": [],
-        "exit_cost_multiplier": [],
-        "commission_percent": [],
-        "version": 1
-    }
-}
-
-{
-    "principalDocument": "05184755900",
-    "imobiliariaId": 49644,
-    "idExterno": "4332594",
-    "rating": "E",
-    "valorAluguel": 8000,
-    "imovelTipo": "RESIDENCIAL",
-    "modeloBlend": "BLEND_4",
-    "priorDecisions": [],
-    "rendaConsideradaContrato": 0,
-    "valorRestricaoTotal": 0,
-    "quantidadeRestricoesContrato": 0,
-    "nome": null,
-    "dtNascimento": null,
-    "situacaoCadastralSerasa": null,
-    "dadosAusentes": [],
-    "existeErroPowerCurve": false,
-    "existingContractDebts": {
-        "qtdeImoveis": 0,
-        "qtdeDividas": 0,
-        "saldoReceber": 0,
-        "taxaCredpago": 0
-    },
-    "errosTecnicos": [],
-    "scoreImobiliaria": "",
-    "blendPredict": null,
-    "scores": {
-        "BVS_CUSTOM_V2": 308
-    },
-    "blend3Variables": {
-        "hasPreviousContracts": false,
-        "hadOverdueInvoiceInPreviousContracts": false,
-        "cityPc4HistoryOver100Contracts": null,
-        "realEstatePc4HistoryOver100Contracts": null
-    }
-}
-
-{
-    "pessoas": [
-        {
-            "nome": "MARIA LUIZA CAZERI PIRES",
-            "documento": "48382700896",
-            "classificacao": "B",
-            "tipoPessoa": "FISICA",
-            "idade": 20,
-            "scores": {
-                "BVS_CUSTOM_V2": 567,
-                "HFT1": 353
-            },
-            "ratings": {
-                "BLEND_4": "B"
-            },
-            "dt_nascimento": "2006-01-11",
-            "rendaConsideradaPessoa": 2397.5,
-            "rendaUtilizada": "SERASA",
-            "fatorCorrecaoRenda": 1.37,
-            "limiteCalculadoPessoa": 1318.625,
+            "limiteCalculadoPessoa": 3500.35,
             "qtdeRestricoes": 0,
             "valorTotalRestricao": 0,
             "situacao_cadastral_serasa": "REGULAR",
@@ -148,34 +28,34 @@
             "dadosAusentes": [],
             "restricoesPorModalidade": [],
             "anotacoesFinanceirasSerasa": null,
-            "nomeSerasa": "MARIA LUIZA CAZERI PIRES",
-            "rendaPresumidaSerasa": 1749.9999999999998
+            "nomeSerasa": "JANANDRA SIBERINO MONTEIRO",
+            "rendaPresumidaSerasa": 3649.9999999999995
         }
     ],
     "regras": {
         "situacao_cadastral_serasa": "REGULAR"
     },
-    "rendaConsiderada": 2397.5,
-    "rendaConsideradaContrato": 2397.5,
+    "rendaConsiderada": 5000.5,
+    "rendaConsideradaContrato": 5000.5,
     "rendaUtilizada": "SERASA",
     "fatorCorrecaoRenda": 1.37,
-    "limiteCalculadoContrato": 1318.625,
+    "limiteCalculadoContrato": 3500.35,
     "qtdeRestricoesContrato": 0,
     "restricoesPorModalidadeContrato": [],
     "regra_estouro_limite": "N\u00c3O APLICADA",
     "valorRestricaoTotal": 0,
     "regua": "Consulta Custom PF",
-    "score": 567,
+    "score": 726,
     "scores": {
-        "BVS_CUSTOM_V2": 567,
-        "HFT1": 353
+        "BVS_CUSTOM_V2": 726,
+        "HFT1": 826
     },
     "ratings": {
-        "BLEND_4": "B"
+        "BLEND_4": "A"
     },
-    "blendRegressaoPredict": 471,
+    "blendRegressaoPredict": 780,
     "decisao": "BLEND_4",
-    "classificacao": "B",
+    "classificacao": "A",
     "classificacaoInquilino": "none",
     "existeErroSerasa": false,
     "existeErroPowerCurve": false,
@@ -190,8 +70,8 @@
     "blend3Variables": {
         "hasPreviousContracts": false,
         "hadOverdueInvoiceInPreviousContracts": false,
-        "cityPc4HistoryOver100Contracts": 0.10936556,
-        "realEstatePc4HistoryOver100Contracts": null
+        "cityPc4HistoryOver100Contracts": 0.09649123,
+        "realEstatePc4HistoryOver100Contracts": 0
     },
     "reaproveitamentoConsultaMotor": false,
     "savingBureauPowerCurve": false,
