@@ -2293,7 +2293,7 @@ def plot_pre_analysis_comparison(
 
     fig, axes = plt.subplots(1, 3, figsize=figsize, sharex=True)
     if suptitle:
-        fig.suptitle(suptitle, y=1.1, fontsize=13)
+        fig.suptitle(suptitle, y=1.05, fontsize=13)
 
     for ax, outcome in zip(axes, outcomes):
         has_data = False
@@ -3011,9 +3011,14 @@ def plot_funnel_metrics_by_rating_side_by_side(
     if len(metric_items) == 1:
         axes = np.array([axes])
 
+    # model_titles = {
+    #     models[0]: "Blend 3 — BLEND3",
+    #     models[1]: "Blend 4 — BLEND4",
+    # }
+
     model_titles = {
-        models[0]: "Blend 3 — BLEND3",
-        models[1]: "Blend 4 — BLEND4",
+    models[0]: f"Blend 3 — {models[0]}" if "3" in models[0] else f"{models[0]}",
+    models[1]: f"Blend 4 — {models[1]}" if "4" in models[1] else f"{models[1]}",
     }
 
     for row_idx, (metric_col, metric_label) in enumerate(metric_items):
@@ -3085,7 +3090,7 @@ def plot_funnel_metrics_by_rating_side_by_side(
                 ax.legend(title="Rating", loc="best", fontsize=8)
 
     if suptitle:
-        fig.suptitle(suptitle, y=1.1, fontsize=13)
+        fig.suptitle(suptitle, y=1.05, fontsize=13)
 
     plt.tight_layout()
     plt.show()
@@ -3160,9 +3165,13 @@ def plot_pre_analysis_by_rating_side_by_side(
     if len(outcomes) == 1:
         axes = np.array([axes])
 
+    # model_titles = {
+    #     models[0]: f"Blend 3 — {models[0]}",
+    #     models[1]: f"Blend 4 — {models[1]}",
+    # }
     model_titles = {
-        models[0]: f"Blend 3 — {models[0]}",
-        models[1]: f"Blend 4 — {models[1]}",
+    models[0]: f"Blend 3 — {models[0]}" if "3" in models[0] else f"{models[0]}",
+    models[1]: f"Blend 4 — {models[1]}" if "4" in models[1] else f"{models[1]}",
     }
 
     for row_idx, outcome in enumerate(outcomes):
@@ -3232,7 +3241,7 @@ def plot_pre_analysis_by_rating_side_by_side(
                 ax.legend(title="Rating", loc="best", fontsize=8)
 
     if suptitle:
-        fig.suptitle(suptitle, y=1.1, fontsize=13)
+        fig.suptitle(suptitle, y=1.05, fontsize=13)
 
     plt.tight_layout()
     plt.show()

@@ -1,61 +1,62 @@
 {
     "pessoas": [
         {
-            "nome": "JANANDRA SIBERINO MONTEIRO",
-            "documento": "01033716057",
-            "classificacao": "A",
+            "nome": "",
+            "documento": "87221721068",
+            "classificacao": "E",
             "tipoPessoa": "FISICA",
-            "idade": 39,
+            "idade": null,
             "scores": {
-                "BVS_CUSTOM_V2": 726,
-                "HFT1": 826
+                "BVS_CUSTOM": 376,
+                "BLEND3_3": 376
             },
             "ratings": {
-                "BLEND_4": "A"
+                "BVS_CUSTOM": "E",
+                "BLEND3_3": "E"
             },
-            "dt_nascimento": "1987-01-10",
-            "rendaConsideradaPessoa": 5000.5,
-            "rendaUtilizada": "SERASA",
-            "fatorCorrecaoRenda": 1.37,
-            "limiteCalculadoPessoa": 3500.35,
+            "dt_nascimento": null,
+            "rendaConsideradaPessoa": 0,
+            "rendaUtilizada": "",
+            "fatorCorrecaoRenda": 0,
+            "limiteCalculadoPessoa": 0,
             "qtdeRestricoes": 0,
             "valorTotalRestricao": 0,
-            "situacao_cadastral_serasa": "REGULAR",
+            "situacao_cadastral_serasa": "",
             "existeErroSerasa": false,
             "existeErroPowerCurve": false,
             "existeErroBvsCustom": false,
             "errosTecnicos": [],
             "dadosAusentes": [],
             "restricoesPorModalidade": [],
-            "anotacoesFinanceirasSerasa": null,
-            "nomeSerasa": "JANANDRA SIBERINO MONTEIRO",
-            "rendaPresumidaSerasa": 3649.9999999999995
+            "nomeSerasa": "",
+            "rendaPresumidaSerasa": 0
         }
     ],
     "regras": {
-        "situacao_cadastral_serasa": "REGULAR"
+        "situacao_cadastral_serasa": ""
     },
-    "rendaConsiderada": 5000.5,
-    "rendaConsideradaContrato": 5000.5,
+    "rendaConsiderada": 0,
+    "rendaConsideradaContrato": 0,
     "rendaUtilizada": "SERASA",
     "fatorCorrecaoRenda": 1.37,
-    "limiteCalculadoContrato": 3500.35,
+    "limiteCalculadoContrato": 0,
     "qtdeRestricoesContrato": 0,
     "restricoesPorModalidadeContrato": [],
-    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "regra_estouro_limite": "",
     "valorRestricaoTotal": 0,
-    "regua": "Consulta Custom PF",
-    "score": 726,
+    "regua": "Consulta PF",
+    "score": 376,
     "scores": {
-        "BVS_CUSTOM_V2": 726,
-        "HFT1": 826
+        "BVS_CUSTOM": 376,
+        "BLEND3_3": 376
     },
     "ratings": {
-        "BLEND_4": "A"
+        "BVS_CUSTOM": "E",
+        "BLEND3_3": "E"
     },
-    "blendRegressaoPredict": 780,
-    "decisao": "BLEND_4",
-    "classificacao": "A",
+    "blendRegressaoPredict": null,
+    "decisao": "BLEND3_3",
+    "classificacao": "E",
     "classificacaoInquilino": "none",
     "existeErroSerasa": false,
     "existeErroPowerCurve": false,
@@ -63,40 +64,22 @@
     "motor": "POWERCURVE",
     "feature_flags": {
         "analiseAutomaticaDeCredito": true,
-        "modeloBlend": "BLEND_4"
+        "modeloBlend": "BLEND3_3"
     },
     "errosTecnicos": [],
     "dadosAusentes": [],
     "blend3Variables": {
         "hasPreviousContracts": false,
         "hadOverdueInvoiceInPreviousContracts": false,
-        "cityPc4HistoryOver100Contracts": 0.09649123,
-        "realEstatePc4HistoryOver100Contracts": 0
+        "cityPc4HistoryOver100Contracts": 0.08756712,
+        "realEstatePc4HistoryOver100Contracts": 0.12357955
     },
     "reaproveitamentoConsultaMotor": false,
-    "savingBureauPowerCurve": false,
+    "savingBureauPowerCurve": true,
     "rentGuaranteeConstraints": {
-        "rent_coverage_multiplier": [
-            35,
-            40,
-            50
-        ],
-        "exit_cost_multiplier": [
-            3,
-            4,
-            5,
-            6,
-            7
-        ],
-        "commission_percent": [
-            0,
-            0.5,
-            1,
-            1.5,
-            2,
-            2.5,
-            3
-        ],
+        "rent_coverage_multiplier": [],
+        "exit_cost_multiplier": [],
+        "commission_percent": [],
         "version": 1
     }
 }

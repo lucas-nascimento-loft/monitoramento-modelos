@@ -99,6 +99,30 @@ def _count_quantile(series: pd.Series, edges: List[float]) -> pd.Series:
     return counts.reindex(bin_labels, fill_value=0).astype(int)
 
 
+# def _build_quantile_spec(
+#     series: pd.Series,
+#     n_bins: int = 10,
+# ) -> Optional[Dict[str, Any]]:
+#     clean = pd.to_numeric(series, errors="coerce").dropna()
+#     if clean.empty:
+#         return None
+
+#     quantiles = np.linspace(0, 1, n_bins + 1)
+#     edges = np.unique(clean.quantile(quantiles).values)
+
+#     if len(edges) < 2:
+#         edges = np.array([clean.min(), clean.max() + PSI_EPS])
+
+#     edges = edges.tolist()
+#     expected_counts = _count_quantile(clean, edges)
+
+#     return {
+#         "type": "quantile",
+#         "edges": edges,
+#         "bin_labels": _quantile_bin_labels(edges),
+#         "expected_counts": expected_counts.to_dict(),
+#     }
+
 def _build_quantile_spec(
     series: pd.Series,
     n_bins: int = 10,
@@ -113,7 +137,11 @@ def _build_quantile_spec(
     if len(edges) < 2:
         edges = np.array([clean.min(), clean.max() + PSI_EPS])
 
+    edges = edges.astype(float)
+    edges[0] = -np.inf
+    edges[-1] = np.inf
     edges = edges.tolist()
+
     expected_counts = _count_quantile(clean, edges)
 
     return {
@@ -536,7 +564,8 @@ def plot_distribution_comparison(
     if spec_type == "binary":
         x_labels = comparison_df["bin_label"].astype(str).tolist()
     else:
-        x_labels = [f"B{i+1}" for i in range(len(comparison_df))]
+        x_labels = comparison_df["bin_label"].astype(str).tolist()
+        # x_labels = [f"B{i+1}" for i in range(len(comparison_df))]
 
     x = np.arange(len(comparison_df))
     width = 0.38
