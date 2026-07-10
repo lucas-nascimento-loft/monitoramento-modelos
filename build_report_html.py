@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import argparse
 import os
-import sys
 import tempfile
 import time
 from datetime import datetime, timezone
@@ -15,7 +14,7 @@ import nbformat
 from bs4 import BeautifulSoup
 from nbconvert import HTMLExporter
 
-DEFAULT_SKIP_SECTION_PREFIXES = ("imports", "diretório", "ordem")
+DEFAULT_SKIP_SECTION_PREFIXES = ("imports", "diretório", "ordem", "salvar html")
 
 PRESENTATION_CSS = """
 [data-mime-type='application/vnd.jupyter.stderr'] { display: none !important; }
@@ -289,14 +288,53 @@ def _resolve_notebook_path(notebook_path: str | Path | None) -> Path:
     raise FileNotFoundError(f"Notebook not found: {notebook_path}")
 
 
-def _prepare_notebook_for_export(notebook_path: Path) -> None:
-    """Wait for editor autosave and warn when the on-disk notebook looks stale."""
+def _max_execution_count(notebook_path: Path) -> int:
+    notebook = nbformat.read(notebook_path, as_version=4)
+    return max(
+        (cell.get("execution_count") or 0 for cell in notebook.cells),
+        default=0,
+    )
+
+
+def _kernel_execution_count() -> int | None:
+    try:
+        from IPython import get_ipython
+    except ImportError:
+        return None
+
+    ipython = get_ipython()
+    if ipython is None:
+        return None
+
+    execution_count = getattr(ipython, "execution_count", None)
+    return int(execution_count) if execution_count is not None else None
+
+
+def _notebook_has_unsaved_executions(
+    notebook_path: Path,
+    *,
+    grace: int = 1,
+) -> bool:
+    """Return True when the kernel ran cells that are not yet on disk.
+
+    The export cell itself increments the kernel counter before this check runs,
+    so ``grace=1`` allows that single pending execution after a fresh save.
+    """
+    kernel_count = _kernel_execution_count()
+    if kernel_count is None:
+        return False
+
+    return kernel_count > _max_execution_count(notebook_path) + grace
+
+
+def _wait_for_notebook_autosave(notebook_path: Path, *, seconds: float = 3.0) -> None:
+    """Wait briefly for the editor to flush the notebook to disk."""
     active = _get_active_notebook_path()
     if active is None or active.resolve() != notebook_path.resolve():
         return
 
     initial_mtime = notebook_path.stat().st_mtime
-    deadline = time.monotonic() + 2.0
+    deadline = time.monotonic() + seconds
     latest_mtime = initial_mtime
 
     while time.monotonic() < deadline:
@@ -306,15 +344,38 @@ def _prepare_notebook_for_export(notebook_path: Path) -> None:
             initial_mtime = latest_mtime
             deadline = time.monotonic() + 0.75
 
-    age_seconds = time.time() - latest_mtime
-    if age_seconds > 120:
-        saved_at = datetime.fromtimestamp(latest_mtime).strftime("%Y-%m-%d %H:%M:%S")
-        print(
-            "WARNING: Notebook file has not been saved recently "
-            f"(last saved at {saved_at}). "
-            "Save the notebook (Cmd+S / Ctrl+S) before exporting to include the latest outputs.",
-            file=sys.stderr,
-        )
+
+def _prepare_notebook_for_export(
+    notebook_path: Path,
+    *,
+    require_saved: bool = True,
+) -> None:
+    """Wait for autosave and fail when the on-disk notebook is missing recent outputs."""
+    _wait_for_notebook_autosave(notebook_path)
+
+    if not require_saved:
+        return
+
+    if not _notebook_has_unsaved_executions(notebook_path):
+        return
+
+    # Give autosave one more chance after detecting a gap.
+    _wait_for_notebook_autosave(notebook_path, seconds=2.0)
+    if not _notebook_has_unsaved_executions(notebook_path):
+        return
+
+    saved_at = datetime.fromtimestamp(notebook_path.stat().st_mtime).strftime(
+        "%Y-%m-%d %H:%M:%S"
+    )
+    disk_max = _max_execution_count(notebook_path)
+    kernel_count = _kernel_execution_count()
+    raise RuntimeError(
+        "Notebook has unsaved cell outputs on disk, so the HTML report would be stale. "
+        f"Last saved at {saved_at} (disk max execution_count={disk_max}, "
+        f"kernel execution_count={kernel_count}). "
+        "Save the notebook (Cmd+S / Ctrl+S) and run the export cell again. "
+        "Pass require_saved=False only if you intentionally want the on-disk version."
+    )
 
 
 def enhance_html_report(
@@ -388,13 +449,52 @@ def enhance_html_report(
         soup.title.string = title
 
     destination = output_path or html_path.with_name(f"{html_path.stem}_report.html")
-    destination.write_text(str(soup), encoding="utf-8")
+    rendered = str(soup)
+    fd, temp_name = tempfile.mkstemp(
+        suffix=".html",
+        prefix=f".{destination.stem}_",
+        dir=destination.parent,
+    )
+    os.close(fd)
+    temp_path = Path(temp_name)
+    try:
+        temp_path.write_text(rendered, encoding="utf-8")
+        temp_path.replace(destination)
+    finally:
+        temp_path.unlink(missing_ok=True)
     return destination
+
+
+def _normalize_notebook_for_export(notebook: nbformat.NotebookNode) -> nbformat.NotebookNode:
+    """Fix common notebook schema issues that block nbconvert validation."""
+    for cell in notebook.cells:
+        for output in cell.get("outputs", []):
+            output_type = output.get("output_type")
+
+            if output_type == "stream":
+                output.setdefault("name", "stdout")
+                if "text" not in output:
+                    output["text"] = ""
+                elif not isinstance(output["text"], (str, list)):
+                    output["text"] = str(output["text"])
+
+            elif output_type in {"display_data", "execute_result"}:
+                output.setdefault("metadata", {})
+                output.setdefault("data", {})
+                if output_type == "execute_result":
+                    output.setdefault("execution_count", cell.get("execution_count"))
+
+            elif output_type == "error":
+                output.setdefault("ename", "Error")
+                output.setdefault("evalue", "")
+                output.setdefault("traceback", [])
+
+    return notebook
 
 
 def export_notebook_to_html(notebook_path: Path) -> Path:
     """Convert a notebook to raw HTML without code cells."""
-    notebook = nbformat.read(notebook_path, as_version=4)
+    notebook = _normalize_notebook_for_export(nbformat.read(notebook_path, as_version=4))
     exporter = HTMLExporter()
     exporter.exclude_input = True
     exporter.exclude_input_prompt = True
@@ -420,10 +520,11 @@ def export_notebook_report(
     title: str | None = None,
     output_path: str | Path | None = None,
     skip_prefixes: tuple[str, ...] = DEFAULT_SKIP_SECTION_PREFIXES,
+    require_saved: bool = True,
 ) -> Path:
     """Export a notebook to a presentation-ready HTML report."""
     notebook = _resolve_notebook_path(notebook_path)
-    _prepare_notebook_for_export(notebook)
+    _prepare_notebook_for_export(notebook, require_saved=require_saved)
 
     report_title = title or notebook.stem.replace("_", " ")
     generated_at = datetime.now(timezone.utc)
@@ -434,7 +535,7 @@ def export_notebook_report(
         else notebook.with_name(f"{notebook.stem}_report.html")
     )
     try:
-        return enhance_html_report(
+        report_path = enhance_html_report(
             raw_html,
             title=report_title,
             output_path=destination,
@@ -444,6 +545,14 @@ def export_notebook_report(
         )
     finally:
         raw_html.unlink(missing_ok=True)
+
+    size_mb = report_path.stat().st_size / (1024 * 1024)
+    stamp = generated_at.astimezone().strftime("%Y-%m-%d %H:%M:%S %Z")
+    print(
+        f"Report updated: {report_path} ({size_mb:.2f} MB) | generated at {stamp}"
+    )
+    print("If the browser still shows old content, hard-refresh (Cmd+Shift+R).")
+    return report_path
 
 
 def _parse_args() -> argparse.Namespace:

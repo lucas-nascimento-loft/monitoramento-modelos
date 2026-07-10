@@ -1,28 +1,28 @@
 {
     "pessoas": [
         {
-            "nome": "RAQUEL DA VEIGA ARAUJO DE MENESES",
-            "documento": "31722504153",
-            "classificacao": "B",
+            "nome": "CINTIA VALERIA PEREIRA DA SILVA AIGNER",
+            "documento": "04116112755",
+            "classificacao": "E",
             "tipoPessoa": "FISICA",
-            "idade": 60,
+            "idade": 51,
             "scores": {
-                "BVS_CUSTOM": 718,
-                "HVA4": 750,
-                "BLEND3_3": 718
+                "HVA3": 381,
+                "BLEND_REGRESSAO_2026": 439,
+                "BVS_CUSTOM": 439
             },
             "ratings": {
-                "BVS_CUSTOM": "B",
-                "HVA4": "B",
-                "BLEND3_3": "B"
+                "HVA3": "E",
+                "BLEND_REGRESSAO_2026": "E",
+                "BVS_CUSTOM": "E"
             },
-            "dt_nascimento": "1965-09-07",
-            "rendaConsideradaPessoa": 35825.5,
+            "dt_nascimento": "1974-07-30",
+            "rendaConsideradaPessoa": 3562.0000000000005,
             "rendaUtilizada": "SERASA",
             "fatorCorrecaoRenda": 1.37,
-            "limiteCalculadoPessoa": 19704.025,
-            "qtdeRestricoes": 4,
-            "valorTotalRestricao": 799,
+            "limiteCalculadoPessoa": 534.3000000000001,
+            "qtdeRestricoes": 1,
+            "valorTotalRestricao": 1041,
             "situacao_cadastral_serasa": "REGULAR",
             "existeErroSerasa": false,
             "existeErroPowerCurve": false,
@@ -30,14 +30,14 @@
             "errosTecnicos": [],
             "dadosAusentes": [],
             "restricoesPorModalidade": [
-                "NOTA FISCAL"
+                "FINANCIAMENT"
             ],
             "anotacoesFinanceirasSerasa": {
                 "Pefin": {
-                    "DataPrimeiraOcorrenciaPefin": "20251126",
-                    "DataUltimaOcorrenciaPefin": "20251126",
+                    "DataPrimeiraOcorrenciaPefin": "20211126",
+                    "DataUltimaOcorrenciaPefin": "20211126",
                     "QuantidadeTotalPefin": "1",
-                    "ValorTotalPefin": "139"
+                    "ValorTotalPefin": "1041"
                 },
                 "Refin": {
                     "DataPrimeiraOcorrenciaRefin": null,
@@ -52,11 +52,11 @@
                     "ValorTotalAcao": "0"
                 },
                 "Protesto": {
-                    "DataPrimeiraOcorrenciaProtesto": "20240801",
-                    "DataUltimaOcorrenciaProtesto": "20250201",
-                    "QuantidadeTotalProtesto": "3",
+                    "DataPrimeiraOcorrenciaProtesto": null,
+                    "DataUltimaOcorrenciaProtesto": null,
+                    "QuantidadeTotalProtesto": null,
                     "TipoMoeda": null,
-                    "ValorTotalProtesto": "660"
+                    "ValorTotalProtesto": null
                 },
                 "DividaVencida": {
                     "DataPrimeiraOcorrenciaDividasVencidas": null,
@@ -71,84 +71,56 @@
                 "PendenciasPagamentoPF": [
                     {
                         "TipoPEFIN": "01",
-                        "Modalidade": "NOTA FISCAL",
+                        "Modalidade": "FINANCIAMENT",
                         "TipoOcorrencia": "V",
-                        "ChaveCADUS": "718892227",
-                        "DataOcorrencia": "20251126",
-                        "SiglaMOD": "NF",
+                        "ChaveCADUS": "201121799",
+                        "DataOcorrencia": "20211126",
+                        "SiglaMOD": "FI",
                         "TipoMoeda": "R$",
-                        "Valor": "139",
-                        "Contrato": "0000000002132658",
-                        "Origem": "NEOENERGIA BRASILIA",
+                        "Valor": "1041",
+                        "Contrato": "66991478919",
+                        "Origem": "BANCO CSF",
                         "QtdeOcorrencia": "1"
                     }
                 ],
                 "AcoesJudiciaisPF": [],
-                "ProtestosPF": [
-                    {
-                        "DataOcorrencia": "20250210",
-                        "Cartorio": "3",
-                        "Cidade": "TAGUATINGA",
-                        "UF": "DF",
-                        "QtdeOcorrencia": "3",
-                        "TipoMoeda": "R$",
-                        "Valor": "125"
-                    },
-                    {
-                        "DataOcorrencia": "20250110",
-                        "Cartorio": "3",
-                        "Cidade": "TAGUATINGA",
-                        "UF": "DF",
-                        "QtdeOcorrencia": "3",
-                        "TipoMoeda": "R$",
-                        "Valor": "54"
-                    },
-                    {
-                        "DataOcorrencia": "20240808",
-                        "Cartorio": "3",
-                        "Cidade": "TAGUATINGA",
-                        "UF": "DF",
-                        "QtdeOcorrencia": "3",
-                        "TipoMoeda": "R$",
-                        "Valor": "481"
-                    }
-                ],
+                "ProtestosPF": [],
                 "DividasVencidasPF": [],
                 "ChequesSemFundosPF": []
             },
-            "nomeSerasa": "RAQUEL DA VEIGA ARAUJO DE MENESES",
-            "rendaPresumidaSerasa": 26150
+            "nomeSerasa": "CINTIA VALERIA PEREIRA DA SILVA AIGNER",
+            "rendaPresumidaSerasa": 2600
         }
     ],
     "regras": {
         "situacao_cadastral_serasa": "REGULAR"
     },
-    "rendaConsiderada": 35825.5,
-    "rendaConsideradaContrato": 35825.5,
+    "rendaConsiderada": 3562.0000000000005,
+    "rendaConsideradaContrato": 3562.0000000000005,
     "rendaUtilizada": "SERASA",
     "fatorCorrecaoRenda": 1.37,
-    "limiteCalculadoContrato": 19704.025,
-    "qtdeRestricoesContrato": 4,
+    "limiteCalculadoContrato": 534.3000000000001,
+    "qtdeRestricoesContrato": 1,
     "restricoesPorModalidadeContrato": [
-        "NOTA FISCAL"
+        "FINANCIAMENT"
     ],
     "regra_estouro_limite": "N\u00c3O APLICADA",
-    "valorRestricaoTotal": 799,
-    "regua": "Consulta hva4",
-    "score": 718,
+    "valorRestricaoTotal": 1041,
+    "regua": "Consulta hvar",
+    "score": 439,
     "scores": {
-        "BVS_CUSTOM": 718,
-        "HVA4": 750,
-        "BLEND3_3": 718
+        "HVA3": 381,
+        "BLEND_REGRESSAO_2026": 439,
+        "BVS_CUSTOM": 439
     },
     "ratings": {
-        "BVS_CUSTOM": "B",
-        "HVA4": "B",
-        "BLEND3_3": "B"
+        "HVA3": "E",
+        "BLEND_REGRESSAO_2026": "E",
+        "BVS_CUSTOM": "E"
     },
-    "blendRegressaoPredict": 582,
-    "decisao": "BLEND3_3",
-    "classificacao": "B",
+    "blendRegressaoPredict": 0.4785,
+    "decisao": "BLEND_REGRESSAO_2026",
+    "classificacao": "E",
     "classificacaoInquilino": "none",
     "existeErroSerasa": false,
     "existeErroPowerCurve": false,
@@ -156,54 +128,17 @@
     "motor": "POWERCURVE",
     "feature_flags": {
         "analiseAutomaticaDeCredito": true,
-        "modeloBlend": "BLEND3_3"
+        "modeloBlend": "BLEND_REGRESSAO_2026"
     },
     "errosTecnicos": [],
     "dadosAusentes": [],
-    "blend3Variables": {
-        "hasPreviousContracts": false,
-        "hadOverdueInvoiceInPreviousContracts": false,
-        "cityPc4HistoryOver100Contracts": 0.06009615,
-        "realEstatePc4HistoryOver100Contracts": null
-    },
+    "blend3Variables": [],
     "reaproveitamentoConsultaMotor": false,
     "savingBureauPowerCurve": false,
     "rentGuaranteeConstraints": {
-        "rent_coverage_multiplier": [
-            35,
-            40,
-            50
-        ],
-        "exit_cost_multiplier": [
-            3,
-            4,
-            5,
-            6,
-            7
-        ],
-        "commission_percent": [
-            0,
-            0.5,
-            1,
-            1.5,
-            2,
-            2.5,
-            3
-        ],
+        "rent_coverage_multiplier": [],
+        "exit_cost_multiplier": [],
+        "commission_percent": [],
         "version": 1
     }
-}
-
-{
-    "valor_aluguel": 5700,
-    "matchmaking_on": false,
-    "pessoa_principal": {
-        "documento": "31722504153"
-    },
-    "imovel": {
-        "codigo_cidade_ibge": 5300108,
-        "tipo": "RESIDENCIAL"
-    },
-    "imobiliaria_id": 38914,
-    "id_externo": "4331926"
 }

@@ -1,9 +1,9 @@
 variable,psi_oot_vs_train_ref,psi_test_vs_train_ref
 SERASA_CHSV5,0.020552,0.00013
 age,0.001148,7.1e-05
-agency_pc4_mais_100_contratos__pc_categorias,0.07277,0.00084
+agency_pc4_mais_100_contratos__pc_categorias,0.00509,2.6e-05
 agency_pc4_mais_100_contratos__pc_categorias_is_null,0.001303,0.0
-city_pc4_mais_100_contratos__pc_categorias,0.066519,7.7e-05
+city_pc4_mais_100_contratos__pc_categorias,0.054503,8.5e-05
 city_pc4_mais_100_contratos__pc_categorias_is_null,0.000236,1.1e-05
 flag_tem__contratos_anteriores,0.0,2e-06
 flag_teve_boleto_atrasado__contratos_anteriores,0.000237,2e-06
