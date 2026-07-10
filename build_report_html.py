@@ -345,16 +345,33 @@ def _wait_for_notebook_autosave(notebook_path: Path, *, seconds: float = 3.0) ->
             deadline = time.monotonic() + 0.75
 
 
+def _unsaved_execution_message(notebook_path: Path) -> str:
+    saved_at = datetime.fromtimestamp(notebook_path.stat().st_mtime).strftime(
+        "%Y-%m-%d %H:%M:%S"
+    )
+    disk_max = _max_execution_count(notebook_path)
+    kernel_count = _kernel_execution_count()
+    return (
+        "Notebook on disk may be missing recent cell outputs "
+        f"(last saved at {saved_at}, disk max execution_count={disk_max}, "
+        f"kernel execution_count={kernel_count}). "
+        "Save the notebook (Cmd+S / Ctrl+S) and re-run the export cell for a fully "
+        "up-to-date HTML report."
+    )
+
+
 def _prepare_notebook_for_export(
     notebook_path: Path,
     *,
-    require_saved: bool = True,
+    require_saved: bool = False,
 ) -> None:
-    """Wait for autosave and fail when the on-disk notebook is missing recent outputs."""
-    _wait_for_notebook_autosave(notebook_path)
+    """Wait for autosave; optionally fail when on-disk outputs look stale.
 
-    if not require_saved:
-        return
+    By default only warns, so export from a notebook cell still works even when
+    the editor has not flushed every recent execution yet. Pass
+    ``require_saved=True`` for a hard check (e.g. CI / CLI).
+    """
+    _wait_for_notebook_autosave(notebook_path)
 
     if not _notebook_has_unsaved_executions(notebook_path):
         return
@@ -364,18 +381,11 @@ def _prepare_notebook_for_export(
     if not _notebook_has_unsaved_executions(notebook_path):
         return
 
-    saved_at = datetime.fromtimestamp(notebook_path.stat().st_mtime).strftime(
-        "%Y-%m-%d %H:%M:%S"
-    )
-    disk_max = _max_execution_count(notebook_path)
-    kernel_count = _kernel_execution_count()
-    raise RuntimeError(
-        "Notebook has unsaved cell outputs on disk, so the HTML report would be stale. "
-        f"Last saved at {saved_at} (disk max execution_count={disk_max}, "
-        f"kernel execution_count={kernel_count}). "
-        "Save the notebook (Cmd+S / Ctrl+S) and run the export cell again. "
-        "Pass require_saved=False only if you intentionally want the on-disk version."
-    )
+    message = _unsaved_execution_message(notebook_path)
+    if require_saved:
+        raise RuntimeError(message)
+
+    print(f"Warning: {message}")
 
 
 def enhance_html_report(
@@ -520,9 +530,14 @@ def export_notebook_report(
     title: str | None = None,
     output_path: str | Path | None = None,
     skip_prefixes: tuple[str, ...] = DEFAULT_SKIP_SECTION_PREFIXES,
-    require_saved: bool = True,
+    require_saved: bool = False,
 ) -> Path:
-    """Export a notebook to a presentation-ready HTML report."""
+    """Export a notebook to a presentation-ready HTML report.
+
+    Reads the notebook from disk (nbconvert cannot see unsaved editor buffers).
+    By default, a gap between kernel and on-disk execution counts only prints a
+    warning. Set ``require_saved=True`` to fail instead.
+    """
     notebook = _resolve_notebook_path(notebook_path)
     _prepare_notebook_for_export(notebook, require_saved=require_saved)
 
