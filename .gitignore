@@ -21,6 +21,7 @@ env/
 data/analytics/df_predict_blend3.csv
 data/analytics/df_predict_blend4.csv
 data/analytics/df_predict_blend4_pre.csv
+data/analytics/df_raw_blend4_dev.csv
 data/analytics/df_funil_blend3.csv
 data/analytics/df_funil_blend4.csv
 *.parquet
