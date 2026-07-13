@@ -549,6 +549,7 @@ def export_notebook_report(
         if output_path is not None
         else notebook.with_name(f"{notebook.stem}_report.html")
     )
+    destination.parent.mkdir(parents=True, exist_ok=True)
     try:
         report_path = enhance_html_report(
             raw_html,
