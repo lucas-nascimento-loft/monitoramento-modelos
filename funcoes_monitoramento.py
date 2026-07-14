@@ -2255,6 +2255,88 @@ def plot_funnel_binary_step(df, metric_col, time_grain, title_suffix, min_label_
     plt.show()
 
 
+# def plot_pre_analysis_comparison(
+#     df: pd.DataFrame,
+#     models: list,
+#     time_grain: str = "week",
+#     model_col: str = "bureau_nm_ajust",
+#     category_col: str = "pre_analysis_result",
+#     color_map: dict = None,
+#     figsize=(18, 5),
+#     ylim=None,
+#     suptitle: str = None,
+# ):
+#     """Three side-by-side charts (APROVAR / DERIVAR / REPROVAR), models compared on each."""
+#     color_map = color_map or MODEL_COLOR_MAP
+#     outcomes = ["APROVAR", "DERIVAR", "REPROVAR"]
+#     period_label = "Dia" if time_grain == "day" else "Semana"
+
+#     # Pré-calcula mix por modelo (evita recomputar 3 vezes)
+#     pct_by_model = {}
+#     all_periods = []
+
+#     for model in models:
+#         df_model = df[df[model_col] == model]
+#         pct_df, _, _ = compute_category_mix(
+#             df_model, category_col=category_col, time_grain=time_grain
+#         )
+#         if not pct_df.empty:
+#             pct_by_model[model] = pct_df
+#             all_periods.extend(pct_df.index.tolist())
+
+#     if not pct_by_model:
+#         print("[skip] Pré-análise: sem dados")
+#         return
+
+#     periods = sorted(set(all_periods))
+#     x = np.arange(len(periods))
+
+#     fig, axes = plt.subplots(1, 3, figsize=figsize, sharex=True)
+#     if suptitle:
+#         fig.suptitle(suptitle, y=1.05, fontsize=13)
+
+#     for ax, outcome in zip(axes, outcomes):
+#         has_data = False
+
+#         for model in models:
+#             if model not in pct_by_model:
+#                 continue
+#             pct_df = pct_by_model[model].reindex(periods).fillna(0)
+#             if outcome not in pct_df.columns:
+#                 continue
+
+#             y = pct_df[outcome].values
+#             color = color_map.get(model, "#64748B")
+
+#             ax.plot(x, y, marker="o", linewidth=2, color=color, label=model)
+#             for xi, val in zip(x, y):
+#                 if val > 0:
+#                     ax.text(xi, val + 0.8, f"{val:.1f}%", ha="center", fontsize=7, color=color)
+#             has_data = True
+
+#         ax.set_title(outcome)
+#         ax.set_ylim(*ylim)
+#         ax.grid(axis="y", alpha=0.25)
+#         ax.tick_params(axis="x", rotation=45)
+
+#         if not has_data:
+#             ax.set_visible(False)
+
+#     axes[0].set_ylabel("Proporção (%)")
+#     for ax in axes:
+#         ax.set_xticks(x)
+#         ax.set_xticklabels(periods, ha="right")
+
+#     axes[-1].set_xlabel(period_label)
+
+#     handles, labels = axes[0].get_legend_handles_labels()
+#     if handles:
+#         fig.legend(handles, labels, title="Modelo", loc="upper center", bbox_to_anchor=(0.5, 0.02), ncol=len(models))
+
+#     plt.tight_layout()
+#     plt.subplots_adjust(bottom=0.18)  # espaço para legenda centralizada
+#     plt.show()
+
 def plot_pre_analysis_comparison(
     df: pd.DataFrame,
     models: list,
@@ -2263,15 +2345,22 @@ def plot_pre_analysis_comparison(
     category_col: str = "pre_analysis_result",
     color_map: dict = None,
     figsize=(18, 5),
-    ylim=(0, 100),
+    ylim=None,
+    auto_ylim_pad: float = 5.0,
     suptitle: str = None,
 ):
-    """Three side-by-side charts (APROVAR / DERIVAR / REPROVAR), models compared on each."""
+    """
+    Three side-by-side charts (APROVAR / DERIVAR / REPROVAR), models compared on each.
+
+    ylim:
+      - None: auto scale per chart
+      - tuple, e.g. (0, 100): same fixed scale for all charts
+      - dict, e.g. {"APROVAR": (0, 80), "DERIVAR": (0, 40)}: fixed scale per outcome
+    """
     color_map = color_map or MODEL_COLOR_MAP
     outcomes = ["APROVAR", "DERIVAR", "REPROVAR"]
     period_label = "Dia" if time_grain == "day" else "Semana"
 
-    # Pré-calcula mix por modelo (evita recomputar 3 vezes)
     pct_by_model = {}
     all_periods = []
 
@@ -2297,6 +2386,30 @@ def plot_pre_analysis_comparison(
 
     for ax, outcome in zip(axes, outcomes):
         has_data = False
+        row_values = []
+
+        for model in models:
+            if model not in pct_by_model:
+                continue
+            pct_df = pct_by_model[model].reindex(periods).fillna(0)
+            if outcome not in pct_df.columns:
+                continue
+
+            y = pct_df[outcome].values
+            row_values.extend(y)
+
+            color = color_map.get(model, "#64748B")
+            ax.plot(x, y, marker="o", linewidth=2, color=color, label=model)
+            has_data = True
+
+        if isinstance(ylim, dict):
+            row_ylim = ylim.get(outcome, _auto_ylim(row_values, pad_pct=auto_ylim_pad))
+        elif ylim is None:
+            row_ylim = _auto_ylim(row_values, pad_pct=auto_ylim_pad)
+        else:
+            row_ylim = ylim
+
+        label_offset = (row_ylim[1] - row_ylim[0]) * 0.03
 
         for model in models:
             if model not in pct_by_model:
@@ -2307,15 +2420,15 @@ def plot_pre_analysis_comparison(
 
             y = pct_df[outcome].values
             color = color_map.get(model, "#64748B")
-
-            ax.plot(x, y, marker="o", linewidth=2, color=color, label=model)
             for xi, val in zip(x, y):
                 if val > 0:
-                    ax.text(xi, val + 0.8, f"{val:.1f}%", ha="center", fontsize=7, color=color)
-            has_data = True
+                    ax.text(
+                        xi, val + label_offset, f"{val:.1f}%",
+                        ha="center", fontsize=7, color=color,
+                    )
 
         ax.set_title(outcome)
-        ax.set_ylim(*ylim)
+        ax.set_ylim(*row_ylim)
         ax.grid(axis="y", alpha=0.25)
         ax.tick_params(axis="x", rotation=45)
 
@@ -2331,10 +2444,16 @@ def plot_pre_analysis_comparison(
 
     handles, labels = axes[0].get_legend_handles_labels()
     if handles:
-        fig.legend(handles, labels, title="Modelo", loc="upper center", bbox_to_anchor=(0.5, 0.02), ncol=len(models))
+        fig.legend(
+            handles, labels,
+            title="Modelo",
+            loc="upper center",
+            bbox_to_anchor=(0.5, 0.02),
+            ncol=len(models),
+        )
 
     plt.tight_layout()
-    plt.subplots_adjust(bottom=0.18)  # espaço para legenda centralizada
+    plt.subplots_adjust(bottom=0.18)
     plt.show()
         
 
@@ -2345,6 +2464,8 @@ FUNNEL_COMPARE_METRICS = {
     "conversao_pct_total": "Conversão (% do total)",
 }
 
+# 
+
 def plot_funnel_metric_comparison(
     df: pd.DataFrame,
     models: list,
@@ -2352,16 +2473,24 @@ def plot_funnel_metric_comparison(
     time_grain: str = "week",
     model_col: str = "bureau_nm_ajust",
     color_map: dict = None,
-    ylim=(0, 100),
+    ylim=None,
+    auto_ylim_pad: float = 5.0,
     figsize=(14, 9),
     suptitle: str = None,
 ):
-    """Compare funnel metrics between models in a 2x2 grid."""
+    """
+    Compare funnel metrics between models in a 2x2 grid.
+
+    ylim:
+      - None: auto scale per chart
+      - tuple, e.g. (0, 100): same fixed scale for all charts
+      - dict, e.g. {"elegivel_pct_total": (0, 80), "conversao_pct_total": (0, 20)}:
+        fixed scale per metric
+    """
     color_map = color_map or MODEL_COLOR_MAP
     period_label = "Dia" if time_grain == "day" else "Semana"
     metric_items = list(metrics.items())
 
-    # Pré-calcula rates por modelo
     rates_by_model = {}
     all_periods = []
 
@@ -2390,6 +2519,28 @@ def plot_funnel_metric_comparison(
 
     for ax, (metric_col, metric_label) in zip(axes, metric_items):
         has_data = False
+        row_values = []
+
+        for model in models:
+            if model not in rates_by_model:
+                continue
+
+            rates = rates_by_model[model].reindex(periods)
+            y = rates[metric_col].values
+            row_values.extend(y)
+
+            color = color_map.get(model, "#64748B")
+            ax.plot(x, y, marker="o", linewidth=2, color=color, label=model)
+            has_data = True
+
+        if isinstance(ylim, dict):
+            row_ylim = ylim.get(metric_col, _auto_ylim(row_values, pad_pct=auto_ylim_pad))
+        elif ylim is None:
+            row_ylim = _auto_ylim(row_values, pad_pct=auto_ylim_pad)
+        else:
+            row_ylim = ylim
+
+        label_offset = (row_ylim[1] - row_ylim[0]) * 0.03
 
         for model in models:
             if model not in rates_by_model:
@@ -2398,26 +2549,24 @@ def plot_funnel_metric_comparison(
             rates = rates_by_model[model].reindex(periods)
             y = rates[metric_col].values
             color = color_map.get(model, "#64748B")
-
-            ax.plot(x, y, marker="o", linewidth=2, color=color, label=model)
             for xi, val in zip(x, y):
                 if pd.notna(val):
-                    ax.text(xi, val + 1.0, f"{val:.1f}%", ha="center", fontsize=7, color=color)
-            has_data = True
+                    ax.text(
+                        xi, val + label_offset, f"{val:.1f}%",
+                        ha="center", fontsize=7, color=color,
+                    )
 
         ax.set_title(metric_label)
-        ax.set_ylim(*ylim)
+        ax.set_ylim(*row_ylim)
         ax.grid(axis="y", alpha=0.25)
         ax.tick_params(axis="x", rotation=45)
 
         if not has_data:
             ax.set_visible(False)
 
-    # Eixos vazios se metrics < 4
     for ax in axes[n_metrics:]:
         ax.set_visible(False)
 
-  # ylabel só no subplot da esquerda (índices 0 e 2)
     for i in [0, 2]:
         if i < n_metrics:
             axes[i].set_ylabel("Proporção (%)")
