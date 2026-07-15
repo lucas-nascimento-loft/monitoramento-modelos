@@ -3073,7 +3073,7 @@ RATING_COLOR_MAP = {
     "N/I": "#CBD5E1", # cinza claro
 }
 
-def _auto_ylim(values, pad_pct=5.0, floor=0, ceiling=100):
+def _auto_ylim(values, pad_pct=5.0, floor=0, ceiling=110):
     """Compute y-axis limits from data with padding."""
     vals = pd.Series(values).dropna()
     if vals.empty:
