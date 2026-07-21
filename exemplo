@@ -1,28 +1,215 @@
 {
     "pessoas": [
         {
-            "nome": "CINTIA VALERIA PEREIRA DA SILVA AIGNER",
-            "documento": "04116112755",
+            "nome": "",
+            "documento": "00394167988",
             "classificacao": "E",
+            "tipoPessoa": "FISICA",
+            "idade": null,
+            "scores": {
+                "BVS_CUSTOM": 382,
+                "BLEND3_3": 382
+            },
+            "ratings": {
+                "BVS_CUSTOM": "E",
+                "BLEND3_3": "E"
+            },
+            "dt_nascimento": null,
+            "rendaConsideradaPessoa": 0,
+            "rendaUtilizada": "",
+            "fatorCorrecaoRenda": 0,
+            "limiteCalculadoPessoa": 0,
+            "qtdeRestricoes": 0,
+            "valorTotalRestricao": 0,
+            "situacao_cadastral_serasa": "",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "nomeSerasa": "",
+            "rendaPresumidaSerasa": 0
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": ""
+    },
+    "rendaConsiderada": 0,
+    "rendaConsideradaContrato": 0,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 0,
+    "qtdeRestricoesContrato": 0,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "",
+    "valorRestricaoTotal": 0,
+    "regua": "Consulta PF",
+    "score": 382,
+    "scores": {
+        "BVS_CUSTOM": 382,
+        "BLEND3_3": 382
+    },
+    "ratings": {
+        "BVS_CUSTOM": "E",
+        "BLEND3_3": "E"
+    },
+    "blendRegressaoPredict": null,
+    "decisao": "BLEND3_3",
+    "classificacao": "E",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND3_3"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": 0.07445008,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": true,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [],
+        "exit_cost_multiplier": [],
+        "commission_percent": [],
+        "version": 1
+    }
+}
+
+{
+    "pessoas": [
+        {
+            "nome": "THIAGO MONTEIRO GERVASIO ANTUNES FREIRE",
+            "documento": "37929505880",
+            "classificacao": "A",
+            "tipoPessoa": "FISICA",
+            "idade": 37,
+            "scores": {
+                "BVS_CUSTOM_V2": 867,
+                "HFT1": 841
+            },
+            "ratings": {
+                "BLEND_4": "A"
+            },
+            "dt_nascimento": "1988-08-25",
+            "rendaConsideradaPessoa": 11439.5,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 8007.65,
+            "qtdeRestricoes": 0,
+            "valorTotalRestricao": 0,
+            "situacao_cadastral_serasa": "REGULAR",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": null,
+            "nomeSerasa": "THIAGO MONTEIRO GERVASIO ANTUNES FREIRE",
+            "rendaPresumidaSerasa": 8350
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": "REGULAR"
+    },
+    "rendaConsiderada": 11439.5,
+    "rendaConsideradaContrato": 11439.5,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 8007.65,
+    "qtdeRestricoesContrato": 0,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 0,
+    "regua": "Consulta Custom PF",
+    "score": 867,
+    "scores": {
+        "BVS_CUSTOM_V2": 867,
+        "HFT1": 841
+    },
+    "ratings": {
+        "BLEND_4": "A"
+    },
+    "blendRegressaoPredict": 860,
+    "decisao": "BLEND_4",
+    "classificacao": "A",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND_4"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": 0.0875,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": false,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [
+            35,
+            40,
+            50
+        ],
+        "exit_cost_multiplier": [
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "commission_percent": [
+            0,
+            0.5,
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+        ],
+        "version": 1
+    }
+}
+
+{
+    "pessoas": [
+        {
+            "nome": "JOSE ALDAIR FIGUEIREDO DA SILVA",
+            "documento": "90595831087",
+            "classificacao": "B",
             "tipoPessoa": "FISICA",
             "idade": 51,
             "scores": {
-                "HVA3": 381,
-                "BLEND_REGRESSAO_2026": 439,
-                "BVS_CUSTOM": 439
+                "BVS_CUSTOM": 792,
+                "HVA4": 750,
+                "BLEND3_3": 792
             },
             "ratings": {
-                "HVA3": "E",
-                "BLEND_REGRESSAO_2026": "E",
-                "BVS_CUSTOM": "E"
+                "BVS_CUSTOM": "B",
+                "HVA4": "B",
+                "BLEND3_3": "B"
             },
-            "dt_nascimento": "1974-07-30",
-            "rendaConsideradaPessoa": 3562.0000000000005,
+            "dt_nascimento": "1975-02-09",
+            "rendaConsideradaPessoa": 2945.5000000000005,
             "rendaUtilizada": "SERASA",
             "fatorCorrecaoRenda": 1.37,
-            "limiteCalculadoPessoa": 534.3000000000001,
+            "limiteCalculadoPessoa": 1620.0250000000003,
             "qtdeRestricoes": 1,
-            "valorTotalRestricao": 1041,
+            "valorTotalRestricao": 474,
             "situacao_cadastral_serasa": "REGULAR",
             "existeErroSerasa": false,
             "existeErroPowerCurve": false,
@@ -30,14 +217,14 @@
             "errosTecnicos": [],
             "dadosAusentes": [],
             "restricoesPorModalidade": [
-                "FINANCIAMENT"
+                "OPER IMOBILI"
             ],
             "anotacoesFinanceirasSerasa": {
                 "Pefin": {
-                    "DataPrimeiraOcorrenciaPefin": "20211126",
-                    "DataUltimaOcorrenciaPefin": "20211126",
+                    "DataPrimeiraOcorrenciaPefin": "20230715",
+                    "DataUltimaOcorrenciaPefin": "20230715",
                     "QuantidadeTotalPefin": "1",
-                    "ValorTotalPefin": "1041"
+                    "ValorTotalPefin": "474"
                 },
                 "Refin": {
                     "DataPrimeiraOcorrenciaRefin": null,
@@ -71,15 +258,15 @@
                 "PendenciasPagamentoPF": [
                     {
                         "TipoPEFIN": "01",
-                        "Modalidade": "FINANCIAMENT",
+                        "Modalidade": "OPER IMOBILI",
                         "TipoOcorrencia": "V",
-                        "ChaveCADUS": "201121799",
-                        "DataOcorrencia": "20211126",
-                        "SiglaMOD": "FI",
+                        "ChaveCADUS": "166930864",
+                        "DataOcorrencia": "20230715",
+                        "SiglaMOD": "IM",
                         "TipoMoeda": "R$",
-                        "Valor": "1041",
-                        "Contrato": "66991478919",
-                        "Origem": "BANCO CSF",
+                        "Valor": "474",
+                        "Contrato": "0000446418",
+                        "Origem": "TENDA",
                         "QtdeOcorrencia": "1"
                     }
                 ],
@@ -88,57 +275,79 @@
                 "DividasVencidasPF": [],
                 "ChequesSemFundosPF": []
             },
-            "nomeSerasa": "CINTIA VALERIA PEREIRA DA SILVA AIGNER",
-            "rendaPresumidaSerasa": 2600
+            "nomeSerasa": "JOSE ALDAIR FIGUEIREDO DA SILVA",
+            "rendaPresumidaSerasa": 2150
         }
     ],
     "regras": {
         "situacao_cadastral_serasa": "REGULAR"
     },
-    "rendaConsiderada": 3562.0000000000005,
-    "rendaConsideradaContrato": 3562.0000000000005,
+    "rendaConsiderada": 2945.5000000000005,
+    "rendaConsideradaContrato": 2945.5000000000005,
     "rendaUtilizada": "SERASA",
     "fatorCorrecaoRenda": 1.37,
-    "limiteCalculadoContrato": 534.3000000000001,
+    "limiteCalculadoContrato": 1620.0250000000003,
     "qtdeRestricoesContrato": 1,
     "restricoesPorModalidadeContrato": [
-        "FINANCIAMENT"
+        "OPER IMOBILI"
     ],
     "regra_estouro_limite": "N\u00c3O APLICADA",
-    "valorRestricaoTotal": 1041,
-    "regua": "Consulta hvar",
-    "score": 439,
+    "valorRestricaoTotal": 474,
+    "regua": "Consulta hva4",
+    "score": 792,
     "scores": {
-        "HVA3": 381,
-        "BLEND_REGRESSAO_2026": 439,
-        "BVS_CUSTOM": 439
+        "BVS_CUSTOM": 792,
+        "HVA4": 750,
+        "BLEND3_3": 792
     },
     "ratings": {
-        "HVA3": "E",
-        "BLEND_REGRESSAO_2026": "E",
-        "BVS_CUSTOM": "E"
+        "BVS_CUSTOM": "B",
+        "HVA4": "B",
+        "BLEND3_3": "B"
     },
-    "blendRegressaoPredict": 0.4785,
-    "decisao": "BLEND_REGRESSAO_2026",
-    "classificacao": "E",
-    "classificacaoInquilino": "none",
+    "blendRegressaoPredict": 564,
+    "decisao": "BLEND3_3",
+    "classificacao": "B",
     "existeErroSerasa": false,
     "existeErroPowerCurve": false,
     "existeErroBvsCustom": false,
     "motor": "POWERCURVE",
     "feature_flags": {
         "analiseAutomaticaDeCredito": true,
-        "modeloBlend": "BLEND_REGRESSAO_2026"
+        "modeloBlend": "BLEND3_3"
     },
     "errosTecnicos": [],
     "dadosAusentes": [],
-    "blend3Variables": [],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": 0.08756712,
+        "realEstatePc4HistoryOver100Contracts": 0.12357955
+    },
     "reaproveitamentoConsultaMotor": false,
     "savingBureauPowerCurve": false,
     "rentGuaranteeConstraints": {
-        "rent_coverage_multiplier": [],
-        "exit_cost_multiplier": [],
-        "commission_percent": [],
+        "rent_coverage_multiplier": [
+            35,
+            40,
+            50
+        ],
+        "exit_cost_multiplier": [
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "commission_percent": [
+            0,
+            0.5,
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+        ],
         "version": 1
     }
 }
