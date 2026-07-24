@@ -2599,7 +2599,18 @@ def build_blend_comparison_summary_table(
     baseline_model: str = "BLEND3_3",
     challenger_model: str = "BLEND4",
 ):
-    work = prepare_blend_funnel_columns(df)
+    funnel_cols = [
+        "is_elegivel",
+        "is_iniciada",
+        "is_enviada",
+        "is_aprovada",
+        "is_ativada",
+    ]
+    if all(col in df.columns for col in funnel_cols):
+        work = df.copy()
+    else:
+        work = prepare_blend_funnel_columns(df)
+
     work = work[work[model_col].isin(models)].copy()
     work["requested_at"] = pd.to_datetime(work["requested_at"])
 
@@ -2643,6 +2654,71 @@ def build_blend_comparison_summary_table(
     )
 
     return tabela.sort_index()
+
+def build_blend_comparison_summary_table_counts(
+    df: pd.DataFrame,
+    models: list,
+    model_col: str = "bureau_nm_ajust",
+    time_grain: str = "week",
+    baseline_model: str = "BLEND3",
+    challenger_model: str = "BLEND4",
+):
+    funnel_cols = [
+        "is_elegivel",
+        "is_iniciada",
+        "is_enviada",
+        "is_aprovada",
+        "is_ativada",
+    ]
+    if all(col in df.columns for col in funnel_cols):
+        work = df.copy()
+    else:
+        work = prepare_blend_funnel_columns(df)
+
+    work = work[work[model_col].isin(models)].copy()
+    work["requested_at"] = pd.to_datetime(work["requested_at"])
+
+    if time_grain == "week":
+        work = prepare_week_columns(work, "requested_at")
+        dt_col = "year_week"
+    else:
+        work["day"] = work["requested_at"].dt.strftime("%Y-%m-%d")
+        dt_col = "day"
+
+    rows = []
+    for keys, group in work.groupby([model_col, dt_col], sort=False):
+        model, period = keys
+        total = len(group)
+        elegivel = int(group["is_elegivel"].sum())
+        enviada_elegivel = int(group.loc[group["is_elegivel"].eq(1), "is_enviada"].sum())
+        ativada_aprovada = int(group.loc[group["is_aprovada"].eq(1), "is_ativada"].sum())
+        conversao = int(group["is_ativada"].sum())
+
+        rows.append({
+            model_col: model,
+            dt_col: period,
+            "mix": total,
+            "elegivel": elegivel,
+            "enviada_elegivel": enviada_elegivel,
+            "ativada": ativada_aprovada,
+            "conversao": conversao,
+        })
+
+    aux = pd.DataFrame(rows)
+    metricas = ["mix", "elegivel", "enviada_elegivel", "ativada", "conversao"]
+
+    tabela = aux.pivot(
+        index=dt_col,
+        columns=model_col,
+        values=metricas,
+    )
+
+    tabela[("diff_conversao", "")] = (
+        tabela[("conversao", challenger_model)] - tabela[("conversao", baseline_model)]
+    )
+
+    return tabela.sort_index()
+
 
 def color_negative_diff(row):
     val = row.get(("diff_conversao", ""))
@@ -2848,118 +2924,250 @@ def plot_funnel_rating_overview_comparison(
     plt.tight_layout()
     plt.show()
 
-def build_blend_comparison_summary_table(
+# def build_blend_comparison_summary_table(
+#     df: pd.DataFrame,
+#     models: list,
+#     model_col: str = "bureau_nm_ajust",
+#     time_grain: str = "week",
+#     baseline_model: str = "BLEND3_3",
+#     challenger_model: str = "BLEND4",
+# ):
+#     work = prepare_blend_funnel_columns(df)
+#     work = work[work[model_col].isin(models)].copy()
+#     work["requested_at"] = pd.to_datetime(work["requested_at"])
+
+#     if time_grain == "week":
+#         work = prepare_week_columns(work, "requested_at")
+#         dt_col = "year_week"
+#     else:
+#         work["day"] = work["requested_at"].dt.strftime("%Y-%m-%d")
+#         dt_col = "day"
+
+#     group = [model_col, dt_col]
+
+#     aux = work.groupby(group).size().reset_index(name="qtd").merge(
+#         (work.groupby(group).size() / work.groupby(dt_col).size()).reset_index(name="mix"),
+#         how="left", on=group,
+#     ).merge(
+#         (work.groupby(group)["is_elegivel"].sum() / work.groupby(group).size()).reset_index(name="%_elegivel"),
+#         how="left", on=group,
+#     ).merge(
+#         (work.groupby(group)["is_enviada"].sum() / work.groupby(group)["is_elegivel"].sum()).reset_index(name="%_enviada_elegivel"),
+#         how="left", on=group,
+#     ).merge(
+#         (work.groupby(group)["is_ativada"].sum() / work.groupby(group)["is_aprovada"].sum()).reset_index(name="%_ativada"),
+#         how="left", on=group,
+#     ).merge(
+#         (work.groupby(group)["is_ativada"].sum() / work.groupby(group).size()).reset_index(name="%_conversao"),
+#         how="left", on=group,
+#     )
+
+#     metricas = ["mix", "%_elegivel", "%_enviada_elegivel", "%_ativada", "%_conversao"]
+
+#     tabela = aux.pivot(
+#         index=dt_col,
+#         columns=model_col,
+#         values=metricas,
+#     )
+
+#   # diff: challenger - baseline (blend4 - blend3)
+#     tabela[("diff_conversao", "")] = (
+#         tabela[("%_conversao", challenger_model)] - tabela[("%_conversao", baseline_model)]
+#     )
+
+#     return tabela.sort_index()
+
+# def color_negative_diff(row):
+#     val = row.get(("diff_conversao", ""))
+#     if pd.notna(val) and val < 0:
+#         return ["background-color: #ffcccc"] * len(row)
+#     return [""] * len(row)
+
+
+# def build_blend_comparison_summary_table_counts(
+#     df: pd.DataFrame,
+#     models: list,
+#     model_col: str = "bureau_nm_ajust",
+#     time_grain: str = "week",
+#     baseline_model: str = "BLEND3",
+#     challenger_model: str = "BLEND4",
+# ):
+#     work = prepare_blend_funnel_columns(df)
+#     work = work[work[model_col].isin(models)].copy()
+#     work["requested_at"] = pd.to_datetime(work["requested_at"])
+
+#     if time_grain == "week":
+#         work = prepare_week_columns(work, "requested_at")
+#         dt_col = "year_week"
+#     else:
+#         work["day"] = work["requested_at"].dt.strftime("%Y-%m-%d")
+#         dt_col = "day"
+
+#     rows = []
+#     for keys, group in work.groupby([model_col, dt_col], sort=False):
+#         model, period = keys
+#         total = len(group)
+#         elegivel = int(group["is_elegivel"].sum())
+#         enviada_elegivel = int(group.loc[group["is_elegivel"].eq(1), "is_enviada"].sum())
+#         ativada_aprovada = int(group.loc[group["is_aprovada"].eq(1), "is_ativada"].sum())
+#         conversao = int(group["is_ativada"].sum())
+
+#         rows.append({
+#             model_col: model,
+#             dt_col: period,
+#             "mix": total,
+#             "elegivel": elegivel,
+#             "enviada_elegivel": enviada_elegivel,
+#             "ativada": ativada_aprovada,
+#             "conversao": conversao,
+#         })
+
+#     aux = pd.DataFrame(rows)
+#     metricas = ["mix", "elegivel", "enviada_elegivel", "ativada", "conversao"]
+
+#     tabela = aux.pivot(
+#         index=dt_col,
+#         columns=model_col,
+#         values=metricas,
+#     )
+
+#     tabela[("diff_conversao", "")] = (
+#         tabela[("conversao", challenger_model)] - tabela[("conversao", baseline_model)]
+#     )
+
+#     return tabela.sort_index()
+
+
+def build_blend_rating_decision_tables(
     df: pd.DataFrame,
-    models: list,
+    models: Optional[List[str]] = None,
     model_col: str = "bureau_nm_ajust",
-    time_grain: str = "week",
-    baseline_model: str = "BLEND3_3",
-    challenger_model: str = "BLEND4",
+    rating_col: str = "rating_score_group",
+    decision_col: str = "pre_analysis_result",
+    rating_order: Optional[List[str]] = None,
+    decision_order: Optional[List[str]] = None,
+    week: Optional[str] = None,
+    date_col: str = "requested_at",
 ):
-    work = prepare_blend_funnel_columns(df)
-    work = work[work[model_col].isin(models)].copy()
-    work["requested_at"] = pd.to_datetime(work["requested_at"])
+    """
+    Build Lead counts and Ativado/Lead rates by rating x (model, pre-analysis).
 
-    if time_grain == "week":
-        work = prepare_week_columns(work, "requested_at")
-        dt_col = "year_week"
+    Returns
+    -------
+    counts : pd.DataFrame
+        Lead volume. Columns MultiIndex: (model, decision_label).
+    rates : pd.DataFrame
+        Conversion = is_ativada / leads. Same shape as counts.
+    week_label : str
+        Week used (or "all").
+    """
+    models = models or ["BLEND3", "BLEND4"]
+    rating_order = rating_order or ["A", "B", "C", "D", "E", "N/I"]
+    decision_order = decision_order or ["APROVAR", "DERIVAR", "REPROVAR"]
+
+    decision_labels = {
+        "APROVAR": "APROVADO",
+        "DERIVAR": "DERIVADO",
+        "REPROVAR": "REPROVADO",
+    }
+
+    funnel_cols = ["is_elegivel", "is_iniciada", "is_enviada", "is_aprovada", "is_ativada"]
+    if all(c in df.columns for c in funnel_cols):
+        work = df.copy()
     else:
-        work["day"] = work["requested_at"].dt.strftime("%Y-%m-%d")
-        dt_col = "day"
+        work = prepare_blend_funnel_columns(df)
 
-    group = [model_col, dt_col]
+    work = work[work[model_col].isin(models)].copy()
+    work[date_col] = pd.to_datetime(work[date_col])
+    work = prepare_week_columns(work, date_col)
 
-    aux = work.groupby(group).size().reset_index(name="qtd").merge(
-        (work.groupby(group).size() / work.groupby(dt_col).size()).reset_index(name="mix"),
-        how="left", on=group,
-    ).merge(
-        (work.groupby(group)["is_elegivel"].sum() / work.groupby(group).size()).reset_index(name="%_elegivel"),
-        how="left", on=group,
-    ).merge(
-        (work.groupby(group)["is_enviada"].sum() / work.groupby(group)["is_elegivel"].sum()).reset_index(name="%_enviada_elegivel"),
-        how="left", on=group,
-    ).merge(
-        (work.groupby(group)["is_ativada"].sum() / work.groupby(group)["is_aprovada"].sum()).reset_index(name="%_ativada"),
-        how="left", on=group,
-    ).merge(
-        (work.groupby(group)["is_ativada"].sum() / work.groupby(group).size()).reset_index(name="%_conversao"),
-        how="left", on=group,
+    week_label = "all"
+    if week is not None:
+        work = work[work["year_week"] == week].copy()
+        week_label = week
+
+    if work.empty:
+        empty = pd.DataFrame(
+            index=rating_order + ["Total"],
+            columns=pd.MultiIndex.from_product(
+                [models, [decision_labels[d] for d in decision_order]],
+                names=["modelo", "decisao"],
+            ),
+        )
+        return empty, empty, week_label
+
+    work = work[work[rating_col].isin(rating_order)].copy()
+    work = work[work[decision_col].isin(decision_order)].copy()
+    work["decision_label"] = work[decision_col].map(decision_labels)
+
+    grouped = (
+        work.groupby([rating_col, model_col, "decision_label"], observed=True)
+        .agg(leads=(decision_col, "size"), ativados=("is_ativada", "sum"))
+        .reset_index()
     )
 
-    metricas = ["mix", "%_elegivel", "%_enviada_elegivel", "%_ativada", "%_conversao"]
+    counts = (
+        grouped.pivot(index=rating_col, columns=[model_col, "decision_label"], values="leads")
+        .reindex(index=rating_order)
+        .reindex(
+            columns=pd.MultiIndex.from_product(
+                [models, [decision_labels[d] for d in decision_order]],
+                names=[model_col, "decision_label"],
+            )
+        )
+        .fillna(0)
+        .astype(int)
+    )
+    counts.columns.names = ["modelo", "decisao"]
 
-    tabela = aux.pivot(
-        index=dt_col,
-        columns=model_col,
-        values=metricas,
+    ativados = (
+        grouped.pivot(index=rating_col, columns=[model_col, "decision_label"], values="ativados")
+        .reindex(index=rating_order)
+        .reindex(columns=counts.columns)
+        .fillna(0)
     )
 
-  # diff: challenger - baseline (blend4 - blend3)
-    tabela[("diff_conversao", "")] = (
-        tabela[("%_conversao", challenger_model)] - tabela[("%_conversao", baseline_model)]
-    )
+    rates = (ativados / counts.replace(0, np.nan)) * 100
 
-    return tabela.sort_index()
+    counts.loc["Total"] = counts.sum(axis=0)
+    rates.loc["Total"] = (ativados.sum(axis=0) / counts.loc["Total"].replace(0, np.nan)) * 100
 
-def color_negative_diff(row):
-    val = row.get(("diff_conversao", ""))
-    if pd.notna(val) and val < 0:
-        return ["background-color: #ffcccc"] * len(row)
-    return [""] * len(row)
+    return counts, rates, week_label
 
 
-def build_blend_comparison_summary_table_counts(
-    df: pd.DataFrame,
-    models: list,
-    model_col: str = "bureau_nm_ajust",
-    time_grain: str = "week",
-    baseline_model: str = "BLEND3",
-    challenger_model: str = "BLEND4",
+def display_blend_rating_decision_tables(
+    counts: pd.DataFrame,
+    rates: pd.DataFrame,
+    week_label: str = "all",
+    title_prefix: str = "",
 ):
-    work = prepare_blend_funnel_columns(df)
-    work = work[work[model_col].isin(models)].copy()
-    work["requested_at"] = pd.to_datetime(work["requested_at"])
+    """Display stacked Lead (counts) + Ativado/Lead (%) tables."""
+    from IPython.display import display, Markdown
 
-    if time_grain == "week":
-        work = prepare_week_columns(work, "requested_at")
-        dt_col = "year_week"
-    else:
-        work["day"] = work["requested_at"].dt.strftime("%Y-%m-%d")
-        dt_col = "day"
+    week_title = f"Semana {week_label}" if week_label != "all" else "Todas as semanas"
+    if title_prefix:
+        week_title = f"{title_prefix} — {week_title}"
 
-    rows = []
-    for keys, group in work.groupby([model_col, dt_col], sort=False):
-        model, period = keys
-        total = len(group)
-        elegivel = int(group["is_elegivel"].sum())
-        enviada_elegivel = int(group.loc[group["is_elegivel"].eq(1), "is_enviada"].sum())
-        ativada_aprovada = int(group.loc[group["is_aprovada"].eq(1), "is_ativada"].sum())
-        conversao = int(group["is_ativada"].sum())
-
-        rows.append({
-            model_col: model,
-            dt_col: period,
-            "mix": total,
-            "elegivel": elegivel,
-            "enviada_elegivel": enviada_elegivel,
-            "ativada": ativada_aprovada,
-            "conversao": conversao,
-        })
-
-    aux = pd.DataFrame(rows)
-    metricas = ["mix", "elegivel", "enviada_elegivel", "ativada", "conversao"]
-
-    tabela = aux.pivot(
-        index=dt_col,
-        columns=model_col,
-        values=metricas,
+    display(Markdown(f"### {week_title}"))
+    display(Markdown("**Leads (Counts)**"))
+    display(
+        counts.style
+        .set_table_styles([
+            {"selector": "th", "props": [("text-align", "center")]},
+            {"selector": "td", "props": [("text-align", "center")]},
+        ])
+        .format("{:,.0f}")
     )
 
-    tabela[("diff_conversao", "")] = (
-        tabela[("conversao", challenger_model)] - tabela[("conversao", baseline_model)]
+    display(Markdown("**Ativado / Lead (%)**"))
+    display(
+        rates.style
+        .set_table_styles([
+            {"selector": "th", "props": [("text-align", "center")]},
+            {"selector": "td", "props": [("text-align", "center")]},
+        ])
+        .format("{:.1f}%")
     )
-
-    return tabela.sort_index()
 
 def plot_funnel_rating_overview_side_by_side(
     df: pd.DataFrame,
