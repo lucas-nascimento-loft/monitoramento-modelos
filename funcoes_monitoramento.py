@@ -1162,6 +1162,8 @@ def _plot_rating_comparison(
     reverse_stack: bool = True,
     min_label_pct: float = 1.0,
     figsize: Tuple[int, int] = (22, 8),
+    production_title: Optional[str] = None,
+    simulated_title: Optional[str] = None,
 ) -> None:
     pct_prod, _, vol_prod = compute_category_mix(
         df, category_col=production_rating_col, time_grain=time_grain
@@ -1179,6 +1181,10 @@ def _plot_rating_comparison(
     )
 
     period_label = "Dia" if time_grain == "day" else "Semana"
+    if production_title is None:
+        production_title = f"Produção ({production_rating_col})"
+    if simulated_title is None:
+        simulated_title = f"Simulado ({simulated_rating_col})"
 
     fig, axes = plt.subplots(
         2,
@@ -1193,7 +1199,7 @@ def _plot_rating_comparison(
         axes[1, 0],
         pct_prod,
         vol_prod,
-        panel_title="Produção (message_classificacao)",
+        panel_title=production_title,
         xlabel=period_label,
         category_order=category_order,
         color_map=color_map,
@@ -1208,7 +1214,7 @@ def _plot_rating_comparison(
         axes[1, 1],
         pct_sim,
         vol_sim,
-        panel_title="Simulado (rating_blend4)",
+        panel_title=simulated_title,
         xlabel=period_label,
         category_order=category_order,
         color_map=color_map,
@@ -1234,6 +1240,8 @@ def plot_daily_rating_comparison(
     reverse_stack: bool = True,
     min_label_pct: float = 3.0,
     figsize: Tuple[int, int] = (22, 8),
+    production_title: Optional[str] = None,
+    simulated_title: Optional[str] = None,
 ) -> None:
     """
     Side-by-side daily rating mix:
@@ -1262,6 +1270,8 @@ def plot_daily_rating_comparison(
         reverse_stack=reverse_stack,
         min_label_pct=min_label_pct,
         figsize=figsize,
+        production_title=production_title,
+        simulated_title=simulated_title,
     )
 
 
@@ -1276,6 +1286,8 @@ def plot_weekly_rating_comparison(
     reverse_stack: bool = True,
     min_label_pct: float = 1.0,
     figsize: Tuple[int, int] = (22, 8),
+    production_title: Optional[str] = None,
+    simulated_title: Optional[str] = None,
 ) -> None:
     """
     Side-by-side weekly rating mix:
@@ -1304,6 +1316,8 @@ def plot_weekly_rating_comparison(
         reverse_stack=reverse_stack,
         min_label_pct=min_label_pct,
         figsize=figsize,
+        production_title=production_title,
+        simulated_title=simulated_title,
     )
 
 def build_rating_mismatch_table(
@@ -1389,7 +1403,7 @@ def build_rating_mismatch_table(
         else [production_rating_col, simulated_rating_col]
     )
 
-    return table.sort_values(sort_cols, ascending=[True, True, True]).reset_index(drop=True)
+    return table.sort_values(sort_cols, ascending=True).reset_index(drop=True)
 
 
 def build_rating_match_summary(

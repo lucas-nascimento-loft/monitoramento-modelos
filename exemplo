@@ -2,22 +2,20 @@
     "pessoas": [
         {
             "nome": "",
-            "documento": "00394167988",
+            "documento": "49420305015",
             "classificacao": "E",
             "tipoPessoa": "FISICA",
             "idade": null,
             "scores": {
-                "BVS_CUSTOM": 382,
-                "BLEND3_3": 382
+                "BVS_CUSTOM_V2": 279
             },
             "ratings": {
-                "BVS_CUSTOM": "E",
-                "BLEND3_3": "E"
+                "BLEND_4": "E"
             },
             "dt_nascimento": null,
             "rendaConsideradaPessoa": 0,
-            "rendaUtilizada": "",
-            "fatorCorrecaoRenda": 0,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
             "limiteCalculadoPessoa": 0,
             "qtdeRestricoes": 0,
             "valorTotalRestricao": 0,
@@ -28,7 +26,8 @@
             "errosTecnicos": [],
             "dadosAusentes": [],
             "restricoesPorModalidade": [],
-            "nomeSerasa": "",
+            "anotacoesFinanceirasSerasa": null,
+            "nomeSerasa": null,
             "rendaPresumidaSerasa": 0
         }
     ],
@@ -42,105 +41,19 @@
     "limiteCalculadoContrato": 0,
     "qtdeRestricoesContrato": 0,
     "restricoesPorModalidadeContrato": [],
-    "regra_estouro_limite": "",
-    "valorRestricaoTotal": 0,
-    "regua": "Consulta PF",
-    "score": 382,
-    "scores": {
-        "BVS_CUSTOM": 382,
-        "BLEND3_3": 382
-    },
-    "ratings": {
-        "BVS_CUSTOM": "E",
-        "BLEND3_3": "E"
-    },
-    "blendRegressaoPredict": null,
-    "decisao": "BLEND3_3",
-    "classificacao": "E",
-    "existeErroSerasa": false,
-    "existeErroPowerCurve": false,
-    "existeErroBvsCustom": false,
-    "motor": "POWERCURVE",
-    "feature_flags": {
-        "analiseAutomaticaDeCredito": true,
-        "modeloBlend": "BLEND3_3"
-    },
-    "errosTecnicos": [],
-    "dadosAusentes": [],
-    "blend3Variables": {
-        "hasPreviousContracts": false,
-        "hadOverdueInvoiceInPreviousContracts": false,
-        "cityPc4HistoryOver100Contracts": 0.07445008,
-        "realEstatePc4HistoryOver100Contracts": null
-    },
-    "reaproveitamentoConsultaMotor": false,
-    "savingBureauPowerCurve": true,
-    "rentGuaranteeConstraints": {
-        "rent_coverage_multiplier": [],
-        "exit_cost_multiplier": [],
-        "commission_percent": [],
-        "version": 1
-    }
-}
-
-{
-    "pessoas": [
-        {
-            "nome": "THIAGO MONTEIRO GERVASIO ANTUNES FREIRE",
-            "documento": "37929505880",
-            "classificacao": "A",
-            "tipoPessoa": "FISICA",
-            "idade": 37,
-            "scores": {
-                "BVS_CUSTOM_V2": 867,
-                "HFT1": 841
-            },
-            "ratings": {
-                "BLEND_4": "A"
-            },
-            "dt_nascimento": "1988-08-25",
-            "rendaConsideradaPessoa": 11439.5,
-            "rendaUtilizada": "SERASA",
-            "fatorCorrecaoRenda": 1.37,
-            "limiteCalculadoPessoa": 8007.65,
-            "qtdeRestricoes": 0,
-            "valorTotalRestricao": 0,
-            "situacao_cadastral_serasa": "REGULAR",
-            "existeErroSerasa": false,
-            "existeErroPowerCurve": false,
-            "existeErroBvsCustom": false,
-            "errosTecnicos": [],
-            "dadosAusentes": [],
-            "restricoesPorModalidade": [],
-            "anotacoesFinanceirasSerasa": null,
-            "nomeSerasa": "THIAGO MONTEIRO GERVASIO ANTUNES FREIRE",
-            "rendaPresumidaSerasa": 8350
-        }
-    ],
-    "regras": {
-        "situacao_cadastral_serasa": "REGULAR"
-    },
-    "rendaConsiderada": 11439.5,
-    "rendaConsideradaContrato": 11439.5,
-    "rendaUtilizada": "SERASA",
-    "fatorCorrecaoRenda": 1.37,
-    "limiteCalculadoContrato": 8007.65,
-    "qtdeRestricoesContrato": 0,
-    "restricoesPorModalidadeContrato": [],
     "regra_estouro_limite": "N\u00c3O APLICADA",
     "valorRestricaoTotal": 0,
     "regua": "Consulta Custom PF",
-    "score": 867,
+    "score": 279,
     "scores": {
-        "BVS_CUSTOM_V2": 867,
-        "HFT1": 841
+        "BVS_CUSTOM_V2": 279
     },
     "ratings": {
-        "BLEND_4": "A"
+        "BLEND_4": "E"
     },
-    "blendRegressaoPredict": 860,
+    "blendRegressaoPredict": null,
     "decisao": "BLEND_4",
-    "classificacao": "A",
+    "classificacao": "E",
     "existeErroSerasa": false,
     "existeErroPowerCurve": false,
     "existeErroBvsCustom": false,
@@ -154,8 +67,95 @@
     "blend3Variables": {
         "hasPreviousContracts": false,
         "hadOverdueInvoiceInPreviousContracts": false,
-        "cityPc4HistoryOver100Contracts": 0.0875,
+        "cityPc4HistoryOver100Contracts": null,
         "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": true,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [],
+        "exit_cost_multiplier": [],
+        "commission_percent": [],
+        "version": 1
+    }
+}
+
+
+
+{
+    "pessoas": [
+        {
+            "nome": "FELIPE GABRIEL BARBOSA DE PAULA",
+            "documento": "41770096876",
+            "classificacao": "A",
+            "tipoPessoa": "FISICA",
+            "idade": 35,
+            "scores": {
+                "BVS_CUSTOM_V2": 522,
+                "HFT1": 600
+            },
+            "ratings": {
+                "BLEND_4": "A"
+            },
+            "dt_nascimento": "1991-05-31",
+            "rendaConsideradaPessoa": 2192,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 1534.3999999999999,
+            "qtdeRestricoes": 0,
+            "valorTotalRestricao": 0,
+            "situacao_cadastral_serasa": "REGULAR",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": null,
+            "nomeSerasa": "FELIPE GABRIEL BARBOSA DE PAULA",
+            "rendaPresumidaSerasa": 1599.9999999999998
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": "REGULAR"
+    },
+    "rendaConsiderada": 2192,
+    "rendaConsideradaContrato": 2192,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 1534.3999999999999,
+    "qtdeRestricoesContrato": 1,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 96,
+    "regua": "Consulta Custom PF",
+    "score": 522,
+    "scores": {
+        "BVS_CUSTOM_V2": 522,
+        "HFT1": 600
+    },
+    "ratings": {
+        "BLEND_4": "A"
+    },
+    "blendRegressaoPredict": 502,
+    "decisao": "BLEND_4",
+    "classificacao": "A",
+    "classificacaoInquilino": "none",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND_4"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": {
+        "hasPreviousContracts": true,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": 0.1198786,
+        "realEstatePc4HistoryOver100Contracts": 0.13636364
     },
     "reaproveitamentoConsultaMotor": false,
     "savingBureauPowerCurve": false,
@@ -188,43 +188,41 @@
 {
     "pessoas": [
         {
-            "nome": "JOSE ALDAIR FIGUEIREDO DA SILVA",
-            "documento": "90595831087",
-            "classificacao": "B",
+            "nome": "NATALYA DA SILVA SOARES",
+            "documento": "48110489893",
+            "classificacao": "A",
             "tipoPessoa": "FISICA",
-            "idade": 51,
+            "idade": 25,
             "scores": {
-                "BVS_CUSTOM": 792,
-                "HVA4": 750,
-                "BLEND3_3": 792
+                "BVS_CUSTOM": 814,
+                "HVA4": 870,
+                "BLEND3_3": 814
             },
             "ratings": {
-                "BVS_CUSTOM": "B",
+                "BVS_CUSTOM": "A",
                 "HVA4": "B",
-                "BLEND3_3": "B"
+                "BLEND3_3": "A"
             },
-            "dt_nascimento": "1975-02-09",
-            "rendaConsideradaPessoa": 2945.5000000000005,
+            "dt_nascimento": "2000-11-17",
+            "rendaConsideradaPessoa": 1849.5000000000002,
             "rendaUtilizada": "SERASA",
             "fatorCorrecaoRenda": 1.37,
-            "limiteCalculadoPessoa": 1620.0250000000003,
-            "qtdeRestricoes": 1,
-            "valorTotalRestricao": 474,
+            "limiteCalculadoPessoa": 1294.65,
+            "qtdeRestricoes": 0,
+            "valorTotalRestricao": 0,
             "situacao_cadastral_serasa": "REGULAR",
             "existeErroSerasa": false,
             "existeErroPowerCurve": false,
             "existeErroBvsCustom": false,
             "errosTecnicos": [],
             "dadosAusentes": [],
-            "restricoesPorModalidade": [
-                "OPER IMOBILI"
-            ],
+            "restricoesPorModalidade": [],
             "anotacoesFinanceirasSerasa": {
                 "Pefin": {
-                    "DataPrimeiraOcorrenciaPefin": "20230715",
-                    "DataUltimaOcorrenciaPefin": "20230715",
-                    "QuantidadeTotalPefin": "1",
-                    "ValorTotalPefin": "474"
+                    "DataPrimeiraOcorrenciaPefin": null,
+                    "DataUltimaOcorrenciaPefin": null,
+                    "QuantidadeTotalPefin": "0",
+                    "ValorTotalPefin": "0"
                 },
                 "Refin": {
                     "DataPrimeiraOcorrenciaRefin": null,
@@ -255,74 +253,59 @@
                     "QuantidadeCCF": null,
                     "ValorTotalCCF": "0"
                 },
-                "PendenciasPagamentoPF": [
-                    {
-                        "TipoPEFIN": "01",
-                        "Modalidade": "OPER IMOBILI",
-                        "TipoOcorrencia": "V",
-                        "ChaveCADUS": "166930864",
-                        "DataOcorrencia": "20230715",
-                        "SiglaMOD": "IM",
-                        "TipoMoeda": "R$",
-                        "Valor": "474",
-                        "Contrato": "0000446418",
-                        "Origem": "TENDA",
-                        "QtdeOcorrencia": "1"
-                    }
-                ],
+                "PendenciasPagamentoPF": [],
                 "AcoesJudiciaisPF": [],
                 "ProtestosPF": [],
                 "DividasVencidasPF": [],
                 "ChequesSemFundosPF": []
             },
-            "nomeSerasa": "JOSE ALDAIR FIGUEIREDO DA SILVA",
-            "rendaPresumidaSerasa": 2150
+            "nomeSerasa": "NATALYA DA SILVA SOARES",
+            "rendaPresumidaSerasa": 1350
         }
     ],
     "regras": {
         "situacao_cadastral_serasa": "REGULAR"
     },
-    "rendaConsiderada": 2945.5000000000005,
-    "rendaConsideradaContrato": 2945.5000000000005,
+    "rendaConsiderada": 1849.5000000000002,
+    "rendaConsideradaContrato": 1849.5000000000002,
     "rendaUtilizada": "SERASA",
     "fatorCorrecaoRenda": 1.37,
-    "limiteCalculadoContrato": 1620.0250000000003,
-    "qtdeRestricoesContrato": 1,
-    "restricoesPorModalidadeContrato": [
-        "OPER IMOBILI"
-    ],
+    "limiteCalculadoContrato": 1294.65,
+    "qtdeRestricoesContrato": 0,
+    "restricoesPorModalidadeContrato": [],
     "regra_estouro_limite": "N\u00c3O APLICADA",
-    "valorRestricaoTotal": 474,
+    "valorRestricaoTotal": 0,
     "regua": "Consulta hva4",
-    "score": 792,
+    "score": 814,
     "scores": {
-        "BVS_CUSTOM": 792,
-        "HVA4": 750,
-        "BLEND3_3": 792
+        "BVS_CUSTOM": 814,
+        "HVA4": 870,
+        "BLEND3_3": 814
     },
     "ratings": {
-        "BVS_CUSTOM": "B",
+        "BVS_CUSTOM": "A",
         "HVA4": "B",
-        "BLEND3_3": "B"
+        "BLEND3_3": "A"
     },
-    "blendRegressaoPredict": 564,
+    "blendRegressaoPredict": 693,
     "decisao": "BLEND3_3",
-    "classificacao": "B",
+    "classificacao": "A",
+    "classificacaoInquilino": "none",
     "existeErroSerasa": false,
     "existeErroPowerCurve": false,
     "existeErroBvsCustom": false,
     "motor": "POWERCURVE",
     "feature_flags": {
         "analiseAutomaticaDeCredito": true,
-        "modeloBlend": "BLEND3_3"
+        "modeloBlend": "BLEND_4"
     },
     "errosTecnicos": [],
     "dadosAusentes": [],
     "blend3Variables": {
         "hasPreviousContracts": false,
         "hadOverdueInvoiceInPreviousContracts": false,
-        "cityPc4HistoryOver100Contracts": 0.08756712,
-        "realEstatePc4HistoryOver100Contracts": 0.12357955
+        "cityPc4HistoryOver100Contracts": 0.08170732,
+        "realEstatePc4HistoryOver100Contracts": null
     },
     "reaproveitamentoConsultaMotor": false,
     "savingBureauPowerCurve": false,
@@ -350,4 +333,449 @@
         ],
         "version": 1
     }
+}
+
+{
+    "pessoas": [
+        {
+            "nome": "MONIQUE ALMEIDA PINTO ALVARO",
+            "documento": "11539102769",
+            "classificacao": "A",
+            "tipoPessoa": "FISICA",
+            "idade": 40,
+            "scores": {
+                "BVS_CUSTOM_V2": 570,
+                "HFT1": 677
+            },
+            "ratings": {
+                "BLEND_4": "A"
+            },
+            "dt_nascimento": "1985-12-30",
+            "rendaConsideradaPessoa": 4658,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 3260.6,
+            "qtdeRestricoes": 0,
+            "valorTotalRestricao": 0,
+            "situacao_cadastral_serasa": "REGULAR",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": null,
+            "nomeSerasa": "MONIQUE ALMEIDA PINTO ALVARO",
+            "rendaPresumidaSerasa": 3399.9999999999995
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": "REGULAR"
+    },
+    "rendaConsiderada": 4658,
+    "rendaConsideradaContrato": 4658,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 3260.6,
+    "qtdeRestricoesContrato": 0,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 0,
+    "regua": "Consulta Custom PF",
+    "score": 570,
+    "scores": {
+        "BVS_CUSTOM_V2": 570,
+        "HFT1": 677
+    },
+    "ratings": {
+        "BLEND_4": "A"
+    },
+    "blendRegressaoPredict": 628,
+    "decisao": "BLEND_4",
+    "classificacao": "A",
+    "classificacaoInquilino": "none",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND_4"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": null,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": false,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [
+            35,
+            40,
+            50
+        ],
+        "exit_cost_multiplier": [
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "commission_percent": [
+            0,
+            0.5,
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+        ],
+        "version": 1
+    }
+}
+
+{
+    "principalDocument": "11539102769",
+    "imobiliariaId": 10792,
+    "idExterno": "4335657",
+    "rating": "A",
+    "valorAluguel": 4000,
+    "imovelTipo": "RESIDENCIAL",
+    "modeloBlend": "BLEND_4",
+    "priorDecisions": [],
+    "rendaConsideradaContrato": 4658,
+    "valorRestricaoTotal": 0,
+    "quantidadeRestricoesContrato": 0,
+    "nome": "MONIQUE ALMEIDA PINTO ALVARO",
+    "dtNascimento": "1985-12-30",
+    "situacaoCadastralSerasa": "REGULAR",
+    "dadosAusentes": [],
+    "existeErroPowerCurve": false,
+    "existingContractDebts": {
+        "qtdeImoveis": 0,
+        "qtdeDividas": 0,
+        "saldoReceber": 0,
+        "taxaCredpago": 0
+    },
+    "errosTecnicos": [],
+    "scoreImobiliaria": "C",
+    "blendPredict": 628,
+    "scores": {
+        "BVS_CUSTOM_V2": 570,
+        "HFT1": 677
+    },
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": null,
+        "realEstatePc4HistoryOver100Contracts": null
+    }
+}
+
+{
+    "pessoas": [
+        {
+            "nome": "MONIQUE ALMEIDA PINTO ALVARO",
+            "documento": "11539102769",
+            "classificacao": "A",
+            "tipoPessoa": "FISICA",
+            "idade": 40,
+            "scores": {
+                "BVS_CUSTOM_V2": 570,
+                "HFT1": 677
+            },
+            "ratings": {
+                "BLEND_4": "A"
+            },
+            "dt_nascimento": "1985-12-30",
+            "rendaConsideradaPessoa": 4658,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 3260.6,
+            "qtdeRestricoes": 0,
+            "valorTotalRestricao": 0,
+            "situacao_cadastral_serasa": "REGULAR",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": null,
+            "nomeSerasa": "MONIQUE ALMEIDA PINTO ALVARO",
+            "rendaPresumidaSerasa": 3399.9999999999995
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": "REGULAR"
+    },
+    "rendaConsiderada": 4658,
+    "rendaConsideradaContrato": 4658,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 3260.6,
+    "qtdeRestricoesContrato": 0,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 0,
+    "regua": "Consulta Custom PF",
+    "score": 570,
+    "scores": {
+        "BVS_CUSTOM_V2": 570,
+        "HFT1": 677
+    },
+    "ratings": {
+        "BLEND_4": "A"
+    },
+    "blendRegressaoPredict": 628,
+    "decisao": "BLEND_4",
+    "classificacao": "A",
+    "classificacaoInquilino": "none",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND_4"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": null,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": false,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [
+            35,
+            40,
+            50
+        ],
+        "exit_cost_multiplier": [
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "commission_percent": [
+            0,
+            0.5,
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+        ],
+        "version": 1
+    }
+}
+
+{
+    "principalDocument": "11539102769",
+    "imobiliariaId": 10792,
+    "idExterno": "4335657",
+    "rating": "A",
+    "valorAluguel": 4000,
+    "imovelTipo": "RESIDENCIAL",
+    "modeloBlend": "BLEND_4",
+    "priorDecisions": [],
+    "rendaConsideradaContrato": 4658,
+    "valorRestricaoTotal": 0,
+    "quantidadeRestricoesContrato": 0,
+    "nome": "MONIQUE ALMEIDA PINTO ALVARO",
+    "dtNascimento": "1985-12-30",
+    "situacaoCadastralSerasa": "REGULAR",
+    "dadosAusentes": [],
+    "existeErroPowerCurve": false,
+    "existingContractDebts": {
+        "qtdeImoveis": 0,
+        "qtdeDividas": 0,
+        "saldoReceber": 0,
+        "taxaCredpago": 0
+    },
+    "errosTecnicos": [],
+    "scoreImobiliaria": "C",
+    "blendPredict": 628,
+    "scores": {
+        "BVS_CUSTOM_V2": 570,
+        "HFT1": 677
+    },
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": null,
+        "realEstatePc4HistoryOver100Contracts": null
+    }
+}
+
+{
+    "pessoas": [
+        {
+            "nome": "LYGIA MARIA ALAVARCE CAMPOS",
+            "documento": "08758771840",
+            "classificacao": "A",
+            "tipoPessoa": "FISICA",
+            "idade": 61,
+            "scores": {
+                "BVS_CUSTOM": 846,
+                "HVA4": 427,
+                "BLEND3_3": 846
+            },
+            "ratings": {
+                "BVS_CUSTOM": "A",
+                "HVA4": "E",
+                "BLEND3_3": "A"
+            },
+            "dt_nascimento": "1965-03-22",
+            "rendaConsideradaPessoa": 40209.5,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 28146.649999999998,
+            "qtdeRestricoes": 0,
+            "valorTotalRestricao": 0,
+            "situacao_cadastral_serasa": "REGULAR",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": {
+                "Pefin": {
+                    "DataPrimeiraOcorrenciaPefin": null,
+                    "DataUltimaOcorrenciaPefin": null,
+                    "QuantidadeTotalPefin": "0",
+                    "ValorTotalPefin": "0"
+                },
+                "Refin": {
+                    "DataPrimeiraOcorrenciaRefin": null,
+                    "DataUltimaOcorrenciaRefin": null,
+                    "QuantidadeTotalRefin": "0",
+                    "ValorTotalRefin": "0"
+                },
+                "Acao": {
+                    "DataPrimeiraAcao": null,
+                    "DataUltimaAcao": null,
+                    "QuantidadeTotalAcao": null,
+                    "ValorTotalAcao": "0"
+                },
+                "Protesto": {
+                    "DataPrimeiraOcorrenciaProtesto": null,
+                    "DataUltimaOcorrenciaProtesto": null,
+                    "QuantidadeTotalProtesto": null,
+                    "TipoMoeda": null,
+                    "ValorTotalProtesto": null
+                },
+                "DividaVencida": {
+                    "DataPrimeiraOcorrenciaDividasVencidas": null,
+                    "DataUltimaOcorrenciaDividasVencidas": null,
+                    "QuantidadeTotalDividasVencidas": null,
+                    "ValorTotalDividasVencidas": null
+                },
+                "ChequeSemFundos": {
+                    "QuantidadeCCF": null,
+                    "ValorTotalCCF": "0"
+                },
+                "PendenciasPagamentoPF": [],
+                "AcoesJudiciaisPF": [],
+                "ProtestosPF": [],
+                "DividasVencidasPF": [],
+                "ChequesSemFundosPF": []
+            },
+            "nomeSerasa": "LYGIA MARIA ALAVARCE CAMPOS",
+            "rendaPresumidaSerasa": 29350
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": "REGULAR"
+    },
+    "rendaConsiderada": 40209.5,
+    "rendaConsideradaContrato": 40209.5,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 28146.649999999998,
+    "qtdeRestricoesContrato": 0,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 0,
+    "regua": "Consulta hva4",
+    "score": 846,
+    "scores": {
+        "BVS_CUSTOM": 846,
+        "HVA4": 427,
+        "BLEND3_3": 846
+    },
+    "ratings": {
+        "BVS_CUSTOM": "A",
+        "HVA4": "E",
+        "BLEND3_3": "A"
+    },
+    "blendRegressaoPredict": 552,
+    "decisao": "BLEND3_3",
+    "classificacao": "A",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND3_3"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": 0.08938408,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": false,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [
+            35,
+            40,
+            50
+        ],
+        "exit_cost_multiplier": [
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "commission_percent": [
+            0,
+            0.5,
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+        ],
+        "version": 1
+    }
+}
+
+{
+    "valor_aluguel": 2200,
+    "matchmaking_on": false,
+    "pessoa_principal": {
+        "documento": "08758771840"
+    },
+    "imovel": {
+        "codigo_cidade_ibge": 3550308,
+        "tipo": "RESIDENCIAL"
+    },
+    "imobiliaria_id": 3225,
+    "id_externo": "4424732"
 }
