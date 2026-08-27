@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from typing import Literal, Optional, Tuple, List, Dict
+from typing import Literal, Optional, Tuple, List, Dict, Any
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 def _sunday_week_start(dates: pd.Series) -> pd.Series:
@@ -3652,3 +3654,395 @@ def build_funnel_by_rating_table(
     for col in metric_cols:
         out[col] = out[col].round(1)
     return out
+
+FEATURE_MEAN_COLOR = "#2563EB"
+FEATURE_MEDIAN_COLOR = "#0D9488"
+FEATURE_BINARY_COLOR = "#0F766E"
+FEATURE_REFERENCE_COLOR = "#94A3B8"
+FEATURE_VOLUME_COLOR = "#64748B"
+
+
+def _padded_ylim(values, pad_frac: float = 0.10) -> Tuple[float, float]:
+    vals = pd.Series(values).dropna().astype(float)
+    if vals.empty:
+        return (0.0, 1.0)
+    lo, hi = float(vals.min()), float(vals.max())
+    span = hi - lo
+    pad = span * pad_frac if span > 0 else (abs(hi) * pad_frac or 1.0)
+    return (lo - pad, hi + pad)
+
+
+def _binary_proportion_from_counts(counts: Dict) -> Optional[float]:
+    n0 = float(counts.get(0, counts.get("0", 0)) or 0)
+    n1 = float(counts.get(1, counts.get("1", 0)) or 0)
+    total = n0 + n1
+    if total <= 0:
+        return None
+    return n1 / total * 100.0
+
+
+def split_feature_types(
+    df: pd.DataFrame,
+    variables: List[str],
+    binary_vars: Optional[List[str]] = None,
+    artifact: Optional[Dict[str, Any]] = None,
+) -> Tuple[List[str], List[str]]:
+    """Split variables into continuous vs binary. Artifact type wins, then binary_vars."""
+    binary_vars = binary_vars or []
+    artifact_vars = (artifact or {}).get("variables", {})
+
+    continuous, binary = [], []
+    for col in variables:
+        if col not in df.columns:
+            continue
+        spec = artifact_vars.get(col, {})
+        if spec.get("type") == "binary" or col in binary_vars:
+            binary.append(col)
+            continue
+        if spec.get("type") == "quantile":
+            continuous.append(col)
+            continue
+        values = pd.to_numeric(df[col], errors="coerce").dropna().unique()
+        if len(values) > 0 and set(values).issubset({0, 1, 0.0, 1.0}):
+            binary.append(col)
+        else:
+            continuous.append(col)
+    return continuous, binary
+
+
+def compute_weekly_continuous_stats(
+    df: pd.DataFrame,
+    variables: List[str],
+    date_col: str = "requested_at",
+    week_order: Optional[List[str]] = None,
+) -> pd.DataFrame:
+    """Weekly mean/median per continuous variable. NaNs are excluded from stats."""
+    cols = [c for c in variables if c in df.columns]
+    if not cols:
+        return pd.DataFrame(columns=["year_week", "variable", "n", "n_valid", "mean", "median"])
+
+    keep = list(dict.fromkeys([date_col, "year_week", "week_start"] + cols))
+    keep = [c for c in keep if c in df.columns]
+    work = df[keep].copy()
+    if "year_week" not in work.columns:
+        work = prepare_week_columns(work, date_col)
+
+    if week_order is None:
+        week_order = _ordered_week_labels(work)
+    work = work[work["year_week"].isin(week_order)]
+
+    rows = []
+    for week in week_order:
+        group = work[work["year_week"] == week]
+        n_total = len(group)
+        for col in cols:
+            series = pd.to_numeric(group[col], errors="coerce")
+            valid = series.dropna()
+            rows.append(
+                {
+                    "year_week": week,
+                    "variable": col,
+                    "n": n_total,
+                    "n_valid": int(valid.shape[0]),
+                    "mean": float(valid.mean()) if not valid.empty else np.nan,
+                    "median": float(valid.median()) if not valid.empty else np.nan,
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+def compute_weekly_binary_stats(
+    df: pd.DataFrame,
+    variables: List[str],
+    date_col: str = "requested_at",
+    week_order: Optional[List[str]] = None,
+) -> pd.DataFrame:
+    """Weekly P(X=1) per binary variable. Rows outside {0, 1} are dropped."""
+    cols = [c for c in variables if c in df.columns]
+    if not cols:
+        return pd.DataFrame(
+            columns=["year_week", "variable", "n", "n_valid", "n_positive", "proportion_pct"]
+        )
+
+    keep = list(dict.fromkeys([date_col, "year_week", "week_start"] + cols))
+    keep = [c for c in keep if c in df.columns]
+    work = df[keep].copy()
+    if "year_week" not in work.columns:
+        work = prepare_week_columns(work, date_col)
+
+    if week_order is None:
+        week_order = _ordered_week_labels(work)
+    work = work[work["year_week"].isin(week_order)]
+
+    rows = []
+    for week in week_order:
+        group = work[work["year_week"] == week]
+        n_total = len(group)
+        for col in cols:
+            binary = prepare_binary_column(group, col)
+            n_valid = len(binary)
+            n_positive = int(binary[col].sum()) if n_valid else 0
+            rows.append(
+                {
+                    "year_week": week,
+                    "variable": col,
+                    "n": n_total,
+                    "n_valid": n_valid,
+                    "n_positive": n_positive,
+                    "proportion_pct": (n_positive / n_valid * 100.0) if n_valid else np.nan,
+                }
+            )
+    return pd.DataFrame(rows)
+
+
+def compute_reference_feature_stats(
+    df_reference: pd.DataFrame,
+    variables: List[str],
+    binary_vars: Optional[List[str]] = None,
+    artifact: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Dict[str, float]]:
+    """Optional development baseline: mean/median (continuous) and P(X=1) (binary)."""
+    continuous, binary = split_feature_types(
+        df_reference, variables, binary_vars=binary_vars, artifact=artifact
+    )
+    out: Dict[str, Dict[str, float]] = {}
+    for col in continuous:
+        series = pd.to_numeric(df_reference[col], errors="coerce").dropna()
+        if series.empty:
+            continue
+        out[col] = {"mean": float(series.mean()), "median": float(series.median())}
+    for col in binary:
+        binary_df = prepare_binary_column(df_reference, col)
+        if binary_df.empty:
+            continue
+        out[col] = {"proportion_pct": float(binary_df[col].mean() * 100.0)}
+    return out
+
+
+def _reference_stats_from_artifact(
+    artifact: Optional[Dict[str, Any]],
+    binary_vars: List[str],
+) -> Dict[str, Dict[str, float]]:
+    """Binary reference only — the PSI artifact does not store mean/median."""
+    if not artifact:
+        return {}
+    out: Dict[str, Dict[str, float]] = {}
+    for col in binary_vars:
+        spec = artifact.get("variables", {}).get(col, {})
+        if spec.get("type") != "binary":
+            continue
+        pct = _binary_proportion_from_counts(spec.get("expected_counts", {}))
+        if pct is not None:
+            out[col] = {"proportion_pct": pct}
+    return out
+
+
+def plot_weekly_continuous_stats(
+    stats_df: pd.DataFrame,
+    variable_labels: Optional[Dict[str, str]] = None,
+    reference_stats: Optional[Dict[str, Dict[str, float]]] = None,
+    title_prefix: str = "Média e mediana semanal",
+    n_cols: int = 2,
+    show_labels: bool = True,
+    figsize_per_row: float = 3.8,
+) -> Optional[Tuple[plt.Figure, np.ndarray]]:
+    if stats_df is None or stats_df.empty:
+        print("[skip] Sem estatísticas contínuas para plotar.")
+        return None
+
+    variable_labels = variable_labels or {}
+    reference_stats = reference_stats or {}
+    variables = list(dict.fromkeys(stats_df["variable"].tolist()))
+    n_cols = max(1, min(n_cols, len(variables)))
+    n_rows = (len(variables) + n_cols - 1) // n_cols
+
+    fig, axes = plt.subplots(
+        n_rows,
+        n_cols,
+        figsize=(7.2 * n_cols, figsize_per_row * n_rows),
+        sharex=True,
+        squeeze=False,
+    )
+
+    for i, col in enumerate(variables):
+        ax = axes[i // n_cols][i % n_cols]
+        part = stats_df[stats_df["variable"] == col].copy()
+        x = np.arange(len(part))
+        weeks = part["year_week"].astype(str).tolist()
+        means = part["mean"].values
+        medians = part["median"].values
+        n_valid = part["n_valid"].values
+
+        ax.plot(x, means, marker="o", linewidth=2, markersize=6, color=FEATURE_MEAN_COLOR, label="Média")
+        ax.plot(x, medians, marker="s", linewidth=2, markersize=6, color=FEATURE_MEDIAN_COLOR, label="Mediana")
+
+        ref = reference_stats.get(col, {})
+        if "mean" in ref:
+            ax.axhline(ref["mean"], color=FEATURE_REFERENCE_COLOR, linestyle="--", linewidth=1.4, label="Média (desenvolvimento)")
+        if "median" in ref:
+            ax.axhline(ref["median"], color=FEATURE_REFERENCE_COLOR, linestyle=":", linewidth=1.4, label="Mediana (desenvolvimento)")
+
+        if show_labels:
+            for xi, mean_val, median_val in zip(x, means, medians):
+                if pd.notna(mean_val):
+                    ax.text(xi, mean_val, f"{mean_val:.2f}", ha="center", va="bottom", fontsize=7, color=FEATURE_MEAN_COLOR)
+                if pd.notna(median_val):
+                    ax.text(xi, median_val, f"{median_val:.2f}", ha="center", va="top", fontsize=7, color=FEATURE_MEDIAN_COLOR)
+
+        xticklabels = [
+            f"{week}\n(n={_format_volume(int(n))})"
+            for week, n in zip(weeks, n_valid)
+        ]
+        ax.set_xticks(x)
+        ax.set_xticklabels(xticklabels, rotation=45, ha="right")
+        ax.set_title(variable_labels.get(col, col))
+        ax.set_ylabel("Valor")
+        ax.grid(axis="y", alpha=0.25)
+        ax.set_ylim(*_padded_ylim(list(means) + list(medians) + [ref.get("mean"), ref.get("median")]))
+        ax.legend(loc="best", fontsize=8)
+
+    for j in range(len(variables), n_rows * n_cols):
+        axes[j // n_cols][j % n_cols].axis("off")
+
+    fig.suptitle(title_prefix, y=1.02, fontsize=13)
+    fig.supxlabel("Semana")
+    plt.tight_layout()
+    plt.show()
+    return fig, axes
+
+
+def plot_weekly_binary_stats(
+    stats_df: pd.DataFrame,
+    variable_labels: Optional[Dict[str, str]] = None,
+    reference_stats: Optional[Dict[str, Dict[str, float]]] = None,
+    title_prefix: str = "Proporção semanal (classe 1)",
+    n_cols: int = 2,
+    show_labels: bool = True,
+    figsize_per_row: float = 3.6,
+) -> Optional[Tuple[plt.Figure, np.ndarray]]:
+    if stats_df is None or stats_df.empty:
+        print("[skip] Sem estatísticas binárias para plotar.")
+        return None
+
+    variable_labels = variable_labels or {}
+    reference_stats = reference_stats or {}
+    variables = list(dict.fromkeys(stats_df["variable"].tolist()))
+    n_cols = max(1, min(n_cols, len(variables)))
+    n_rows = (len(variables) + n_cols - 1) // n_cols
+
+    fig, axes = plt.subplots(
+        n_rows,
+        n_cols,
+        figsize=(7.2 * n_cols, figsize_per_row * n_rows),
+        sharex=True,
+        squeeze=False,
+    )
+
+    for i, col in enumerate(variables):
+        ax = axes[i // n_cols][i % n_cols]
+        part = stats_df[stats_df["variable"] == col].copy()
+        x = np.arange(len(part))
+        weeks = part["year_week"].astype(str).tolist()
+        values = part["proportion_pct"].values
+        n_valid = part["n_valid"].values
+        ref_pct = reference_stats.get(col, {}).get("proportion_pct")
+
+        ax.plot(x, values, marker="o", linewidth=2, markersize=6, color=FEATURE_BINARY_COLOR, label="Produção")
+        ax.fill_between(x, values, color=FEATURE_BINARY_COLOR, alpha=0.12)
+        if ref_pct is not None and pd.notna(ref_pct):
+            ax.axhline(
+                ref_pct,
+                color=FEATURE_REFERENCE_COLOR,
+                linestyle="--",
+                linewidth=1.4,
+                label=f"Desenvolvimento ({ref_pct:.1f}%)",
+            )
+
+        if show_labels:
+            for xi, val in zip(x, values):
+                if pd.notna(val):
+                    ax.text(xi, val, f"{val:.1f}%", ha="center", va="bottom", fontsize=8, color=FEATURE_BINARY_COLOR, fontweight="bold")
+
+        xticklabels = [
+            f"{week}\n(n={_format_volume(int(n))})"
+            for week, n in zip(weeks, n_valid)
+        ]
+        ax.set_xticks(x)
+        ax.set_xticklabels(xticklabels, rotation=45, ha="right")
+        ax.set_title(variable_labels.get(col, col))
+        ax.set_ylabel("Proporção (%)")
+        ax.grid(axis="y", alpha=0.25)
+        ax.set_ylim(*_padded_ylim(list(values) + [ref_pct], pad_frac=0.15))
+        ax.legend(loc="best", fontsize=8)
+
+    for j in range(len(variables), n_rows * n_cols):
+        axes[j // n_cols][j % n_cols].axis("off")
+
+    fig.suptitle(title_prefix, y=1.02, fontsize=13)
+    fig.supxlabel("Semana")
+    plt.tight_layout()
+    plt.show()
+    return fig, axes
+
+
+def plot_weekly_feature_stats(
+    df: pd.DataFrame,
+    variables: List[str],
+    binary_vars: Optional[List[str]] = None,
+    artifact: Optional[Dict[str, Any]] = None,
+    df_reference: Optional[pd.DataFrame] = None,
+    variable_labels: Optional[Dict[str, str]] = None,
+    week_order: Optional[List[str]] = None,
+    date_col: str = "requested_at",
+    title_prefix: str = "Evolução semanal das variáveis",
+    n_cols: int = 2,
+    show_labels: bool = True,
+) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    """
+    Time-series companion to plot_top_psi_distributions:
+    continuous → mean/median by week; binary → P(X=1) by week.
+    """
+    continuous_vars, binary_feature_vars = split_feature_types(
+        df, variables, binary_vars=binary_vars, artifact=artifact
+    )
+
+    if week_order is None:
+        work = df if "year_week" in df.columns else prepare_week_columns(df.copy(), date_col)
+        week_order = _ordered_week_labels(work)
+
+    stats_cont = compute_weekly_continuous_stats(
+        df, continuous_vars, date_col=date_col, week_order=week_order
+    )
+    stats_bin = compute_weekly_binary_stats(
+        df, binary_feature_vars, date_col=date_col, week_order=week_order
+    )
+
+    reference_stats: Dict[str, Dict[str, float]] = {}
+    reference_stats.update(_reference_stats_from_artifact(artifact, binary_feature_vars))
+    if df_reference is not None:
+        reference_stats.update(
+            compute_reference_feature_stats(
+                df_reference,
+                variables,
+                binary_vars=binary_vars,
+                artifact=artifact,
+            )
+        )
+
+    plot_weekly_continuous_stats(
+        stats_cont,
+        variable_labels=variable_labels,
+        reference_stats=reference_stats,
+        title_prefix=f"{title_prefix} — contínuas (média / mediana)",
+        n_cols=n_cols,
+        show_labels=show_labels,
+    )
+    plot_weekly_binary_stats(
+        stats_bin,
+        variable_labels=variable_labels,
+        reference_stats=reference_stats,
+        title_prefix=f"{title_prefix} — binárias (proporção da classe 1)",
+        n_cols=n_cols,
+        show_labels=show_labels,
+    )
+    return stats_cont, stats_bin
