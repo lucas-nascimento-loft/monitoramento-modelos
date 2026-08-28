@@ -1,86 +1,95 @@
-# Blend4 Model Monitoring
+# Monitoramento Blend4
 
-Runbook to rebuild the Blend4 monitoring bases and generate the credit analysis (CR) and funnel reports.
+Para atualizar o monitoramento, rode **4 notebooks**, nesta ordem, **na raiz do repositório**.
 
-## Prerequisites
+```
+1. 01.Base_Monitoramento_CR.ipynb
+2. 01.Base_Monitoramento_Funil.ipynb
+3. 02.Monitoramento_Blend4.ipynb
+4. 02.Monitoramento_Funil_Blend4.ipynb
+```
 
-- Python 3.10+ and Jupyter
-- Access to the BigQuery project `loft-dl-fintech` (Application Default Credentials)
-- Local packages used by the notebooks:
+Os dois primeiros montam as bases. Os dois últimos geram os monitores.
+
+---
+
+## Passo a passo
+
+### 1. Montar a base de CR
+
+Rode `01.Base_Monitoramento_CR.ipynb`.
+
+Ele busca as consultas realizadas no BigQuery, escora o Blend4 e salva a base em:
+
+`data/analytics/df_predict_blend4.csv`
+
+### 2. Montar a base do funil
+
+Rode `01.Base_Monitoramento_Funil.ipynb`.
+
+Ele busca o funil no BigQuery, cruza com a base de CR e salva em:
+
+`data/analytics/df_funil_blend4.csv`
+
+**Importante:** este notebook usa o arquivo do passo 1. Não pule a ordem.
+
+### 3. Rodar o monitor de CR
+
+Rode `02.Monitoramento_Blend4.ipynb`.
+
+Aqui ficam scores, ratings, mix vs Blend3, PSI das variáveis e cortes de rating.
+
+### 4. Rodar o monitor do funil
+
+Rode `02.Monitoramento_Funil_Blend4.ipynb`.
+
+Aqui ficam conversão, mix de modelos, renda, cidades e imobiliárias.
+
+Os passos 3 e 4 podem ser rodados em qualquer ordem entre si. Os dois só precisam das bases prontas.
+
+---
+
+## Onde ver o resultado
+
+Duas formas:
+
+1. **No próprio notebook `02`** — gráficos e tabelas já aparecem nas células.
+2. **Na pasta `Monitores/`** — cada notebook `02` gera um HTML no final:
+
+   - `Monitores/02.Monitoramento_Blend4_report.html`
+   - `Monitores/02.Monitoramento_Funil_Blend4_report.html`
+
+Antes de gerar o HTML de novo, salve o notebook (Cmd+S / Ctrl+S). Assim o relatório sai com os gráficos atualizados.
+
+---
+
+## Antes de rodar pela primeira vez
+
+1. Tenha Python, Jupyter e acesso ao BigQuery (`loft-dl-fintech`).
+2. Instale os pacotes:
 
 ```bash
 pip install pandas numpy matplotlib seaborn pandas-gbq google-cloud-bigquery google-auth unidecode requests nbformat nbconvert beautifulsoup4
 ```
 
-Authenticate once before running the base notebooks:
+3. Faça login no Google:
 
 ```bash
 gcloud auth application-default login
 ```
 
-The notebooks create `data/raw`, `data/trusted`, and `data/analytics` if they do not exist. Intermediate CSVs stay local (`data/` is gitignored).
+Os notebooks criam sozinhos as pastas em `data/`. Esses arquivos ficam só na sua máquina (não sobem no Git).
 
-The `02` notebooks also expect these **one-time reference artifacts** already in `data/analytics/` (they are not rebuilt every run):
+---
 
-| File | Used by |
-|------|---------|
-| `blend4_psi_reference.pkl` | `02.Monitoramento_Blend4.ipynb` |
-| `blend4_psi_baseline_ref.csv` | `02.Monitoramento_Blend4.ipynb` |
-| `blend4_bvs_score_psi_reference.pkl` | `02.Monitoramento_Blend4.ipynb` |
-| `psi_income_rental_reference.pkl` | `02.Monitoramento_Blend4.ipynb` |
-| `dev_rating_pol_blend4.csv` | `02.Monitoramento_Funil_Blend4.ipynb` |
+## Se o notebook `02` reclamar de arquivo faltando
 
-If they are missing, generate them once with `01.Monitoramento_Variaveis_PSI_Blend4.ipynb`.
+Alguns arquivos de referência já precisam existir em `data/analytics/` (eles não são gerados toda semana):
 
-## Run sequence
+- `blend4_psi_reference.pkl`
+- `blend4_psi_baseline_ref.csv`
+- `blend4_bvs_score_psi_reference.pkl`
+- `psi_income_rental_reference.pkl`
+- `dev_rating_pol_blend4.csv`
 
-Run all notebooks **from the repository root**, in this order.
-
-### 1. Build the bases
-
-These two notebooks pull production data from BigQuery and write the CSVs used by the monitors.
-
-| Order | Notebook | What it does | Output |
-|------|----------|--------------|--------|
-| 1 | `01.Base_Monitoramento_CR.ipynb` | Loads CredPago credit analyses, parses request/response JSON, scores Blend4, and builds ratings | `data/analytics/df_predict_blend4.csv` |
-| 2 | `01.Base_Monitoramento_Funil.ipynb` | Loads the PF funnel from BigQuery and joins it with the CR base | `data/analytics/df_funil_blend4.csv` |
-
-`01.Base_Monitoramento_Funil.ipynb` reads `df_predict_blend4.csv`, so it must run **after** the CR notebook.
-
-### 2. Run the monitors
-
-After both bases exist, run the two monitoring notebooks (order between them does not matter):
-
-| Notebook | Input | What it covers |
-|----------|-------|----------------|
-| `02.Monitoramento_Blend4.ipynb` | `df_predict_blend4.csv` | Production Blend4 scores and ratings, rating mix vs Blend3, variable PSI (weekly and vs development), raw BVS / income / rent PSI, multi vs single proponent, rating cutoffs |
-| `02.Monitoramento_Funil_Blend4.ipynb` | `df_funil_blend4.csv` | Daily/weekly funnel, conversion tables, model and rating mix, expected vs production policy mix, income follow-up, city and agency mix |
-
-Each `02` notebook ends with a cell that exports an HTML report via `build_report_html.py`.
-
-## Where to read the monitors
-
-- **In the notebooks**: open `02.Monitoramento_Blend4.ipynb` or `02.Monitoramento_Funil_Blend4.ipynb` and review the charts and tables in place.
-- **As HTML reports**: after the last cell of each `02` notebook, open:
-
-  - `Monitores/02.Monitoramento_Blend4_report.html`
-  - `Monitores/02.Monitoramento_Funil_Blend4_report.html`
-
-Save the notebook (Cmd+S / Ctrl+S) before re-running the export cell so the HTML includes the latest outputs.
-
-## Repository layout (main files)
-
-```
-01.Base_Monitoramento_CR.ipynb          # Step 1 — CR base
-01.Base_Monitoramento_Funil.ipynb       # Step 2 — funnel base
-02.Monitoramento_Blend4.ipynb           # Step 3 — CR monitor
-02.Monitoramento_Funil_Blend4.ipynb     # Step 4 — funnel monitor
-Monitores/                              # HTML reports
-funcoes_escoragem.py                    # Blend4 scoring
-funcoes_monitoramento.py                # Charts and tables
-funcoes_psi.py                          # PSI helpers
-build_report_html.py                    # Notebook → HTML export
-data/analytics/                         # Local CSVs and PSI references (not in git)
-```
-
-`Codigo_BLEND3/` keeps the previous Blend3 pipeline and is not part of this run.
+Se algum estiver faltando, rode uma vez `01.Monitoramento_Variaveis_PSI_Blend4.ipynb`.
