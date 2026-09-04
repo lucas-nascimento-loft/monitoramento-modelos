@@ -157,3 +157,343 @@
         "version": 1
     }
 }
+
+{
+    "principalDocument": "04447151006",
+    "imobiliariaId": 713,
+    "idExterno": "4588636",
+    "rating": "E",
+    "valorAluguel": 1043.9,
+    "imovelTipo": "RESIDENCIAL",
+    "modeloBlend": "BLEND_4",
+    "priorDecisions": [],
+    "rendaConsideradaContrato": 0,
+    "valorRestricaoTotal": 0,
+    "quantidadeRestricoesContrato": 0,
+    "nome": null,
+    "dtNascimento": null,
+    "situacaoCadastralSerasa": null,
+    "dadosAusentes": [],
+    "existeErroPowerCurve": false,
+    "existingContractDebts": {
+        "qtdeImoveis": 0,
+        "qtdeDividas": 0,
+        "saldoReceber": 0,
+        "taxaCredpago": 0
+    },
+    "errosTecnicos": [],
+    "scoreImobiliaria": "",
+    "blendPredict": null,
+    "scores": {
+        "BVS_CUSTOM_V2": 329
+    },
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": null,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "fallbackPolicyResult": null,
+    "ratingPoliciesResult": null
+}
+
+{
+    "pessoas": [
+        {
+            "nome": "",
+            "documento": "04447151006",
+            "classificacao": "E",
+            "tipoPessoa": "FISICA",
+            "idade": null,
+            "scores": {
+                "BVS_CUSTOM_V2": 329
+            },
+            "ratings": {
+                "BLEND_4": "E"
+            },
+            "dt_nascimento": null,
+            "rendaConsideradaPessoa": 0,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 0,
+            "qtdeRestricoes": 0,
+            "valorTotalRestricao": 0,
+            "situacao_cadastral_serasa": "",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": null,
+            "nomeSerasa": null,
+            "rendaPresumidaSerasa": 0
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": ""
+    },
+    "rendaConsiderada": 0,
+    "rendaConsideradaContrato": 0,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 0,
+    "qtdeRestricoesContrato": 0,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 0,
+    "regua": "Consulta Custom PF",
+    "score": 329,
+    "scores": {
+        "BVS_CUSTOM_V2": 329
+    },
+    "ratings": {
+        "BLEND_4": "E"
+    },
+    "blendRegressaoPredict": null,
+    "decisao": "BLEND_4",
+    "classificacao": "E",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND_4"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": null,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": true,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [
+            35,
+            40,
+            50
+        ],
+        "exit_cost_multiplier": [
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "commission_percent": [
+            0,
+            0.5,
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+        ],
+        "version": 1
+    },
+    "flexPricingIncentive": {
+        "incentive_pricing": false,
+        "real_estate_agency_id": 713,
+        "constraints_override": null,
+        "version": 1
+    }
+}
+
+{
+    "pessoas": [
+        {
+            "nome": "",
+            "documento": "04447151006",
+            "classificacao": "E",
+            "tipoPessoa": "FISICA",
+            "idade": null,
+            "scores": {
+                "BVS_CUSTOM_V2": 329
+            },
+            "ratings": {
+                "BLEND_4": "E"
+            },
+            "dt_nascimento": null,
+            "rendaConsideradaPessoa": 0,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 0,
+            "qtdeRestricoes": 0,
+            "valorTotalRestricao": 0,
+            "situacao_cadastral_serasa": "",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": null,
+            "nomeSerasa": null,
+            "rendaPresumidaSerasa": 0
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": ""
+    },
+    "rendaConsiderada": 0,
+    "rendaConsideradaContrato": 0,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 0,
+    "qtdeRestricoesContrato": 0,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 0,
+    "regua": "Consulta Custom PF",
+    "score": 329,
+    "scores": {
+        "BVS_CUSTOM_V2": 329
+    },
+    "ratings": {
+        "BLEND_4": "E"
+    },
+    "blendRegressaoPredict": null,
+    "decisao": "BLEND_4",
+    "classificacao": "E",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND_4"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": null,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": true,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [
+            35,
+            40,
+            50
+        ],
+        "exit_cost_multiplier": [
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "commission_percent": [
+            0,
+            0.5,
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+        ],
+        "version": 1
+    },
+    "flexPricingIncentive": {
+        "incentive_pricing": false,
+        "real_estate_agency_id": 713,
+        "constraints_override": null,
+        "version": 1
+    }
+}
+
+{
+    "principalDocument": "04312076073",
+    "imobiliariaId": 324,
+    "idExterno": "4590898",
+    "rating": "E",
+    "valorAluguel": 1217.57,
+    "imovelTipo": "RESIDENCIAL",
+    "modeloBlend": "BLEND_4",
+    "priorDecisions": [],
+    "rendaConsideradaContrato": 0,
+    "valorRestricaoTotal": 0,
+    "quantidadeRestricoesContrato": 0,
+    "nome": null,
+    "dtNascimento": null,
+    "situacaoCadastralSerasa": null,
+    "dadosAusentes": [],
+    "existeErroPowerCurve": false,
+    "existingContractDebts": {
+        "qtdeImoveis": 0,
+        "qtdeDividas": 0,
+        "saldoReceber": 0,
+        "taxaCredpago": 0
+    },
+    "errosTecnicos": [],
+    "scoreImobiliaria": "",
+    "blendPredict": null,
+    "scores": {
+        "BVS_CUSTOM_V2": 237
+    },
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": null,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "fallbackPolicyResult": null,
+    "ratingPoliciesResult": {
+        "status": "EVALUATED",
+        "decision": "DISAPPROVED"
+    }
+}
+
+{
+    "principalDocument": "21624581870",
+    "imobiliariaId": 13278,
+    "idExterno": "4609547",
+    "rating": "D",
+    "valorAluguel": 4500,
+    "modeloBlend": "BLEND_4",
+    "priorDecisions": [],
+    "rendaConsideradaContrato": 4932,
+    "valorRestricaoTotal": 4479,
+    "quantidadeRestricoesContrato": 2,
+    "nome": "WALACE CRISTOFER MORETTI",
+    "dtNascimento": "1980-04-01",
+    "situacaoCadastralSerasa": "REGULAR",
+    "dadosAusentes": [],
+    "existeErroPowerCurve": false,
+    "existingContractDebts": {
+        "qtdeImoveis": 0,
+        "qtdeDividas": 0,
+        "saldoReceber": 0,
+        "taxaCredpago": 0
+    },
+    "errosTecnicos": [],
+    "scoreImobiliaria": "NI",
+    "blendPredict": 378,
+    "scores": {
+        "BVS_CUSTOM_V2": 406,
+        "HFT1": 540
+    },
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": 0.14018692,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "fallbackPolicyResult": null,
+    "ratingPoliciesResult": {
+        "status": "EVALUATED",
+        "decision": "APPROVED"
+    },
+    "restricoesPorModalidadeContrato": [],
+    "imovel": {
+        "tipo": "RESIDENCIAL",
+        "codigo_cidade_ibge": 3518800
+    }
+}
