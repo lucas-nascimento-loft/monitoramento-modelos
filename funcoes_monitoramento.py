@@ -3845,6 +3845,7 @@ def plot_weekly_continuous_stats(
     n_cols: int = 2,
     show_labels: bool = True,
     figsize_per_row: float = 3.8,
+    median_only_vars: Optional[List[str]] = None,
 ) -> Optional[Tuple[plt.Figure, np.ndarray]]:
     if stats_df is None or stats_df.empty:
         print("[skip] Sem estatísticas contínuas para plotar.")
@@ -3852,6 +3853,7 @@ def plot_weekly_continuous_stats(
 
     variable_labels = variable_labels or {}
     reference_stats = reference_stats or {}
+    median_only_vars = set(median_only_vars or [])
     variables = list(dict.fromkeys(stats_df["variable"].tolist()))
     n_cols = max(1, min(n_cols, len(variables)))
     n_rows = (len(variables) + n_cols - 1) // n_cols
@@ -3872,22 +3874,25 @@ def plot_weekly_continuous_stats(
         means = part["mean"].values
         medians = part["median"].values
         n_valid = part["n_valid"].values
+        plot_mean = col not in median_only_vars
 
-        ax.plot(x, means, marker="o", linewidth=2, markersize=6, color=FEATURE_MEAN_COLOR, label="Média")
+        if plot_mean:
+            ax.plot(x, means, marker="o", linewidth=2, markersize=6, color=FEATURE_MEAN_COLOR, label="Média")
         ax.plot(x, medians, marker="s", linewidth=2, markersize=6, color=FEATURE_MEDIAN_COLOR, label="Mediana")
 
         ref = reference_stats.get(col, {})
-        if "mean" in ref:
+        if plot_mean and "mean" in ref:
             ax.axhline(ref["mean"], color=FEATURE_REFERENCE_COLOR, linestyle="--", linewidth=1.4, label="Média (desenvolvimento)")
         if "median" in ref:
             ax.axhline(ref["median"], color=FEATURE_REFERENCE_COLOR, linestyle=":", linewidth=1.4, label="Mediana (desenvolvimento)")
 
         if show_labels:
             for xi, mean_val, median_val in zip(x, means, medians):
-                if pd.notna(mean_val):
+                if plot_mean and pd.notna(mean_val):
                     ax.text(xi, mean_val, f"{mean_val:.2f}", ha="center", va="bottom", fontsize=7, color=FEATURE_MEAN_COLOR)
                 if pd.notna(median_val):
-                    ax.text(xi, median_val, f"{median_val:.2f}", ha="center", va="top", fontsize=7, color=FEATURE_MEDIAN_COLOR)
+                    median_va = "top" if plot_mean else "bottom"
+                    ax.text(xi, median_val, f"{median_val:.2f}", ha="center", va=median_va, fontsize=7, color=FEATURE_MEDIAN_COLOR)
 
         xticklabels = [
             f"{week}\n(n={_format_volume(int(n))})"
@@ -3895,10 +3900,16 @@ def plot_weekly_continuous_stats(
         ]
         ax.set_xticks(x)
         ax.set_xticklabels(xticklabels, rotation=45, ha="right")
-        ax.set_title(variable_labels.get(col, col))
+        title = variable_labels.get(col, col)
+        if not plot_mean:
+            title = f"{title} — mediana"
+        ax.set_title(title)
         ax.set_ylabel("Valor")
         ax.grid(axis="y", alpha=0.25)
-        ax.set_ylim(*_padded_ylim(list(means) + list(medians) + [ref.get("mean"), ref.get("median")]))
+        ylim_values = list(medians) + [ref.get("median")]
+        if plot_mean:
+            ylim_values += list(means) + [ref.get("mean")]
+        ax.set_ylim(*_padded_ylim(ylim_values))
         ax.legend(loc="best", fontsize=8)
 
     for j in range(len(variables), n_rows * n_cols):
@@ -3972,7 +3983,8 @@ def plot_weekly_binary_stats(
         ax.set_title(variable_labels.get(col, col))
         ax.set_ylabel("Proporção (%)")
         ax.grid(axis="y", alpha=0.25)
-        ax.set_ylim(*_padded_ylim(list(values) + [ref_pct], pad_frac=0.15))
+        # Absolute pp padding on a 0–100 scale so 0.5–3pp weekly noise is not zoomed in.
+        ax.set_ylim(*_auto_ylim(list(values) + [ref_pct], pad_pct=10.0, floor=0.0, ceiling=100.0))
         ax.legend(loc="best", fontsize=8)
 
     for j in range(len(variables), n_rows * n_cols):
@@ -3997,10 +4009,13 @@ def plot_weekly_feature_stats(
     title_prefix: str = "Evolução semanal das variáveis",
     n_cols: int = 2,
     show_labels: bool = True,
+    median_only_vars: Optional[List[str]] = None,
 ) -> Tuple[pd.DataFrame, pd.DataFrame]:
     """
     Time-series companion to plot_top_psi_distributions:
     continuous → mean/median by week; binary → P(X=1) by week.
+
+    median_only_vars: continuous columns plotted with median only (e.g. outlier-skewed means).
     """
     continuous_vars, binary_feature_vars = split_feature_types(
         df, variables, binary_vars=binary_vars, artifact=artifact
@@ -4036,6 +4051,7 @@ def plot_weekly_feature_stats(
         title_prefix=f"{title_prefix} — contínuas (média / mediana)",
         n_cols=n_cols,
         show_labels=show_labels,
+        median_only_vars=median_only_vars,
     )
     plot_weekly_binary_stats(
         stats_bin,

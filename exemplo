@@ -1,49 +1,49 @@
 {
     "pessoas": [
         {
-            "nome": "CPF NAO CONFIRMADO NO CADASTRO SERASA.",
-            "documento": "16038100997",
-            "classificacao": "N",
+            "nome": "CELSO HENRIQUE RAMALHO DE SOUZA",
+            "documento": "13220619630",
+            "classificacao": "E",
             "tipoPessoa": "FISICA",
-            "idade": 0,
+            "idade": 30,
             "scores": {
-                "HVA4": 0
+                "BVS_CUSTOM": 579,
+                "HVA4": 287,
+                "BLEND3_3": 579
             },
             "ratings": {
-                "HVA4": "N"
+                "BVS_CUSTOM": "D",
+                "HVA4": "E",
+                "BLEND3_3": "E"
             },
-            "dt_nascimento": null,
-            "rendaConsideradaPessoa": 0,
+            "dt_nascimento": "1996-03-02",
+            "rendaConsideradaPessoa": 3973.0000000000005,
             "rendaUtilizada": "SERASA",
             "fatorCorrecaoRenda": 1.37,
-            "limiteCalculadoPessoa": 0,
-            "qtdeRestricoes": 0,
-            "valorTotalRestricao": 0,
-            "situacao_cadastral_serasa": "",
+            "limiteCalculadoPessoa": 595.95,
+            "qtdeRestricoes": 2,
+            "valorTotalRestricao": 1031,
+            "situacao_cadastral_serasa": "REGULAR",
             "existeErroSerasa": false,
-            "existeErroPowerCurve": true,
+            "existeErroPowerCurve": false,
             "existeErroBvsCustom": false,
-            "errosTecnicos": [
-                "error.powercurve"
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [
+                "ENERGIA ELET"
             ],
-            "dadosAusentes": [
-                "missing.powercurve.birthdate",
-                "missing.powercurve.income",
-                "missing.powercurve.score.hva4"
-            ],
-            "restricoesPorModalidade": [],
             "anotacoesFinanceirasSerasa": {
                 "Pefin": {
-                    "DataPrimeiraOcorrenciaPefin": null,
-                    "DataUltimaOcorrenciaPefin": null,
-                    "QuantidadeTotalPefin": "0",
-                    "ValorTotalPefin": "0"
+                    "DataPrimeiraOcorrenciaPefin": "20220217",
+                    "DataUltimaOcorrenciaPefin": "20220217",
+                    "QuantidadeTotalPefin": "1",
+                    "ValorTotalPefin": "170"
                 },
                 "Refin": {
-                    "DataPrimeiraOcorrenciaRefin": null,
-                    "DataUltimaOcorrenciaRefin": null,
-                    "QuantidadeTotalRefin": "0",
-                    "ValorTotalRefin": "0"
+                    "DataPrimeiraOcorrenciaRefin": "20230310",
+                    "DataUltimaOcorrenciaRefin": "20230310",
+                    "QuantidadeTotalRefin": "1",
+                    "ValorTotalRefin": "861"
                 },
                 "Acao": {
                     "DataPrimeiraAcao": null,
@@ -68,432 +68,102 @@
                     "QuantidadeCCF": null,
                     "ValorTotalCCF": "0"
                 },
-                "PendenciasPagamentoPF": [],
+                "PendenciasPagamentoPF": [
+                    {
+                        "TipoPEFIN": "01",
+                        "Modalidade": "ENERGIA ELET",
+                        "TipoOcorrencia": "V",
+                        "ChaveCADUS": "276199608",
+                        "DataOcorrencia": "20220217",
+                        "SiglaMOD": "EE",
+                        "TipoMoeda": "R$",
+                        "Valor": "170",
+                        "Contrato": "000790813645546N",
+                        "Origem": "CEMIG D",
+                        "QtdeOcorrencia": "1"
+                    },
+                    {
+                        "TipoPEFIN": "04",
+                        "Modalidade": "FINANCIAMENT",
+                        "TipoOcorrencia": "I",
+                        "ChaveCADUS": "350707403",
+                        "DataOcorrencia": "20230310",
+                        "SiglaMOD": "FI",
+                        "TipoMoeda": "R$",
+                        "Valor": "861",
+                        "Contrato": "38800209898282250",
+                        "Origem": "CEF",
+                        "QtdeOcorrencia": "1"
+                    }
+                ],
                 "AcoesJudiciaisPF": [],
                 "ProtestosPF": [],
                 "DividasVencidasPF": [],
                 "ChequesSemFundosPF": []
             },
-            "nomeSerasa": "CPF NAO CONFIRMADO NO CADASTRO SERASA.",
-            "rendaPresumidaSerasa": 0
+            "nomeSerasa": "CELSO HENRIQUE RAMALHO DE SOUZA",
+            "rendaPresumidaSerasa": 2900
         }
     ],
     "regras": {
-        "situacao_cadastral_serasa": ""
+        "situacao_cadastral_serasa": "REGULAR"
     },
-    "rendaConsiderada": 0,
-    "rendaConsideradaContrato": 0,
+    "rendaConsiderada": 3973.0000000000005,
+    "rendaConsideradaContrato": 3973.0000000000005,
     "rendaUtilizada": "SERASA",
     "fatorCorrecaoRenda": 1.37,
-    "limiteCalculadoContrato": 0,
-    "qtdeRestricoesContrato": 0,
-    "restricoesPorModalidadeContrato": [],
+    "limiteCalculadoContrato": 595.95,
+    "qtdeRestricoesContrato": 2,
+    "restricoesPorModalidadeContrato": [
+        "ENERGIA ELET"
+    ],
     "regra_estouro_limite": "N\u00c3O APLICADA",
-    "valorRestricaoTotal": 0,
+    "valorRestricaoTotal": 1031,
     "regua": "Consulta hva4",
-    "score": null,
+    "score": 579,
     "scores": {
-        "HVA4": 0
+        "BVS_CUSTOM": 579,
+        "HVA4": 287,
+        "BLEND3_3": 579
     },
     "ratings": {
-        "HVA4": "N"
+        "BVS_CUSTOM": "D",
+        "HVA4": "E",
+        "BLEND3_3": "E"
     },
-    "blendRegressaoPredict": null,
-    "decisao": "BLEND3_4",
-    "classificacao": "N",
+    "blendRegressaoPredict": 281,
+    "decisao": "BLEND3_3",
+    "classificacao": "E",
+    "classificacaoInquilino": "none",
     "existeErroSerasa": false,
-    "existeErroPowerCurve": true,
+    "existeErroPowerCurve": false,
     "existeErroBvsCustom": false,
     "motor": "POWERCURVE",
     "feature_flags": {
         "analiseAutomaticaDeCredito": true,
-        "modeloBlend": "BLEND3_4"
+        "modeloBlend": "BLEND3_3"
     },
-    "errosTecnicos": [
-        "error.powercurve"
-    ],
-    "dadosAusentes": [
-        "missing.powercurve.birthdate",
-        "missing.powercurve.income",
-        "missing.powercurve.score.hva4",
-        "missing.bvs.score.bvs_custom"
-    ],
+    "errosTecnicos": [],
+    "dadosAusentes": [],
     "blend3Variables": {
         "hasPreviousContracts": false,
         "hadOverdueInvoiceInPreviousContracts": false,
-        "cityPc4HistoryOver100Contracts": 0.08277254,
+        "cityPc4HistoryOver100Contracts": 0.14634146,
         "realEstatePc4HistoryOver100Contracts": null
     },
     "reaproveitamentoConsultaMotor": false,
     "savingBureauPowerCurve": false,
     "rentGuaranteeConstraints": {
         "rent_coverage_multiplier": [
-            35,
-            40,
-            50
+            20
         ],
         "exit_cost_multiplier": [
-            3,
-            4,
-            5,
-            6,
-            7
+            3
         ],
         "commission_percent": [
             0,
-            0.5,
-            1,
-            1.5,
-            2,
-            2.5,
-            3
+            1
         ],
         "version": 1
-    },
-    "flexPricingIncentive": {
-        "incentive_pricing": false,
-        "real_estate_agency_id": 40346,
-        "constraints_override": null,
-        "version": 1
-    }
-}
-
-{
-    "principalDocument": "04447151006",
-    "imobiliariaId": 713,
-    "idExterno": "4588636",
-    "rating": "E",
-    "valorAluguel": 1043.9,
-    "imovelTipo": "RESIDENCIAL",
-    "modeloBlend": "BLEND_4",
-    "priorDecisions": [],
-    "rendaConsideradaContrato": 0,
-    "valorRestricaoTotal": 0,
-    "quantidadeRestricoesContrato": 0,
-    "nome": null,
-    "dtNascimento": null,
-    "situacaoCadastralSerasa": null,
-    "dadosAusentes": [],
-    "existeErroPowerCurve": false,
-    "existingContractDebts": {
-        "qtdeImoveis": 0,
-        "qtdeDividas": 0,
-        "saldoReceber": 0,
-        "taxaCredpago": 0
-    },
-    "errosTecnicos": [],
-    "scoreImobiliaria": "",
-    "blendPredict": null,
-    "scores": {
-        "BVS_CUSTOM_V2": 329
-    },
-    "blend3Variables": {
-        "hasPreviousContracts": false,
-        "hadOverdueInvoiceInPreviousContracts": false,
-        "cityPc4HistoryOver100Contracts": null,
-        "realEstatePc4HistoryOver100Contracts": null
-    },
-    "fallbackPolicyResult": null,
-    "ratingPoliciesResult": null
-}
-
-{
-    "pessoas": [
-        {
-            "nome": "",
-            "documento": "04447151006",
-            "classificacao": "E",
-            "tipoPessoa": "FISICA",
-            "idade": null,
-            "scores": {
-                "BVS_CUSTOM_V2": 329
-            },
-            "ratings": {
-                "BLEND_4": "E"
-            },
-            "dt_nascimento": null,
-            "rendaConsideradaPessoa": 0,
-            "rendaUtilizada": "SERASA",
-            "fatorCorrecaoRenda": 1.37,
-            "limiteCalculadoPessoa": 0,
-            "qtdeRestricoes": 0,
-            "valorTotalRestricao": 0,
-            "situacao_cadastral_serasa": "",
-            "existeErroSerasa": false,
-            "existeErroPowerCurve": false,
-            "existeErroBvsCustom": false,
-            "errosTecnicos": [],
-            "dadosAusentes": [],
-            "restricoesPorModalidade": [],
-            "anotacoesFinanceirasSerasa": null,
-            "nomeSerasa": null,
-            "rendaPresumidaSerasa": 0
-        }
-    ],
-    "regras": {
-        "situacao_cadastral_serasa": ""
-    },
-    "rendaConsiderada": 0,
-    "rendaConsideradaContrato": 0,
-    "rendaUtilizada": "SERASA",
-    "fatorCorrecaoRenda": 1.37,
-    "limiteCalculadoContrato": 0,
-    "qtdeRestricoesContrato": 0,
-    "restricoesPorModalidadeContrato": [],
-    "regra_estouro_limite": "N\u00c3O APLICADA",
-    "valorRestricaoTotal": 0,
-    "regua": "Consulta Custom PF",
-    "score": 329,
-    "scores": {
-        "BVS_CUSTOM_V2": 329
-    },
-    "ratings": {
-        "BLEND_4": "E"
-    },
-    "blendRegressaoPredict": null,
-    "decisao": "BLEND_4",
-    "classificacao": "E",
-    "existeErroSerasa": false,
-    "existeErroPowerCurve": false,
-    "existeErroBvsCustom": false,
-    "motor": "POWERCURVE",
-    "feature_flags": {
-        "analiseAutomaticaDeCredito": true,
-        "modeloBlend": "BLEND_4"
-    },
-    "errosTecnicos": [],
-    "dadosAusentes": [],
-    "blend3Variables": {
-        "hasPreviousContracts": false,
-        "hadOverdueInvoiceInPreviousContracts": false,
-        "cityPc4HistoryOver100Contracts": null,
-        "realEstatePc4HistoryOver100Contracts": null
-    },
-    "reaproveitamentoConsultaMotor": false,
-    "savingBureauPowerCurve": true,
-    "rentGuaranteeConstraints": {
-        "rent_coverage_multiplier": [
-            35,
-            40,
-            50
-        ],
-        "exit_cost_multiplier": [
-            3,
-            4,
-            5,
-            6,
-            7
-        ],
-        "commission_percent": [
-            0,
-            0.5,
-            1,
-            1.5,
-            2,
-            2.5,
-            3
-        ],
-        "version": 1
-    },
-    "flexPricingIncentive": {
-        "incentive_pricing": false,
-        "real_estate_agency_id": 713,
-        "constraints_override": null,
-        "version": 1
-    }
-}
-
-{
-    "pessoas": [
-        {
-            "nome": "",
-            "documento": "04447151006",
-            "classificacao": "E",
-            "tipoPessoa": "FISICA",
-            "idade": null,
-            "scores": {
-                "BVS_CUSTOM_V2": 329
-            },
-            "ratings": {
-                "BLEND_4": "E"
-            },
-            "dt_nascimento": null,
-            "rendaConsideradaPessoa": 0,
-            "rendaUtilizada": "SERASA",
-            "fatorCorrecaoRenda": 1.37,
-            "limiteCalculadoPessoa": 0,
-            "qtdeRestricoes": 0,
-            "valorTotalRestricao": 0,
-            "situacao_cadastral_serasa": "",
-            "existeErroSerasa": false,
-            "existeErroPowerCurve": false,
-            "existeErroBvsCustom": false,
-            "errosTecnicos": [],
-            "dadosAusentes": [],
-            "restricoesPorModalidade": [],
-            "anotacoesFinanceirasSerasa": null,
-            "nomeSerasa": null,
-            "rendaPresumidaSerasa": 0
-        }
-    ],
-    "regras": {
-        "situacao_cadastral_serasa": ""
-    },
-    "rendaConsiderada": 0,
-    "rendaConsideradaContrato": 0,
-    "rendaUtilizada": "SERASA",
-    "fatorCorrecaoRenda": 1.37,
-    "limiteCalculadoContrato": 0,
-    "qtdeRestricoesContrato": 0,
-    "restricoesPorModalidadeContrato": [],
-    "regra_estouro_limite": "N\u00c3O APLICADA",
-    "valorRestricaoTotal": 0,
-    "regua": "Consulta Custom PF",
-    "score": 329,
-    "scores": {
-        "BVS_CUSTOM_V2": 329
-    },
-    "ratings": {
-        "BLEND_4": "E"
-    },
-    "blendRegressaoPredict": null,
-    "decisao": "BLEND_4",
-    "classificacao": "E",
-    "existeErroSerasa": false,
-    "existeErroPowerCurve": false,
-    "existeErroBvsCustom": false,
-    "motor": "POWERCURVE",
-    "feature_flags": {
-        "analiseAutomaticaDeCredito": true,
-        "modeloBlend": "BLEND_4"
-    },
-    "errosTecnicos": [],
-    "dadosAusentes": [],
-    "blend3Variables": {
-        "hasPreviousContracts": false,
-        "hadOverdueInvoiceInPreviousContracts": false,
-        "cityPc4HistoryOver100Contracts": null,
-        "realEstatePc4HistoryOver100Contracts": null
-    },
-    "reaproveitamentoConsultaMotor": false,
-    "savingBureauPowerCurve": true,
-    "rentGuaranteeConstraints": {
-        "rent_coverage_multiplier": [
-            35,
-            40,
-            50
-        ],
-        "exit_cost_multiplier": [
-            3,
-            4,
-            5,
-            6,
-            7
-        ],
-        "commission_percent": [
-            0,
-            0.5,
-            1,
-            1.5,
-            2,
-            2.5,
-            3
-        ],
-        "version": 1
-    },
-    "flexPricingIncentive": {
-        "incentive_pricing": false,
-        "real_estate_agency_id": 713,
-        "constraints_override": null,
-        "version": 1
-    }
-}
-
-{
-    "principalDocument": "04312076073",
-    "imobiliariaId": 324,
-    "idExterno": "4590898",
-    "rating": "E",
-    "valorAluguel": 1217.57,
-    "imovelTipo": "RESIDENCIAL",
-    "modeloBlend": "BLEND_4",
-    "priorDecisions": [],
-    "rendaConsideradaContrato": 0,
-    "valorRestricaoTotal": 0,
-    "quantidadeRestricoesContrato": 0,
-    "nome": null,
-    "dtNascimento": null,
-    "situacaoCadastralSerasa": null,
-    "dadosAusentes": [],
-    "existeErroPowerCurve": false,
-    "existingContractDebts": {
-        "qtdeImoveis": 0,
-        "qtdeDividas": 0,
-        "saldoReceber": 0,
-        "taxaCredpago": 0
-    },
-    "errosTecnicos": [],
-    "scoreImobiliaria": "",
-    "blendPredict": null,
-    "scores": {
-        "BVS_CUSTOM_V2": 237
-    },
-    "blend3Variables": {
-        "hasPreviousContracts": false,
-        "hadOverdueInvoiceInPreviousContracts": false,
-        "cityPc4HistoryOver100Contracts": null,
-        "realEstatePc4HistoryOver100Contracts": null
-    },
-    "fallbackPolicyResult": null,
-    "ratingPoliciesResult": {
-        "status": "EVALUATED",
-        "decision": "DISAPPROVED"
-    }
-}
-
-{
-    "principalDocument": "21624581870",
-    "imobiliariaId": 13278,
-    "idExterno": "4609547",
-    "rating": "D",
-    "valorAluguel": 4500,
-    "modeloBlend": "BLEND_4",
-    "priorDecisions": [],
-    "rendaConsideradaContrato": 4932,
-    "valorRestricaoTotal": 4479,
-    "quantidadeRestricoesContrato": 2,
-    "nome": "WALACE CRISTOFER MORETTI",
-    "dtNascimento": "1980-04-01",
-    "situacaoCadastralSerasa": "REGULAR",
-    "dadosAusentes": [],
-    "existeErroPowerCurve": false,
-    "existingContractDebts": {
-        "qtdeImoveis": 0,
-        "qtdeDividas": 0,
-        "saldoReceber": 0,
-        "taxaCredpago": 0
-    },
-    "errosTecnicos": [],
-    "scoreImobiliaria": "NI",
-    "blendPredict": 378,
-    "scores": {
-        "BVS_CUSTOM_V2": 406,
-        "HFT1": 540
-    },
-    "blend3Variables": {
-        "hasPreviousContracts": false,
-        "hadOverdueInvoiceInPreviousContracts": false,
-        "cityPc4HistoryOver100Contracts": 0.14018692,
-        "realEstatePc4HistoryOver100Contracts": null
-    },
-    "fallbackPolicyResult": null,
-    "ratingPoliciesResult": {
-        "status": "EVALUATED",
-        "decision": "APPROVED"
-    },
-    "restricoesPorModalidadeContrato": [],
-    "imovel": {
-        "tipo": "RESIDENCIAL",
-        "codigo_cidade_ibge": 3518800
     }
 }
