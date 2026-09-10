@@ -1,28 +1,666 @@
 {
     "pessoas": [
         {
-            "nome": "CELSO HENRIQUE RAMALHO DE SOUZA",
-            "documento": "13220619630",
+            "nome": "",
+            "documento": "08139810932",
+            "classificacao": "E",
+            "tipoPessoa": "FISICA",
+            "idade": null,
+            "scores": {
+                "BVS_CUSTOM_V2": 177
+            },
+            "ratings": {
+                "BLEND_4": "E"
+            },
+            "dt_nascimento": null,
+            "rendaConsideradaPessoa": 0,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 0,
+            "qtdeRestricoes": 0,
+            "valorTotalRestricao": 0,
+            "situacao_cadastral_serasa": "",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": null,
+            "nomeSerasa": null,
+            "rendaPresumidaSerasa": 0
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": ""
+    },
+    "rendaConsiderada": 0,
+    "rendaConsideradaContrato": 0,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 0,
+    "qtdeRestricoesContrato": 0,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 0,
+    "regua": "Consulta Custom PF",
+    "score": 177,
+    "scores": {
+        "BVS_CUSTOM_V2": 177
+    },
+    "ratings": {
+        "BLEND_4": "E"
+    },
+    "blendRegressaoPredict": null,
+    "decisao": "BLEND_4",
+    "classificacao": "E",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND_4"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": null,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": true,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [],
+        "exit_cost_multiplier": [],
+        "commission_percent": [],
+        "version": 1
+    },
+    "flexPricingIncentive": {
+        "incentive_pricing": false,
+        "real_estate_agency_id": 30154,
+        "constraints_override": null,
+        "version": 1
+    }
+}
+
+{
+    "pessoas": [
+        {
+            "nome": "GUILHERME HENRIQUE DINARELLI FOGACA",
+            "documento": "03593858002",
             "classificacao": "E",
             "tipoPessoa": "FISICA",
             "idade": 30,
             "scores": {
-                "BVS_CUSTOM": 579,
-                "HVA4": 287,
-                "BLEND3_3": 579
+                "BVS_CUSTOM": 441,
+                "HVA4": 0,
+                "BLEND3_4": 441
             },
             "ratings": {
-                "BVS_CUSTOM": "D",
-                "HVA4": "E",
-                "BLEND3_3": "E"
+                "BVS_CUSTOM": "E",
+                "HVA4": "N",
+                "BLEND3_4": "E"
             },
-            "dt_nascimento": "1996-03-02",
-            "rendaConsideradaPessoa": 3973.0000000000005,
+            "dt_nascimento": "1996-01-19",
+            "rendaConsideradaPessoa": 4863.5,
             "rendaUtilizada": "SERASA",
             "fatorCorrecaoRenda": 1.37,
-            "limiteCalculadoPessoa": 595.95,
-            "qtdeRestricoes": 2,
-            "valorTotalRestricao": 1031,
+            "limiteCalculadoPessoa": 729.525,
+            "qtdeRestricoes": 10,
+            "valorTotalRestricao": 8135,
+            "situacao_cadastral_serasa": "REGULAR",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [
+                "missing.powercurve.score.hva4"
+            ],
+            "restricoesPorModalidade": [
+                "OUTRAS OPER",
+                "INST ENSINO",
+                "VENDA MERCAD"
+            ],
+            "anotacoesFinanceirasSerasa": {
+                "Pefin": {
+                    "DataPrimeiraOcorrenciaPefin": "20230805",
+                    "DataUltimaOcorrenciaPefin": "20260715",
+                    "QuantidadeTotalPefin": "3",
+                    "ValorTotalPefin": "2101"
+                },
+                "Refin": {
+                    "DataPrimeiraOcorrenciaRefin": "20260510",
+                    "DataUltimaOcorrenciaRefin": "20260710",
+                    "QuantidadeTotalRefin": "5",
+                    "ValorTotalRefin": "2158"
+                },
+                "Acao": {
+                    "DataPrimeiraAcao": null,
+                    "DataUltimaAcao": null,
+                    "QuantidadeTotalAcao": null,
+                    "ValorTotalAcao": "0"
+                },
+                "Protesto": {
+                    "DataPrimeiraOcorrenciaProtesto": "20250901",
+                    "DataUltimaOcorrenciaProtesto": "20251201",
+                    "QuantidadeTotalProtesto": "2",
+                    "TipoMoeda": null,
+                    "ValorTotalProtesto": "3876"
+                },
+                "DividaVencida": {
+                    "DataPrimeiraOcorrenciaDividasVencidas": null,
+                    "DataUltimaOcorrenciaDividasVencidas": null,
+                    "QuantidadeTotalDividasVencidas": null,
+                    "ValorTotalDividasVencidas": null
+                },
+                "ChequeSemFundos": {
+                    "QuantidadeCCF": null,
+                    "ValorTotalCCF": "0"
+                },
+                "PendenciasPagamentoPF": [
+                    {
+                        "TipoPEFIN": "01",
+                        "Modalidade": "OUTRAS OPER",
+                        "TipoOcorrencia": "V",
+                        "ChaveCADUS": "969707643",
+                        "DataOcorrencia": "20260715",
+                        "SiglaMOD": "OO",
+                        "TipoMoeda": "R$",
+                        "Valor": "302",
+                        "Contrato": "0000000196723938",
+                        "Origem": "CIA RIOGRANDENSE DE",
+                        "QtdeOcorrencia": "3"
+                    },
+                    {
+                        "TipoPEFIN": "01",
+                        "Modalidade": "INST ENSINO",
+                        "TipoOcorrencia": "V",
+                        "ChaveCADUS": "590686739",
+                        "DataOcorrencia": "20250210",
+                        "SiglaMOD": "IE",
+                        "TipoMoeda": "R$",
+                        "Valor": "1719",
+                        "Contrato": "0000000007648593",
+                        "Origem": "UNIASSELVI",
+                        "QtdeOcorrencia": "3"
+                    },
+                    {
+                        "TipoPEFIN": "01",
+                        "Modalidade": "VENDA MERCAD",
+                        "TipoOcorrencia": "V",
+                        "ChaveCADUS": "867400418",
+                        "DataOcorrencia": "20230805",
+                        "SiglaMOD": "VM",
+                        "TipoMoeda": "R$",
+                        "Valor": "79",
+                        "Contrato": "0000002544591736",
+                        "Origem": "ACADEMIA CORPO E ALM",
+                        "QtdeOcorrencia": "3"
+                    },
+                    {
+                        "TipoPEFIN": "04",
+                        "Modalidade": "OUTRAS OPER",
+                        "TipoOcorrencia": "I",
+                        "ChaveCADUS": "968625543",
+                        "DataOcorrencia": "20260710",
+                        "SiglaMOD": "OO",
+                        "TipoMoeda": "R$",
+                        "Valor": "471",
+                        "Contrato": "BBH02100068807393",
+                        "Origem": "BANRISUL",
+                        "QtdeOcorrencia": "5"
+                    },
+                    {
+                        "TipoPEFIN": "04",
+                        "Modalidade": "OUTRAS OPER",
+                        "TipoOcorrencia": "I",
+                        "ChaveCADUS": "968623834",
+                        "DataOcorrencia": "20260710",
+                        "SiglaMOD": "OO",
+                        "TipoMoeda": "R$",
+                        "Valor": "1271",
+                        "Contrato": "BBH02100068226733",
+                        "Origem": "BANRISUL",
+                        "QtdeOcorrencia": "5"
+                    }
+                ],
+                "AcoesJudiciaisPF": [],
+                "ProtestosPF": [
+                    {
+                        "DataOcorrencia": "20251222",
+                        "Cartorio": "99",
+                        "Cidade": "GRAVATAI",
+                        "UF": "RS",
+                        "QtdeOcorrencia": "2",
+                        "TipoMoeda": "R$",
+                        "Valor": "423"
+                    },
+                    {
+                        "DataOcorrencia": "20250904",
+                        "Cartorio": "99",
+                        "Cidade": "GRAVATAI",
+                        "UF": "RS",
+                        "QtdeOcorrencia": "2",
+                        "TipoMoeda": "R$",
+                        "Valor": "3453"
+                    }
+                ],
+                "DividasVencidasPF": [],
+                "ChequesSemFundosPF": []
+            },
+            "nomeSerasa": "GUILHERME HENRIQUE DINARELLI FOGACA",
+            "rendaPresumidaSerasa": 3550
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": "REGULAR"
+    },
+    "rendaConsiderada": 4863.5,
+    "rendaConsideradaContrato": 4863.5,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 729.525,
+    "qtdeRestricoesContrato": 10,
+    "restricoesPorModalidadeContrato": [
+        "OUTRAS OPER",
+        "INST ENSINO",
+        "VENDA MERCAD"
+    ],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 8135,
+    "regua": "Consulta hva4",
+    "score": 441,
+    "scores": {
+        "BVS_CUSTOM": 441,
+        "HVA4": 0,
+        "BLEND3_4": 441
+    },
+    "ratings": {
+        "BVS_CUSTOM": "E",
+        "HVA4": "N",
+        "BLEND3_4": "E"
+    },
+    "blendRegressaoPredict": 80,
+    "decisao": "BLEND3_4",
+    "classificacao": "E",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND3_4"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [
+        "missing.powercurve.score.hva4"
+    ],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": 0.1625183,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": false,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [],
+        "exit_cost_multiplier": [],
+        "commission_percent": [],
+        "version": 1
+    },
+    "flexPricingIncentive": {
+        "incentive_pricing": false,
+        "real_estate_agency_id": 16463,
+        "constraints_override": null,
+        "version": 1
+    }
+}
+
+## Multiprop
+{
+    "pessoas": [
+        {
+            "nome": "VALESCA MYRELLA TOMAZ FELTRIN",
+            "documento": "41464396809",
+            "classificacao": "E",
+            "tipoPessoa": "FISICA",
+            "idade": 33,
+            "scores": {
+                "HVA3": "350"
+            },
+            "ratings": {
+                "HVA3": "E"
+            },
+            "dt_nascimento": "1993-07-16",
+            "rendaConsideradaPessoa": 2808.5,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 421.275,
+            "qtdeRestricoes": 4,
+            "valorTotalRestricao": 34694,
+            "situacao_cadastral_serasa": "REGULAR",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": {
+                "Pefin": {
+                    "DataPrimeiraOcorrenciaPefin": null,
+                    "DataUltimaOcorrenciaPefin": null,
+                    "QuantidadeTotalPefin": "0",
+                    "ValorTotalPefin": "0"
+                },
+                "Refin": {
+                    "DataPrimeiraOcorrenciaRefin": "20260518",
+                    "DataUltimaOcorrenciaRefin": "20260518",
+                    "QuantidadeTotalRefin": "1",
+                    "ValorTotalRefin": "33770"
+                },
+                "Acao": {
+                    "DataPrimeiraAcao": null,
+                    "DataUltimaAcao": null,
+                    "QuantidadeTotalAcao": null,
+                    "ValorTotalAcao": "0"
+                },
+                "Protesto": {
+                    "DataPrimeiraOcorrenciaProtesto": "20231001",
+                    "DataUltimaOcorrenciaProtesto": "20251101",
+                    "QuantidadeTotalProtesto": "3",
+                    "TipoMoeda": null,
+                    "ValorTotalProtesto": "924"
+                },
+                "DividaVencida": {
+                    "DataPrimeiraOcorrenciaDividasVencidas": null,
+                    "DataUltimaOcorrenciaDividasVencidas": null,
+                    "QuantidadeTotalDividasVencidas": null,
+                    "ValorTotalDividasVencidas": null
+                },
+                "ChequeSemFundos": {
+                    "QuantidadeCCF": null,
+                    "ValorTotalCCF": "0"
+                },
+                "PendenciasPagamentoPF": [
+                    {
+                        "TipoPEFIN": "04",
+                        "Modalidade": "FINANCIAMENT",
+                        "TipoOcorrencia": "I",
+                        "ChaveCADUS": "896696322",
+                        "DataOcorrencia": "20260518",
+                        "SiglaMOD": "FI",
+                        "TipoMoeda": "R$",
+                        "Valor": "33770",
+                        "Contrato": "UG244300067312423",
+                        "Origem": "SANTANDER",
+                        "QtdeOcorrencia": "1"
+                    }
+                ],
+                "AcoesJudiciaisPF": [],
+                "ProtestosPF": [
+                    {
+                        "DataOcorrencia": "20251108",
+                        "Cartorio": "51",
+                        "Cidade": "FERNANDOPOLIS",
+                        "UF": "SP",
+                        "QtdeOcorrencia": "3",
+                        "TipoMoeda": "R$",
+                        "Valor": "331"
+                    },
+                    {
+                        "DataOcorrencia": "20241021",
+                        "Cartorio": "51",
+                        "Cidade": "FERNANDOPOLIS",
+                        "UF": "SP",
+                        "QtdeOcorrencia": "3",
+                        "TipoMoeda": "R$",
+                        "Valor": "319"
+                    },
+                    {
+                        "DataOcorrencia": "20231021",
+                        "Cartorio": "2",
+                        "Cidade": "FERNANDOPOLIS",
+                        "UF": "SP",
+                        "QtdeOcorrencia": "3",
+                        "TipoMoeda": "R$",
+                        "Valor": "274"
+                    }
+                ],
+                "DividasVencidasPF": [],
+                "ChequesSemFundosPF": []
+            },
+            "nomeSerasa": "VALESCA MYRELLA TOMAZ FELTRIN",
+            "rendaPresumidaSerasa": 2050
+        },
+        {
+            "nome": "RONAN TAVARES DE SOUZA JUNIOR",
+            "documento": "36391814848",
+            "classificacao": "E",
+            "tipoPessoa": "FISICA",
+            "idade": 39,
+            "scores": {
+                "HVA3": "350"
+            },
+            "ratings": {
+                "HVA3": "E"
+            },
+            "dt_nascimento": "1986-09-20",
+            "rendaConsideradaPessoa": 4932,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 739.8,
+            "qtdeRestricoes": 7,
+            "valorTotalRestricao": 11005,
+            "situacao_cadastral_serasa": "REGULAR",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": {
+                "Pefin": {
+                    "DataPrimeiraOcorrenciaPefin": null,
+                    "DataUltimaOcorrenciaPefin": null,
+                    "QuantidadeTotalPefin": "0",
+                    "ValorTotalPefin": "0"
+                },
+                "Refin": {
+                    "DataPrimeiraOcorrenciaRefin": "20230201",
+                    "DataUltimaOcorrenciaRefin": "20230228",
+                    "QuantidadeTotalRefin": "4",
+                    "ValorTotalRefin": "7333"
+                },
+                "Acao": {
+                    "DataPrimeiraAcao": null,
+                    "DataUltimaAcao": null,
+                    "QuantidadeTotalAcao": null,
+                    "ValorTotalAcao": "0"
+                },
+                "Protesto": {
+                    "DataPrimeiraOcorrenciaProtesto": "20250401",
+                    "DataUltimaOcorrenciaProtesto": "20250401",
+                    "QuantidadeTotalProtesto": "1",
+                    "TipoMoeda": null,
+                    "ValorTotalProtesto": "3672"
+                },
+                "DividaVencida": {
+                    "DataPrimeiraOcorrenciaDividasVencidas": null,
+                    "DataUltimaOcorrenciaDividasVencidas": null,
+                    "QuantidadeTotalDividasVencidas": null,
+                    "ValorTotalDividasVencidas": null
+                },
+                "ChequeSemFundos": {
+                    "QuantidadeCCF": "2",
+                    "ValorTotalCCF": "0"
+                },
+                "PendenciasPagamentoPF": [
+                    {
+                        "TipoPEFIN": "04",
+                        "Modalidade": "CRED CARTAO",
+                        "TipoOcorrencia": "I",
+                        "ChaveCADUS": "451822928",
+                        "DataOcorrencia": "20230228",
+                        "SiglaMOD": "CT",
+                        "TipoMoeda": "R$",
+                        "Valor": "2342",
+                        "Contrato": "67248624\/12686765",
+                        "Origem": "ATIVOS ORIG BB",
+                        "QtdeOcorrencia": "4"
+                    },
+                    {
+                        "TipoPEFIN": "04",
+                        "Modalidade": "EMPRESTIMOS",
+                        "TipoOcorrencia": "I",
+                        "ChaveCADUS": "452787588",
+                        "DataOcorrencia": "20230221",
+                        "SiglaMOD": "EC",
+                        "TipoMoeda": "R$",
+                        "Valor": "1545",
+                        "Contrato": "69119772\/11704962",
+                        "Origem": "ATIVOS ORIG BB",
+                        "QtdeOcorrencia": "4"
+                    },
+                    {
+                        "TipoPEFIN": "04",
+                        "Modalidade": "EMPRESTIMOS",
+                        "TipoOcorrencia": "I",
+                        "ChaveCADUS": "452477604",
+                        "DataOcorrencia": "20230221",
+                        "SiglaMOD": "EC",
+                        "TipoMoeda": "R$",
+                        "Valor": "1470",
+                        "Contrato": "68616829\/11704942",
+                        "Origem": "ATIVOS ORIG BB",
+                        "QtdeOcorrencia": "4"
+                    },
+                    {
+                        "TipoPEFIN": "04",
+                        "Modalidade": "ADIANTAMENTO",
+                        "TipoOcorrencia": "I",
+                        "ChaveCADUS": "452156201",
+                        "DataOcorrencia": "20230201",
+                        "SiglaMOD": "CH",
+                        "TipoMoeda": "R$",
+                        "Valor": "1974",
+                        "Contrato": "68006327\/5029982",
+                        "Origem": "ATIVOS ORIG BB",
+                        "QtdeOcorrencia": "4"
+                    }
+                ],
+                "AcoesJudiciaisPF": [],
+                "ProtestosPF": [
+                    {
+                        "DataOcorrencia": "20250404",
+                        "Cartorio": "1",
+                        "Cidade": "PRESIDENTE PRUDENTE",
+                        "UF": "SP",
+                        "QtdeOcorrencia": "1",
+                        "TipoMoeda": "R$",
+                        "Valor": "3672"
+                    }
+                ],
+                "DividasVencidasPF": [],
+                "ChequesSemFundosPF": [
+                    {
+                        "DataOcorrencia": "20230425",
+                        "NumCheque": "CCF-BB",
+                        "Quantidade": "2",
+                        "TipoMoeda": "R$",
+                        "Valor": null,
+                        "Banco": "BANCO DO BRASIL S\/AO0134933159",
+                        "Agencia": "0890",
+                        "Cidade": "ALVARES MACHADO",
+                        "UF": "SP",
+                        "Conta": null
+                    }
+                ]
+            },
+            "nomeSerasa": "RONAN TAVARES DE SOUZA JUNIOR",
+            "rendaPresumidaSerasa": 3600
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": "REGULAR"
+    },
+    "rendaConsiderada": 7740.5,
+    "rendaConsideradaContrato": 7740.5,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 1161.0749999999998,
+    "qtdeRestricoesContrato": 11,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 45699,
+    "regua": "Consulta hvar",
+    "score": 350,
+    "scores": {
+        "HVA3": 350
+    },
+    "ratings": {
+        "HVA3": "E"
+    },
+    "blendRegressaoPredict": null,
+    "decisao": "HVA3",
+    "classificacao": "E",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND_4"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": [],
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": false,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [],
+        "exit_cost_multiplier": [],
+        "commission_percent": [],
+        "version": 1
+    },
+    "flexPricingIncentive": {
+        "incentive_pricing": false,
+        "real_estate_agency_id": 38005,
+        "constraints_override": null,
+        "version": 1
+    }
+}
+
+
+## Caso Normal
+{
+    "pessoas": [
+        {
+            "nome": "FELIPE BELARMINO DE GODOI",
+            "documento": "44766763831",
+            "classificacao": "B",
+            "tipoPessoa": "FISICA",
+            "idade": 28,
+            "scores": {
+                "BVS_CUSTOM": 627,
+                "HVA4": 527,
+                "BLEND3_4": 627
+            },
+            "ratings": {
+                "BVS_CUSTOM": "C",
+                "HVA4": "D",
+                "BLEND3_4": "B"
+            },
+            "dt_nascimento": "1997-09-13",
+            "rendaConsideradaPessoa": 4589.5,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 2524.2250000000004,
+            "qtdeRestricoes": 1,
+            "valorTotalRestricao": 37,
             "situacao_cadastral_serasa": "REGULAR",
             "existeErroSerasa": false,
             "existeErroPowerCurve": false,
@@ -30,20 +668,20 @@
             "errosTecnicos": [],
             "dadosAusentes": [],
             "restricoesPorModalidade": [
-                "ENERGIA ELET"
+                "FAT AGUA"
             ],
             "anotacoesFinanceirasSerasa": {
                 "Pefin": {
-                    "DataPrimeiraOcorrenciaPefin": "20220217",
-                    "DataUltimaOcorrenciaPefin": "20220217",
+                    "DataPrimeiraOcorrenciaPefin": "20220905",
+                    "DataUltimaOcorrenciaPefin": "20220905",
                     "QuantidadeTotalPefin": "1",
-                    "ValorTotalPefin": "170"
+                    "ValorTotalPefin": "37"
                 },
                 "Refin": {
-                    "DataPrimeiraOcorrenciaRefin": "20230310",
-                    "DataUltimaOcorrenciaRefin": "20230310",
-                    "QuantidadeTotalRefin": "1",
-                    "ValorTotalRefin": "861"
+                    "DataPrimeiraOcorrenciaRefin": null,
+                    "DataUltimaOcorrenciaRefin": null,
+                    "QuantidadeTotalRefin": "0",
+                    "ValorTotalRefin": "0"
                 },
                 "Acao": {
                     "DataPrimeiraAcao": null,
@@ -71,28 +709,15 @@
                 "PendenciasPagamentoPF": [
                     {
                         "TipoPEFIN": "01",
-                        "Modalidade": "ENERGIA ELET",
+                        "Modalidade": "FAT AGUA",
                         "TipoOcorrencia": "V",
-                        "ChaveCADUS": "276199608",
-                        "DataOcorrencia": "20220217",
-                        "SiglaMOD": "EE",
+                        "ChaveCADUS": "672097073",
+                        "DataOcorrencia": "20220905",
+                        "SiglaMOD": "SB",
                         "TipoMoeda": "R$",
-                        "Valor": "170",
-                        "Contrato": "000790813645546N",
-                        "Origem": "CEMIG D",
-                        "QtdeOcorrencia": "1"
-                    },
-                    {
-                        "TipoPEFIN": "04",
-                        "Modalidade": "FINANCIAMENT",
-                        "TipoOcorrencia": "I",
-                        "ChaveCADUS": "350707403",
-                        "DataOcorrencia": "20230310",
-                        "SiglaMOD": "FI",
-                        "TipoMoeda": "R$",
-                        "Valor": "861",
-                        "Contrato": "38800209898282250",
-                        "Origem": "CEF",
+                        "Valor": "37",
+                        "Contrato": "9104429074550",
+                        "Origem": "SABESP",
                         "QtdeOcorrencia": "1"
                     }
                 ],
@@ -101,54 +726,588 @@
                 "DividasVencidasPF": [],
                 "ChequesSemFundosPF": []
             },
-            "nomeSerasa": "CELSO HENRIQUE RAMALHO DE SOUZA",
-            "rendaPresumidaSerasa": 2900
+            "nomeSerasa": "FELIPE BELARMINO DE GODOI",
+            "rendaPresumidaSerasa": 3350
         }
     ],
     "regras": {
         "situacao_cadastral_serasa": "REGULAR"
     },
-    "rendaConsiderada": 3973.0000000000005,
-    "rendaConsideradaContrato": 3973.0000000000005,
+    "rendaConsiderada": 4589.5,
+    "rendaConsideradaContrato": 4589.5,
     "rendaUtilizada": "SERASA",
     "fatorCorrecaoRenda": 1.37,
-    "limiteCalculadoContrato": 595.95,
-    "qtdeRestricoesContrato": 2,
+    "limiteCalculadoContrato": 2524.2250000000004,
+    "qtdeRestricoesContrato": 1,
     "restricoesPorModalidadeContrato": [
-        "ENERGIA ELET"
+        "FAT AGUA"
     ],
     "regra_estouro_limite": "N\u00c3O APLICADA",
-    "valorRestricaoTotal": 1031,
+    "valorRestricaoTotal": 37,
     "regua": "Consulta hva4",
-    "score": 579,
+    "score": 627,
     "scores": {
-        "BVS_CUSTOM": 579,
-        "HVA4": 287,
-        "BLEND3_3": 579
+        "BVS_CUSTOM": 627,
+        "HVA4": 527,
+        "BLEND3_4": 627
     },
     "ratings": {
-        "BVS_CUSTOM": "D",
-        "HVA4": "E",
-        "BLEND3_3": "E"
+        "BVS_CUSTOM": "C",
+        "HVA4": "D",
+        "BLEND3_4": "B"
     },
-    "blendRegressaoPredict": 281,
-    "decisao": "BLEND3_3",
-    "classificacao": "E",
-    "classificacaoInquilino": "none",
+    "blendRegressaoPredict": 551,
+    "decisao": "BLEND3_4",
+    "classificacao": "B",
     "existeErroSerasa": false,
     "existeErroPowerCurve": false,
     "existeErroBvsCustom": false,
     "motor": "POWERCURVE",
     "feature_flags": {
         "analiseAutomaticaDeCredito": true,
-        "modeloBlend": "BLEND3_3"
+        "modeloBlend": "BLEND3_4"
     },
     "errosTecnicos": [],
     "dadosAusentes": [],
     "blend3Variables": {
         "hasPreviousContracts": false,
         "hadOverdueInvoiceInPreviousContracts": false,
-        "cityPc4HistoryOver100Contracts": 0.14634146,
+        "cityPc4HistoryOver100Contracts": null,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": false,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [
+            35,
+            40,
+            50
+        ],
+        "exit_cost_multiplier": [
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "commission_percent": [
+            0,
+            0.5,
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+        ],
+        "version": 1
+    },
+    "flexPricingIncentive": {
+        "incentive_pricing": false,
+        "real_estate_agency_id": 38240,
+        "constraints_override": null,
+        "version": 1
+    }
+}
+
+##Novo Caso
+
+{
+    "pessoas": [
+        {
+            "nome": "RORDAO MACEDO JUNIOR",
+            "documento": "02151643930",
+            "classificacao": "A",
+            "tipoPessoa": "FISICA",
+            "idade": 49,
+            "scores": {
+                "BVS_CUSTOM_V2": 562,
+                "HFT1": 790
+            },
+            "ratings": {
+                "BLEND_4": "A"
+            },
+            "dt_nascimento": "1977-06-17",
+            "rendaConsideradaPessoa": 118779,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 83145.29999999999,
+            "qtdeRestricoes": 0,
+            "valorTotalRestricao": 0,
+            "situacao_cadastral_serasa": "REGULAR",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": null,
+            "nomeSerasa": "RORDAO MACEDO JUNIOR",
+            "rendaPresumidaSerasa": 86700
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": "REGULAR"
+    },
+    "rendaConsiderada": 118779,
+    "rendaConsideradaContrato": 118779,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 83145.29999999999,
+    "qtdeRestricoesContrato": 0,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 0,
+    "regua": "Consulta Custom PF",
+    "score": 562,
+    "scores": {
+        "BVS_CUSTOM_V2": 562,
+        "HFT1": 790
+    },
+    "ratings": {
+        "BLEND_4": "A"
+    },
+    "blendRegressaoPredict": 664,
+    "decisao": "BLEND_4",
+    "classificacao": "A",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND_4"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": 0.10201387,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": false,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [
+            35,
+            40,
+            50
+        ],
+        "exit_cost_multiplier": [
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "commission_percent": [
+            0,
+            0.5,
+            1,
+            1.5,
+            2,
+            2.5,
+            3
+        ],
+        "version": 1
+    },
+    "flexPricingIncentive": {
+        "incentive_pricing": false,
+        "real_estate_agency_id": 207,
+        "constraints_override": null,
+        "version": 1
+    }
+}
+
+### Caso PJ
+{
+    "pessoas": [
+        {
+            "nome": "SIDNEY WERNECK DOS SANTOS",
+            "documento": "38724693715",
+            "classificacao": "A",
+            "tipoPessoa": "FISICA",
+            "idade": 70,
+            "scores": {
+                "BVS_CUSTOM": 709,
+                "HVA4": 534,
+                "BLEND3_4": 709
+            },
+            "ratings": {
+                "BVS_CUSTOM": "B",
+                "HVA4": "D",
+                "BLEND3_4": "A"
+            },
+            "dt_nascimento": "1956-03-16",
+            "rendaConsideradaPessoa": 17262,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 12083.4,
+            "qtdeRestricoes": 3,
+            "valorTotalRestricao": 32941,
+            "situacao_cadastral_serasa": "REGULAR",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": {
+                "Pefin": {
+                    "DataPrimeiraOcorrenciaPefin": null,
+                    "DataUltimaOcorrenciaPefin": null,
+                    "QuantidadeTotalPefin": "0",
+                    "ValorTotalPefin": "0"
+                },
+                "Refin": {
+                    "DataPrimeiraOcorrenciaRefin": "20260709",
+                    "DataUltimaOcorrenciaRefin": "20260805",
+                    "QuantidadeTotalRefin": "3",
+                    "ValorTotalRefin": "32941"
+                },
+                "Acao": {
+                    "DataPrimeiraAcao": null,
+                    "DataUltimaAcao": null,
+                    "QuantidadeTotalAcao": null,
+                    "ValorTotalAcao": "0"
+                },
+                "Protesto": {
+                    "DataPrimeiraOcorrenciaProtesto": null,
+                    "DataUltimaOcorrenciaProtesto": null,
+                    "QuantidadeTotalProtesto": null,
+                    "TipoMoeda": null,
+                    "ValorTotalProtesto": null
+                },
+                "DividaVencida": {
+                    "DataPrimeiraOcorrenciaDividasVencidas": null,
+                    "DataUltimaOcorrenciaDividasVencidas": null,
+                    "QuantidadeTotalDividasVencidas": null,
+                    "ValorTotalDividasVencidas": null
+                },
+                "ChequeSemFundos": {
+                    "QuantidadeCCF": null,
+                    "ValorTotalCCF": "0"
+                },
+                "PendenciasPagamentoPF": [
+                    {
+                        "TipoPEFIN": "04",
+                        "Modalidade": "EMPRES CONTA",
+                        "TipoOcorrencia": "I",
+                        "ChaveCADUS": "988203464",
+                        "DataOcorrencia": "20260805",
+                        "SiglaMOD": "EC",
+                        "TipoMoeda": "R$",
+                        "Valor": "3223",
+                        "Contrato": "19750550753348201",
+                        "Origem": "BANCO BRADESCO",
+                        "QtdeOcorrencia": "3"
+                    },
+                    {
+                        "TipoPEFIN": "04",
+                        "Modalidade": "CRED CARTAO",
+                        "TipoOcorrencia": "I",
+                        "ChaveCADUS": "959949489",
+                        "DataOcorrencia": "20260710",
+                        "SiglaMOD": "CT",
+                        "TipoMoeda": "R$",
+                        "Valor": "3473",
+                        "Contrato": "19750550753435658",
+                        "Origem": "BANCO BRADESCO",
+                        "QtdeOcorrencia": "3"
+                    },
+                    {
+                        "TipoPEFIN": "04",
+                        "Modalidade": "FINANCIAMENT",
+                        "TipoOcorrencia": "I",
+                        "ChaveCADUS": "967235407",
+                        "DataOcorrencia": "20260709",
+                        "SiglaMOD": "FI",
+                        "TipoMoeda": "R$",
+                        "Valor": "26244",
+                        "Contrato": "005196909970000",
+                        "Origem": "CARTOES FINANCEIRA I",
+                        "QtdeOcorrencia": "3"
+                    }
+                ],
+                "AcoesJudiciaisPF": [],
+                "ProtestosPF": [],
+                "DividasVencidasPF": [],
+                "ChequesSemFundosPF": []
+            },
+            "nomeSerasa": "SIDNEY WERNECK DOS SANTOS",
+            "rendaPresumidaSerasa": 12600
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": "REGULAR"
+    },
+    "rendaConsiderada": 17262,
+    "rendaConsideradaContrato": 17262,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 12083.4,
+    "qtdeRestricoesContrato": 3,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 32941,
+    "regua": "Consulta hva4",
+    "score": 709,
+    "scores": {
+        "BVS_CUSTOM": 709,
+        "HVA4": 534,
+        "BLEND3_4": 709
+    },
+    "ratings": {
+        "BVS_CUSTOM": "B",
+        "HVA4": "D",
+        "BLEND3_4": "A"
+    },
+    "blendRegressaoPredict": 477,
+    "decisao": "BLEND3_4",
+    "classificacao": "A",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND_4"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": 0.06140351,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": false,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [],
+        "exit_cost_multiplier": [],
+        "commission_percent": [],
+        "version": 1
+    },
+    "flexPricingIncentive": {
+        "incentive_pricing": false,
+        "real_estate_agency_id": null,
+        "constraints_override": null,
+        "version": 1
+    }
+}
+
+## Comparação CR com CF
+
+{
+    "pessoas": [
+        {
+            "nome": "VIVIANE DOS SANTOS DE SOUZA",
+            "documento": "15320917961",
+            "classificacao": "E",
+            "tipoPessoa": "FISICA",
+            "idade": 19,
+            "scores": {
+                "BVS_CUSTOM": 467,
+                "HVA4": 339,
+                "BLEND3_4": 467
+            },
+            "ratings": {
+                "BVS_CUSTOM": "E",
+                "HVA4": "E",
+                "BLEND3_4": "E"
+            },
+            "dt_nascimento": "2006-11-24",
+            "rendaConsideradaPessoa": 1301.5,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 195.225,
+            "qtdeRestricoes": 0,
+            "valorTotalRestricao": 0,
+            "situacao_cadastral_serasa": "REGULAR",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": {
+                "Pefin": {
+                    "DataPrimeiraOcorrenciaPefin": null,
+                    "DataUltimaOcorrenciaPefin": null,
+                    "QuantidadeTotalPefin": "0",
+                    "ValorTotalPefin": "0"
+                },
+                "Refin": {
+                    "DataPrimeiraOcorrenciaRefin": null,
+                    "DataUltimaOcorrenciaRefin": null,
+                    "QuantidadeTotalRefin": "0",
+                    "ValorTotalRefin": "0"
+                },
+                "Acao": {
+                    "DataPrimeiraAcao": null,
+                    "DataUltimaAcao": null,
+                    "QuantidadeTotalAcao": null,
+                    "ValorTotalAcao": "0"
+                },
+                "Protesto": {
+                    "DataPrimeiraOcorrenciaProtesto": null,
+                    "DataUltimaOcorrenciaProtesto": null,
+                    "QuantidadeTotalProtesto": null,
+                    "TipoMoeda": null,
+                    "ValorTotalProtesto": null
+                },
+                "DividaVencida": {
+                    "DataPrimeiraOcorrenciaDividasVencidas": null,
+                    "DataUltimaOcorrenciaDividasVencidas": null,
+                    "QuantidadeTotalDividasVencidas": null,
+                    "ValorTotalDividasVencidas": null
+                },
+                "ChequeSemFundos": {
+                    "QuantidadeCCF": null,
+                    "ValorTotalCCF": "0"
+                },
+                "PendenciasPagamentoPF": [],
+                "AcoesJudiciaisPF": [],
+                "ProtestosPF": [],
+                "DividasVencidasPF": [],
+                "ChequesSemFundosPF": []
+            },
+            "nomeSerasa": "VIVIANE DOS SANTOS DE SOUZA",
+            "rendaPresumidaSerasa": 950
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": "REGULAR"
+    },
+    "rendaConsiderada": 1301.5,
+    "rendaConsideradaContrato": 1301.5,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 195.225,
+    "qtdeRestricoesContrato": 0,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 0,
+    "regua": "Consulta hva4",
+    "score": 467,
+    "scores": {
+        "BVS_CUSTOM": 467,
+        "HVA4": 339,
+        "BLEND3_4": 467
+    },
+    "ratings": {
+        "BVS_CUSTOM": "E",
+        "HVA4": "E",
+        "BLEND3_4": "E"
+    },
+    "blendRegressaoPredict": 251,
+    "decisao": "BLEND3_4",
+    "classificacao": "E",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND3_4"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": 0.075179,
+        "realEstatePc4HistoryOver100Contracts": null
+    },
+    "reaproveitamentoConsultaMotor": false,
+    "savingBureauPowerCurve": false,
+    "rentGuaranteeConstraints": {
+        "rent_coverage_multiplier": [],
+        "exit_cost_multiplier": [],
+        "commission_percent": [],
+        "version": 1
+    },
+    "flexPricingIncentive": {
+        "incentive_pricing": false,
+        "real_estate_agency_id": 5911,
+        "constraints_override": null,
+        "version": 1
+    }
+}
+
+{
+    "pessoas": [
+        {
+            "nome": "MARIA REJANE CANDIDA DA ROCHA",
+            "documento": "14310031234",
+            "classificacao": "C",
+            "tipoPessoa": "FISICA",
+            "idade": 65,
+            "scores": {
+                "BVS_CUSTOM_V2": 431,
+                "HFT1": 461
+            },
+            "ratings": {
+                "BLEND_4": "C"
+            },
+            "dt_nascimento": "1961-08-12",
+            "rendaConsideradaPessoa": 12741,
+            "rendaUtilizada": "SERASA",
+            "fatorCorrecaoRenda": 1.37,
+            "limiteCalculadoPessoa": 5733.45,
+            "qtdeRestricoes": 2,
+            "valorTotalRestricao": 7599,
+            "situacao_cadastral_serasa": "REGULAR",
+            "existeErroSerasa": false,
+            "existeErroPowerCurve": false,
+            "existeErroBvsCustom": false,
+            "errosTecnicos": [],
+            "dadosAusentes": [],
+            "restricoesPorModalidade": [],
+            "anotacoesFinanceirasSerasa": null,
+            "nomeSerasa": "MARIA REJANE CANDIDA DA ROCHA",
+            "rendaPresumidaSerasa": 9300
+        }
+    ],
+    "regras": {
+        "situacao_cadastral_serasa": "REGULAR"
+    },
+    "rendaConsiderada": 12741,
+    "rendaConsideradaContrato": 12741,
+    "rendaUtilizada": "SERASA",
+    "fatorCorrecaoRenda": 1.37,
+    "limiteCalculadoContrato": 5733.45,
+    "qtdeRestricoesContrato": 2,
+    "restricoesPorModalidadeContrato": [],
+    "regra_estouro_limite": "N\u00c3O APLICADA",
+    "valorRestricaoTotal": 7599,
+    "regua": "Consulta Custom PF",
+    "score": 431,
+    "scores": {
+        "BVS_CUSTOM_V2": 431,
+        "HFT1": 461
+    },
+    "ratings": {
+        "BLEND_4": "C"
+    },
+    "blendRegressaoPredict": 420,
+    "decisao": "BLEND_4",
+    "classificacao": "C",
+    "existeErroSerasa": false,
+    "existeErroPowerCurve": false,
+    "existeErroBvsCustom": false,
+    "motor": "POWERCURVE",
+    "feature_flags": {
+        "analiseAutomaticaDeCredito": true,
+        "modeloBlend": "BLEND_4"
+    },
+    "errosTecnicos": [],
+    "dadosAusentes": [],
+    "blend3Variables": {
+        "hasPreviousContracts": false,
+        "hadOverdueInvoiceInPreviousContracts": false,
+        "cityPc4HistoryOver100Contracts": 0.12278876,
         "realEstatePc4HistoryOver100Contracts": null
     },
     "reaproveitamentoConsultaMotor": false,
@@ -164,6 +1323,12 @@
             0,
             1
         ],
+        "version": 1
+    },
+    "flexPricingIncentive": {
+        "incentive_pricing": false,
+        "real_estate_agency_id": 50036,
+        "constraints_override": null,
         "version": 1
     }
 }
