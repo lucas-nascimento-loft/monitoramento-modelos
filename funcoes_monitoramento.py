@@ -1742,13 +1742,13 @@ def plot_score_match_monitoring(
     Graph 1: daily match %.
     Graph 2: weekly match %.
     """
-    daily_summary = build_score_match_summary(
-        df,
-        production_score_col=production_score_col,
-        simulated_score_col=simulated_score_col,
-        model_col=model_col,
-        time_grain="day",
-    )
+    # daily_summary = build_score_match_summary(
+    #     df,
+    #     production_score_col=production_score_col,
+    #     simulated_score_col=simulated_score_col,
+    #     model_col=model_col,
+    #     time_grain="day",
+    # )
     weekly_summary = build_score_match_summary(
         df,
         production_score_col=production_score_col,
@@ -1757,19 +1757,19 @@ def plot_score_match_monitoring(
         time_grain="week",
     )
 
-    if daily_summary.empty:
-        print("[skip] Sem dados para match diário de score")
-    else:
-        plot_score_match_summary(
-            daily_summary,
-            match_tolerance=match_tolerance,
-            title=f"{title_prefix} — Diário",
-            xlabel="Dia",
-            model_col=model_col,
-            show_volume=show_volume,
-            ylim=ylim,
-        )
-        plt.show()
+    # if daily_summary.empty:
+    #     print("[skip] Sem dados para match diário de score")
+    # else:
+    #     plot_score_match_summary(
+    #         daily_summary,
+    #         match_tolerance=match_tolerance,
+    #         title=f"{title_prefix} — Diário",
+    #         xlabel="Dia",
+    #         model_col=model_col,
+    #         show_volume=show_volume,
+    #         ylim=ylim,
+    #     )
+    #     plt.show()
 
     if weekly_summary.empty:
         print("[skip] Sem dados para match semanal de score")
@@ -1785,7 +1785,7 @@ def plot_score_match_monitoring(
         )
         plt.show()
 
-    return daily_summary, weekly_summary
+    return weekly_summary
 
 
 # ---------------------------------------------------------------------------
